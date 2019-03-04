@@ -1,0 +1,11 @@
+obj
+Library
+Temp
+Logs
+Builds
+.idea
+
+Assets/Plugins/Editor
+Assets/Plugins/Editor.meta
+
+Packages/com.unity.uiwidgets
