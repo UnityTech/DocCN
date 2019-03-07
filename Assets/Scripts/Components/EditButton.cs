@@ -1,5 +1,6 @@
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.widgets;
+using UnityEditor;
 using UnityEngine;
 using Color = Unity.UIWidgets.ui.Color;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
@@ -30,8 +31,9 @@ namespace DocCN.Components
                     )
                 )
             );
-            return new GestureDetector(
-                onTap: () => Bridge.Hello(),
+            return new Listener(
+                onPointerEnter: evt => Bridge.ChangeCursor("pointer"),
+                onPointerLeave: evt => Bridge.ChangeCursor("default"),
                 child: container
             );
         }

@@ -57,9 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Packages\com.unity.uiwidgets\Editor\editor\EditorUtils.cs" />
-    <Compile Include="Packages\com.unity.uiwidgets\Editor\editor\WidgetCanvasEditor.cs" />
-    <Compile Include="Packages\com.unity.uiwidgets\Editor\EditorExample.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Editor\UIWidgetsPanelEditor.cs" />
     <None Include="Packages\com.unity.uiwidgets\Editor\Unity.UIWidgets.Editor.asmdef" />
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/home/haog/Unity-2018.3.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -294,6 +292,9 @@
     </Reference>
     <Reference Include="JetBrains.Rider.Unity.Editor.Plugin.Repacked">
       <HintPath>/home/haog/Workspace/DocCN/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>/home/haog/Workspace/DocCN/Assets/Packages/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements.Editor">
       <HintPath>/home/haog/Workspace/DocCN/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.Editor.dll</HintPath>

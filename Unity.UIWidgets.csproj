@@ -73,13 +73,14 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\debugger\inspector_service.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\debugger\inspector_treeview.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\debugger\inspector_window.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\editor\editor_utils.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\editor\editor_window.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\editor\rasterizer.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\editor\scroll_input.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\editor\surface.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\engine\DisplayMetrics.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\engine\input_utils.cs" />
-    <Compile Include="Packages\com.unity.uiwidgets\Runtime\engine\WidgetCanvas.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\engine\UIWidgetsPanel.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\flow\clip_path_layer.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\flow\clip_rect_layer.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\flow\clip_rrect_layer.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\gestures\tap.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\gestures\team.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\gestures\velocity_tracker.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\app.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\arc.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\button.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\button_bar.cs" />
@@ -150,6 +152,8 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\material.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\material_button.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\mergeable_material.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\page.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\page_transitions_theme.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\raised_button.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\scrollbar.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\shadows.cs" />
@@ -578,6 +582,9 @@
     </Reference>
     <Reference Include="JetBrains.Rider.Unity.Editor.Plugin.Repacked">
       <HintPath>/home/haog/Workspace/DocCN/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>/home/haog/Workspace/DocCN/Assets/Packages/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements.Editor">
       <HintPath>/home/haog/Workspace/DocCN/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.Editor.dll</HintPath>

@@ -63,12 +63,16 @@
     <Compile Include="Assets\Scripts\Components\Header.cs" />
     <Compile Include="Assets\Scripts\Components\LanguageSelection.cs" />
     <Compile Include="Assets\Scripts\Components\Markdown.cs" />
+    <Compile Include="Assets\Scripts\Components\MarkdownContent.cs" />
     <Compile Include="Assets\Scripts\Components\MarkdownTitleRow.cs" />
     <Compile Include="Assets\Scripts\Components\Menu.cs" />
     <Compile Include="Assets\Scripts\Components\MetaFields.cs" />
     <Compile Include="Assets\Scripts\Components\ModifiedInfo.cs" />
     <Compile Include="Assets\Scripts\Components\RelatedArticles.cs" />
+    <Compile Include="Assets\Scripts\DocCNApp.cs" />
     <Compile Include="Assets\Scripts\ExampleCanvas.cs" />
+    <Compile Include="Assets\Scripts\Markdown\Token.cs" />
+    <Compile Include="Assets\Scripts\ScrollListener.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/home/haog/Workspace/DocCN/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -284,6 +288,9 @@
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>/home/haog/Unity-2018.3.0f2/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>/home/haog/Workspace/DocCN/Assets/Packages/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements.Editor">
       <HintPath>/home/haog/Workspace/DocCN/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.Editor.dll</HintPath>
@@ -651,17 +658,13 @@
       <Project>{801CB4BB-CBB5-1BD9-D905-B25029E9E4C2}</Project>
       <Name>Unity.UIWidgets.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="UIWidgetSample.csproj">
-      <Project>{DD9F86B9-5916-DBED-81E9-9930C763B931}</Project>
-      <Name>UIWidgetSample</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.UIWidgets.csproj">
       <Project>{5D73621B-F02A-41D7-BF66-14C3031AE347}</Project>
       <Name>Unity.UIWidgets</Name>
     </ProjectReference>
-    <ProjectReference Include="ReduxSample.csproj">
-      <Project>{E11F7D34-9E04-C2E0-638F-2B54A4DBC13B}</Project>
-      <Name>ReduxSample</Name>
+    <ProjectReference Include="UIWidgetsSample.csproj">
+      <Project>{DF5F0DD4-B25A-7DD9-F5BB-A55C208045B4}</Project>
+      <Name>UIWidgetsSample</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

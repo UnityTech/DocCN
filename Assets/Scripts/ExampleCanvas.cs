@@ -1,61 +1,27 @@
-﻿using System.Collections.Generic;
-using Unity.UIWidgets.engine;
-using Unity.UIWidgets.foundation;
+﻿using Unity.UIWidgets.engine;
 using Unity.UIWidgets.widgets;
-using DocCN.Components;
-using Unity.UIWidgets.painting;
-using Unity.UIWidgets.ui;
+using UnityEngine;
 
 namespace DocCN
 {
-    public class ExampleCanvas : WidgetCanvas
+    public class ExampleCanvas : UIWidgetsPanel
     {
-        protected override Widget getWidget()
+        protected override void OnEnable()
         {
-            return new ExampleApp();
+            base.OnEnable();
+            Application.targetFrameRate = 60;
         }
 
-        class ExampleApp : StatefulWidget
+        protected override Widget createWidget()
         {
-            public ExampleApp(Key key = null) : base(key)
-            {
-            }
-
-            public override State createState()
-            {
-                return new ExampleState();
-            }
-        }
-
-        class ExampleState : State<ExampleApp>
-        {
-            int counter = 0;
-
-            public override Widget build(BuildContext context)
-            {
-                return new Column(
-                    children: new List<Widget>
-                    {
-                        new Header(),
-                        new Expanded(
-                            child: new Container(
-                                padding: EdgeInsets.only(top: 24.0f),
-                                color: new Color(0xffffffff),
-                                child: new Row(
-                                    children: new List<Widget>
-                                    {
-                                        new Menu(),
-                                        new Expanded(
-                                            child: new Markdown()
-                                        ),
-                                        new MetaFields()
-                                    }
-                                )
-                            )
-                        )
-                    }
-                );
-            }
+            return new WidgetsApp(
+                home: new DocCNApp(),
+                pageRouteBuilder: (settings, builder) =>
+                    new PageRouteBuilder(
+                        settings: settings,
+                        pageBuilder: (context, animation, secondaryAnimation) => builder(context)
+                    )
+            );
         }
     }
 }

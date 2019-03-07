@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
@@ -23,7 +24,8 @@ namespace DocCN.Components
                         margin: EdgeInsets.only(bottom: 24.0f)
                     ),
                     new MarkdownTitleRow(),
-                    new ModifiedInfo()
+                    new ModifiedInfo(),
+                    new MarkdownContent(new ValueKey<string>("data.json"))
                 }
             );
         }

@@ -322,6 +322,9 @@
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>/home/haog/Workspace/DocCN/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>/home/haog/Workspace/DocCN/Assets/Packages/Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="netstandard">
       <HintPath>/home/haog/Unity-2018.3.0f2/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
     </Reference>
