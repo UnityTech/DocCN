@@ -12,26 +12,25 @@ namespace DocCN.Page
         public override Widget build(BuildContext context)
         {
             var column = new Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: new List<Widget>
                 {
                     new Header(),
-                    new Expanded(
-                        child: new Container(
-                            padding: EdgeInsets.only(top: 24.0f),
-                            color: new Color(0xffffffff),
-                            child: new Row(
-                                children: new List<Widget>
-                                {
-                                    new Menu(),
-                                    new Expanded(
-                                        child: new Components.Markdown()
-                                    ),
-                                    new MetaFields()
-                                }
-                            )
+                    new Container(
+                        padding: EdgeInsets.only(top: 24.0f),
+                        color: new Color(0xffffffff),
+                        child: new Row(
+                            children: new List<Widget>
+                            {
+                                new Menu(),
+                                new Expanded(
+                                    child: new Components.Markdown()
+                                ),
+                                new MetaFields()
+                            }
                         )
                     )
+
                 }
             );
             return column;

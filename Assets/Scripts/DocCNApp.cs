@@ -41,15 +41,12 @@ namespace DocCN
                 )
             );
 
-            return new Container(
-                constraints: BoxConstraints.tight(MediaQuery.of(context).size),
-                child: new SingleChildScrollView(
+            return new SingleChildScrollView(
                     controller: controller,
                     child: new Container(
-                        constraints: BoxConstraints.tight(MediaQuery.of(context).size), // comment this line
                         child: defaultTextStyle
                     )
-                )
+                
             );
         }
     }
