@@ -72,6 +72,8 @@
     <Compile Include="Assets\Scripts\DocCNApp.cs" />
     <Compile Include="Assets\Scripts\ExampleCanvas.cs" />
     <Compile Include="Assets\Scripts\Markdown\Token.cs" />
+    <Compile Include="Assets\Scripts\Page\DocumentPage.cs" />
+    <Compile Include="Assets\Scripts\Page\LandingPage.cs" />
     <Compile Include="Assets\Scripts\ScrollListener.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/home/haog/Workspace/DocCN/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
