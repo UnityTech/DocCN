@@ -263,7 +263,7 @@ namespace DocCN.Components
         public override void initState()
         {
             base.initState();
-            Token.Fetch("data.json", token => this.setState(() => this.tokens = token));
+            Token.Fetch("output.json", token => this.setState(() => this.tokens = token));
         }
 
         public override Widget build(BuildContext context)

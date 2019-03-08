@@ -29,13 +29,14 @@ namespace DocCN
         {
             base.initState();
             controller = new ScrollController();
-            FontManager.instance.addFont(Resources.Load<Font>("PingFang-Regular"));
+            FontManager.instance.addFont(Resources.Load<Font>("Fonts/PingFang-Regular"));
+            FontManager.instance.addFont(Resources.Load<Font>("Fonts/Brands"));
         }
 
         public override Widget build(BuildContext context)
         {
             var defaultTextStyle = new DefaultTextStyle(
-                child: new LandingPage(),
+                child: new SearchPage(),
                 style: new TextStyle(
                     fontFamily: "PingFang SC"
                 )

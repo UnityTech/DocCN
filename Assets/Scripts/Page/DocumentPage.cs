@@ -20,6 +20,7 @@ namespace DocCN.Page
                         padding: EdgeInsets.only(top: 24.0f),
                         color: new Color(0xffffffff),
                         child: new Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: new List<Widget>
                             {
                                 new Menu(),

@@ -58,8 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Bridge.cs" />
+    <Compile Include="Assets\Scripts\Components\Banner.cs" />
     <Compile Include="Assets\Scripts\Components\Breadcrumb.cs" />
     <Compile Include="Assets\Scripts\Components\EditButton.cs" />
+    <Compile Include="Assets\Scripts\Components\Footer.cs" />
     <Compile Include="Assets\Scripts\Components\Header.cs" />
     <Compile Include="Assets\Scripts\Components\LanguageSelection.cs" />
     <Compile Include="Assets\Scripts\Components\Markdown.cs" />
@@ -69,12 +71,15 @@
     <Compile Include="Assets\Scripts\Components\MetaFields.cs" />
     <Compile Include="Assets\Scripts\Components\ModifiedInfo.cs" />
     <Compile Include="Assets\Scripts\Components\RelatedArticles.cs" />
+    <Compile Include="Assets\Scripts\Components\SearchBar.cs" />
     <Compile Include="Assets\Scripts\DocCNApp.cs" />
     <Compile Include="Assets\Scripts\ExampleCanvas.cs" />
     <Compile Include="Assets\Scripts\Markdown\Token.cs" />
     <Compile Include="Assets\Scripts\Page\DocumentPage.cs" />
     <Compile Include="Assets\Scripts\Page\LandingPage.cs" />
+    <Compile Include="Assets\Scripts\Page\SearchPage.cs" />
     <Compile Include="Assets\Scripts\ScrollListener.cs" />
+    <Compile Include="Assets\Scripts\Style\Icons.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/home/haog/Workspace/DocCN/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
