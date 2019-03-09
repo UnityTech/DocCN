@@ -13,6 +13,14 @@ namespace DocCN.Page
                 {
                     new Header(),
                     new SearchBar(),
+                    new Content<Row>(
+                        child: new Row(
+                            children: new List<Widget>
+                            {
+                                new SearchFilter(),
+                            }
+                        )
+                    ),
                     new Footer(),
                 }
             );

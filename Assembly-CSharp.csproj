@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\Bridge.cs" />
     <Compile Include="Assets\Scripts\Components\Banner.cs" />
     <Compile Include="Assets\Scripts\Components\Breadcrumb.cs" />
+    <Compile Include="Assets\Scripts\Components\Content.cs" />
     <Compile Include="Assets\Scripts\Components\EditButton.cs" />
     <Compile Include="Assets\Scripts\Components\Footer.cs" />
     <Compile Include="Assets\Scripts\Components\Header.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Assets\Scripts\Components\ModifiedInfo.cs" />
     <Compile Include="Assets\Scripts\Components\RelatedArticles.cs" />
     <Compile Include="Assets\Scripts\Components\SearchBar.cs" />
+    <Compile Include="Assets\Scripts\Components\SearchFilter.cs" />
     <Compile Include="Assets\Scripts\DocCNApp.cs" />
     <Compile Include="Assets\Scripts\ExampleCanvas.cs" />
     <Compile Include="Assets\Scripts\Markdown\Token.cs" />
