@@ -1,5 +1,8 @@
+using System.Collections.Generic;
 using Unity.UIWidgets.painting;
+using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
+using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
 namespace DocCN.Components
 {
@@ -7,16 +10,30 @@ namespace DocCN.Components
     {
         public override Widget build(BuildContext context)
         {
-            return new Container(
-                margin: EdgeInsets.only(bottom: 12.0f),
-                child: new RichText(
-                    text: new TextSpan(
-                        "Unity用户手册（2018.3） / 导入",
-                        style: new TextStyle(
-                            fontFamily: "PingFang SC"
+            return new Column(
+                children: new List<Widget>
+                {
+                    new Container(
+                        margin: EdgeInsets.only(top: 16f),
+                        height: 40f,
+                        child: new Align(
+                            alignment: Alignment.bottomLeft,
+                            child: new RichText(
+                                text: new TextSpan(
+                                    "Unity用户手册（2018.3） / 导入",
+                                    style: new TextStyle(
+                                        fontFamily: "PingFang SC"
+                                    )
+                                )
+                            )
                         )
+                    ),
+                    new Container(
+                        color: new Color(0xffd8d8d8),
+                        height: 1f,
+                        margin: EdgeInsets.only(top: 8f)
                     )
-                )
+                }
             );
         }
     }

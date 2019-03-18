@@ -26,7 +26,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_3_0;UNITY_2018_3;UNITY_2018;UNITY_INCLUDE_TESTS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITES;ENABLE_GRID;ENABLE_TILEMAP;ENABLE_TERRAIN;ENABLE_TEXTURE_STREAMING;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_VIDEO;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_LOCALIZATION;PLATFORM_WEBGL;UNITY_WEBGL;UNITY_WEBGL_API;UNITY_DISABLE_WEB_VERIFICATION;UNITY_GFX_USE_PLATFORM_VSYNC;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_VR;ENABLE_SPATIALTRACKING;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_LINUX;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_3_0;UNITY_2018_3;UNITY_2018;UNITY_INCLUDE_TESTS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITES;ENABLE_GRID;ENABLE_TILEMAP;ENABLE_TERRAIN;ENABLE_TEXTURE_STREAMING;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_VIDEO;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_LOCALIZATION;PLATFORM_WEBGL;UNITY_WEBGL;UNITY_WEBGL_API;UNITY_DISABLE_WEB_VERIFICATION;UNITY_GFX_USE_PLATFORM_VSYNC;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_VR;ENABLE_SPATIALTRACKING;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_LINUX;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;UIWidgets_DEBUG;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -80,7 +80,10 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\editor\surface.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\engine\DisplayMetrics.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\engine\input_utils.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\engine\UIWidgetsMessageManager.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\engine\UIWidgetsPanel.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\external\simplejson\SimpleJSON.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\flow\backdrop_filter_layer.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\flow\clip_path_layer.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\flow\clip_rect_layer.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\flow\clip_rrect_layer.cs" />
@@ -90,8 +93,11 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\flow\layer_tree.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\flow\matrix_decomposition.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\flow\opacity_layer.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\flow\performance_overlay_layer.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\flow\physical_shape_layer.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\flow\picture_layer.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\flow\raster_cache.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\flow\texture_layer.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\flow\transform_layer.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\foundation\assertions.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\foundation\basic_types.cs" />
@@ -124,7 +130,10 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\gestures\team.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\gestures\velocity_tracker.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\app.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\app_bar.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\arc.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\back_button.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\bottom_sheet.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\button.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\button_bar.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\button_theme.cs" />
@@ -133,6 +142,8 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\colors.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\constants.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\debug.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\dialog.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\dialog_theme.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\divider.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\drawer.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\drawer_header.cs" />
@@ -140,6 +151,9 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\expansion_panel.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\expansion_tile.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\flat_button.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\flexible_space_bar.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\float_action_button.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\float_action_button_location.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\grid_tile.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\icon_button.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\icons.cs" />
@@ -151,19 +165,29 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\list_tile.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\material.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\material_button.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\material_localizations.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\mergeable_material.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\page.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\page_transitions_theme.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\popup_menu.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\raised_button.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\scaffold.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\scrollbar.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\shadows.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\snack_bar.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\switch.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\tab_bar_theme.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\tab_controller.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\tab_indicator.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\tabs.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\text_selection.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\text_theme.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\theme.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\theme_data.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\timer.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\toggleable.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\tooltip.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\typography.cs" />
-    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\utils.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\painting\alignment.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\painting\basic_types.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\painting\beveled_rectangle_border.cs" />
@@ -223,6 +247,7 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\object.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\object.mixin.gen.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\paragraph.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\performance_overlay.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\proxy_box.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\proxy_box.mixin.gen.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\shifted_box.cs" />
@@ -233,15 +258,18 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\sliver_multi_box_adaptor.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\sliver_padding.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\stack.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\texture.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\tweens.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\view.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\viewport.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\viewport_offset.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\wrap.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\RuntimeExample.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\scheduler\binding.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\scheduler\ticker.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\service\clipboard.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\service\keyboard.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\service\performance_utils.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\service\system_chrome.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\service\text_editing.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\service\text_formatter.cs" />
@@ -284,12 +312,14 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\utils\drag_utils.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\animated_cross_fade.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\animated_size.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\annotated_region.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\app.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\automatic_keep_alive.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\basic.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\binding.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\container.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\debug.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\dismissible.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\drag_target.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\editable_text.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\focus_manager.cs" />
@@ -303,6 +333,7 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\image.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\implicit_animations.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\layout_builder.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\localizations.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\media_query.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\modal_barrier.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\navigation_toolbar.cs" />
@@ -312,6 +343,8 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\page_storage.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\page_view.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\pages.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\performance_overlay.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\preferred_size.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\primary_scroll_controller.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\routes.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\safe_area.cs" />
@@ -333,6 +366,7 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\sliver.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\text.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\text_selection.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\texture.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\ticker_provider.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\transitions.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\viewport.cs" />

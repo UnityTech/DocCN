@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DocCN.Components;
+using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.widgets;
 
 namespace DocCN.Page
@@ -8,21 +9,28 @@ namespace DocCN.Page
     {
         public override Widget build(BuildContext context)
         {
-            return new Column(
-                children: new List<Widget>
-                {
-                    new Header(),
-                    new SearchBar(),
-                    new Content<Row>(
-                        child: new Row(
-                            children: new List<Widget>
-                            {
-                                new SearchFilter(),
-                            }
-                        )
-                    ),
-                    new Footer(),
-                }
+            return new Container(
+                constraints: new BoxConstraints(
+                    minHeight: MediaQuery.of(context).size.height
+                ),
+                child: new Column(
+                    children: new List<Widget>
+                    {
+                        new Header(),
+                        new SearchBar(),
+                        new Expanded(
+                            child: new Content<Row>(
+                                child: new Row(
+                                    children: new List<Widget>
+                                    {
+                                        new SearchFilter(),
+                                    }
+                                )
+                            ) 
+                        ),
+                        new Footer(),
+                    }
+                )
             );
         }
     }

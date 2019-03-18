@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using Unity.UIWidgets.painting;
+using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
+using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
 namespace DocCN.Components
 {
@@ -16,20 +18,26 @@ namespace DocCN.Components
                 ),
                 width: 324.0f,
                 child: new Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: new List<Widget>
                     {
                         new Container(
-                            padding: EdgeInsets.only(bottom: 12.0f),
-                            margin: EdgeInsets.only(bottom: 24.0f),
-                            decoration: new BoxDecoration(
-                                border: new Border(
-                                    bottom: new BorderSide(
-                                        color: new Color(0xffd8d8d8),
-                                        width: 1.0f
+                            height: 64f,
+                            padding: EdgeInsets.only(bottom: 8.0f),
+                            child: new Align(
+                                alignment: Alignment.bottomLeft,
+                                child: new Text(
+                                    "文章导览",
+                                    style: new TextStyle(
+                                        fontSize: 16f,
+                                        color: new Color(0xff212121)
                                     )
                                 )
-                            ),
-                            child: new LanguageSelection()
+                            )
+                        ),
+                        new Container(
+                            height: 1f,
+                            color: new Color(0xffd8d8d8)
                         ),
                         new RelatedArticles()
                     }

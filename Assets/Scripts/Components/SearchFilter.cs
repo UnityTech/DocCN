@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DocCN.Style;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
@@ -33,14 +34,14 @@ namespace DocCN.Components
                                         style: new TextStyle(
                                             fontSize: 16f,
                                             color: new Color(0xff212121),
-                                            fontWeight: FontWeight.w700
+                                            fontFamily: "PingFang W500"
                                         )
                                     ),
                                     new Text(
                                         "清除所选",
                                         style: new TextStyle(
                                             fontSize: 14f,
-                                            color: new Color(0xff00cccc)
+                                            color: new Color(0xff3c83d4)
                                         )
                                     )
                                 }
@@ -69,6 +70,12 @@ namespace DocCN.Components
                     children: new List<Widget>
                     {
                         new Container(
+                            child: new Icon(
+                                Icons.MaterialExpandMore,
+                                color: new Color(0xffd8d8d8)
+                            )
+                        ),
+                        new Container(
                             height: 16f,
                             width: 16f,
                             margin: EdgeInsets.only(right: 16f)
@@ -82,11 +89,7 @@ namespace DocCN.Components
                                 )
                             )
                         ),
-                        new Container(
-                            width: 16f,
-                            height: 16f,
-                            color: new Color(0xff00cccc)
-                        )
+                        new CheckBox()
                     }
                 )
             );
