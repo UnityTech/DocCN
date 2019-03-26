@@ -30,7 +30,7 @@ namespace DocCN.Page
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: new List<Widget>
                                 {
-                                    new Menu(),
+                                    new Menu(Menu.TypeScripting),
                                     new Expanded(
                                         child: new SingleChildScrollView(
                                             child: new ScriptingContent()

@@ -64,13 +64,16 @@
     <Compile Include="Assets\Scripts\Components\CheckBox.cs" />
     <Compile Include="Assets\Scripts\Components\CheckBox.State.cs" />
     <Compile Include="Assets\Scripts\Components\Content.cs" />
+    <Compile Include="Assets\Scripts\Components\DocApp\DocApp.cs" />
+    <Compile Include="Assets\Scripts\Components\DocApp\DocApp.State.cs" />
     <Compile Include="Assets\Scripts\Components\EditButton.cs" />
     <Compile Include="Assets\Scripts\Components\Footer.cs" />
     <Compile Include="Assets\Scripts\Components\Header.cs" />
     <Compile Include="Assets\Scripts\Components\LanguageSelection.cs" />
-    <Compile Include="Assets\Scripts\Components\Markdown.cs" />
-    <Compile Include="Assets\Scripts\Components\MarkdownContent.cs" />
-    <Compile Include="Assets\Scripts\Components\MarkdownContent.Process.cs" />
+    <Compile Include="Assets\Scripts\Components\MarkdownContent\MarkdownContent.Context.cs" />
+    <Compile Include="Assets\Scripts\Components\MarkdownContent\MarkdownContent.cs" />
+    <Compile Include="Assets\Scripts\Components\MarkdownContent\MarkdownContent.State.cs" />
+    <Compile Include="Assets\Scripts\Components\MarkdownContent\MarkdownContent.State.Process.cs" />
     <Compile Include="Assets\Scripts\Components\MarkdownTitleRow.cs" />
     <Compile Include="Assets\Scripts\Components\Menu\Menu.cs" />
     <Compile Include="Assets\Scripts\Components\Menu\Menu.Item.cs" />
@@ -85,7 +88,6 @@
     <Compile Include="Assets\Scripts\Components\SearchBar.cs" />
     <Compile Include="Assets\Scripts\Components\SearchFilter.cs" />
     <Compile Include="Assets\Scripts\Components\WealthyText.cs" />
-    <Compile Include="Assets\Scripts\DocCNApp.cs" />
     <Compile Include="Assets\Scripts\Models\Menu.cs" />
     <Compile Include="Assets\Scripts\Models\Scripting.cs" />
     <Compile Include="Assets\Scripts\Models\Token.cs" />
@@ -96,7 +98,6 @@
     <Compile Include="Assets\Scripts\Page\SearchPage.cs" />
     <Compile Include="Assets\Scripts\PageCanvas.cs" />
     <Compile Include="Assets\Scripts\Reactive.cs" />
-    <Compile Include="Assets\Scripts\ScrollListener.cs" />
     <Compile Include="Assets\Scripts\Style\Icons.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/home/haog/Workspace/DocCN/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

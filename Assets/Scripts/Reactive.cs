@@ -1,6 +1,4 @@
-using System;
 using UniRx;
-using Unity.UIWidgets.foundation;
 
 namespace DocCN
 {
@@ -10,8 +8,8 @@ namespace DocCN
         
         static Reactive()
         {
-            //CurrentPath = new ReactiveProperty<string>("/Manual/UsingComponents");
-            CurrentPath = new ReactiveProperty<string>("/Scripting/SpriteAtlas");
+            CurrentPath = new ReactiveProperty<string>("/Manual/UsingComponents");
+            //CurrentPath = new ReactiveProperty<string>("/Scripting/SpriteAtlas");
             //CurrentPath = new ReactiveProperty<string>("/Search");
         }
     }

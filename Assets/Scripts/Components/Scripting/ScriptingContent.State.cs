@@ -15,7 +15,7 @@ using Color = Unity.UIWidgets.ui.Color;
 using Image = Unity.UIWidgets.ui.Image;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
-namespace DocCN.Components.Scripting
+namespace DocCN.Components
 {
     public partial class ScriptingContent
     {
@@ -43,6 +43,10 @@ namespace DocCN.Components.Scripting
                 var asyncOperation = request.SendWebRequest();
                 asyncOperation.completed += operation =>
                 {
+                    if (!mounted)
+                    {
+                        return;
+                    }
                     var content = DownloadHandlerBuffer.GetContent(request);
                     var xmlSerializer = new XmlSerializer(typeof(Models.Scripting));
                     var stringReader = new StringReader(content);

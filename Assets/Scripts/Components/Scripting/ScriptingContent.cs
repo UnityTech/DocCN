@@ -1,6 +1,6 @@
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Components.Scripting
+namespace DocCN.Components
 {
     public partial class ScriptingContent : StatefulWidget
     {

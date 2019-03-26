@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using DocCN.Style;
 using Newtonsoft.Json;
 using Unity.UIWidgets.painting;
-using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
+using UnityEngine;
 using UnityEngine.Networking;
+using Color = Unity.UIWidgets.ui.Color;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
 namespace DocCN.Components
@@ -18,10 +20,14 @@ namespace DocCN.Components
             public override void initState()
             {
                 base.initState();
-                var request = UnityWebRequest.Get("http://doc.unity.cn/Menu/toc");
+                var request = UnityWebRequest.Get($"http://doc.unity.cn/Data/{widget._type}/toc.json");
                 var asyncOperation = request.SendWebRequest();
                 asyncOperation.completed += operation =>
                 {
+                    if (!mounted)
+                    {
+                        return;
+                    }
                     var content = DownloadHandlerBuffer.GetContent(request);
                     using (WindowProvider.of(context).getScope())
                     {

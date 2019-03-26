@@ -22,7 +22,7 @@ namespace DocCN.Components
                                 text: new TextSpan(
                                     "Unity用户手册（2018.3） / 导入",
                                     style: new TextStyle(
-                                        fontFamily: "PingFang SC"
+                                        fontFamily: "PingFang-Regular"
                                     )
                                 )
                             )

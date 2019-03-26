@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using DocCN.Components;
+using UniRx;
 using Unity.UIWidgets.engine;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
@@ -10,12 +11,12 @@ namespace DocCN
     {
         protected override void OnEnable()
         {
-            base.OnEnable();
-            Bridge.Initialize();
             FontManager.instance.addFont(Resources.Load<Font>("Fonts/PingFang-Regular"));
             FontManager.instance.addFont(Resources.Load<Font>("Fonts/PingFang-W500"));
             FontManager.instance.addFont(Resources.Load<Font>("Fonts/Brands"));
             FontManager.instance.addFont(Resources.Load<Font>("Fonts/MaterialIcons-Regular"));
+            base.OnEnable();
+            Bridge.Initialize();
             Reactive.CurrentPath.Publish("/");
             Application.targetFrameRate = 60;
         }
@@ -23,7 +24,7 @@ namespace DocCN
         protected override Widget createWidget()
         {
             return new WidgetsApp(
-                home: new DocCNApp(),
+                home: new DocApp(),
                 pageRouteBuilder: (settings, builder) =>
                     new PageRouteBuilder(
                         settings: settings,

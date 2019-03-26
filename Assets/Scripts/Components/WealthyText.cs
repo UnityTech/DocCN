@@ -98,7 +98,7 @@ namespace DocCN.Components
                 // letterSpacing: imageWidth + (margin == null ? 0 : margin.horizontal),
                 height: 1f,
                 fontSize: imageHeight + (margin == null ? 0 : margin.vertical),
-                fontFamily: "PingFang SC"
+                fontFamily: "PingFang-Regular"
             ),
             text: "B",
             // text: "\u200b",
