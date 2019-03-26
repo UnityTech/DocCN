@@ -89,9 +89,10 @@
     <Compile Include="Assets\Scripts\Components\SearchBar.cs" />
     <Compile Include="Assets\Scripts\Components\SearchFilter.cs" />
     <Compile Include="Assets\Scripts\Components\WealthyText.cs" />
-    <Compile Include="Assets\Scripts\Models\Menu.cs" />
-    <Compile Include="Assets\Scripts\Models\Scripting.cs" />
-    <Compile Include="Assets\Scripts\Models\Token.cs" />
+    <Compile Include="Assets\Scripts\Models\Json\Menu.cs" />
+    <Compile Include="Assets\Scripts\Models\Json\Scripting.cs" />
+    <Compile Include="Assets\Scripts\Models\Json\Token.cs" />
+    <Compile Include="Assets\Scripts\Models\Xml\Scripting.cs" />
     <Compile Include="Assets\Scripts\PageCanvas.cs" />
     <Compile Include="Assets\Scripts\Pages\404.cs" />
     <Compile Include="Assets\Scripts\Pages\LandingPage.cs" />

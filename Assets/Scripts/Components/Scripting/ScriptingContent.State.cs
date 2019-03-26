@@ -2,9 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
-using DocCN.Models;
-using UniRx.Async;
-using Unity.UIWidgets.gestures;
+using Xml = DocCN.Models.Xml;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
@@ -12,7 +10,6 @@ using Unity.UIWidgets.widgets;
 using UnityEngine;
 using UnityEngine.Networking;
 using Color = Unity.UIWidgets.ui.Color;
-using Image = Unity.UIWidgets.ui.Image;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
 namespace DocCN.Components
@@ -33,7 +30,7 @@ namespace DocCN.Components
 
         private class ScriptingContentState : State<ScriptingContent>
         {
-            private Models.Scripting scripting;
+            private Xml.Scripting scripting;
 
             public override void initState()
             {
@@ -48,17 +45,17 @@ namespace DocCN.Components
                         return;
                     }
                     var content = DownloadHandlerBuffer.GetContent(request);
-                    var xmlSerializer = new XmlSerializer(typeof(Models.Scripting));
+                    var xmlSerializer = new XmlSerializer(typeof(Xml.Scripting));
                     var stringReader = new StringReader(content);
                     var scripting = xmlSerializer.Deserialize(stringReader);
                     using (WindowProvider.of(context).getScope())
                     {
-                        setState(() => this.scripting = scripting as Models.Scripting);
+                        setState(() => this.scripting = scripting as Xml.Scripting);
                     }
                 };
             }
 
-            private static Widget BuildSegment(BuildContext context, string name, IEnumerable<Member> members)
+            private static Widget BuildSegment(BuildContext context, string name, IEnumerable<Xml.Member> members)
             {
                 return new Container(
                     child: new Column(
@@ -121,7 +118,7 @@ namespace DocCN.Components
                 );
             }
 
-            private static WealthyText BuildTextUsingMixedContent(BuildContext context, MixedContent summary)
+            private static WealthyText BuildTextUsingMixedContent(BuildContext context, Xml.MixedContent summary)
             {
                 return new WealthyText(
                     textSpanList: summary.items.Select(item =>
@@ -132,16 +129,16 @@ namespace DocCN.Components
                                 return new TextSpan(
                                     text
                                 );
-                            case DocumentLink link:
+                            case Xml.DocumentLink link:
                                 return new TextSpan(
                                     link.value,
                                     style: HYPER_LINK_STYLE
                                 );
-                            case DocumentBreak br:
+                            case Xml.DocumentBreak br:
                                 return new TextSpan(
                                     "\n"
                                 );
-                            case DocumentImage image:
+                            case Xml.DocumentImage image:
                                 var networkImage = new NetworkImage(
                                     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/James_Harden_%2830735342912%29.jpg/220px-James_Harden_%2830735342912%29.jpg");
                                 networkImage.resolve(new ImageConfiguration())

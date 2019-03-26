@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DocCN.Models;
+using DocCN.Models.Json;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
-using UnityEngine;
 using Color = Unity.UIWidgets.ui.Color;
 using FontStyle = Unity.UIWidgets.ui.FontStyle;
 using Image = Unity.UIWidgets.widgets.Image;
@@ -59,7 +58,7 @@ namespace DocCN.Components
 
             private static Widget ProcessHeadingOpen(Token token, BuilderContext ctx)
             {
-                switch (token.Tag)
+                switch (token.tag)
                 {
                     case "h1":
                         ctx.textStyle = new TextStyle(
@@ -109,11 +108,11 @@ namespace DocCN.Components
                     )
                 );
 
-                foreach (var tokenChild in token.Children)
+                foreach (var tokenChild in token.children)
                 {
-                    if (Mappings.ContainsKey(tokenChild.Type))
+                    if (Mappings.ContainsKey(tokenChild.type))
                     {
-                        Mappings[tokenChild.Type].Invoke(tokenChild, ctx);
+                        Mappings[tokenChild.type].Invoke(tokenChild, ctx);
                     }
                 }
 
@@ -122,7 +121,7 @@ namespace DocCN.Components
 
             private static Widget ProcessText(Token token, BuilderContext ctx)
             {
-                ctx.inline.Peek().children.Add(new TextSpan(token.Content));
+                ctx.inline.Peek().children.Add(new TextSpan(token.content));
                 return null;
             }
 
@@ -263,9 +262,9 @@ namespace DocCN.Components
             // assume image's format is fixed
             private static Widget ProcessImage(Token token, BuilderContext ctx)
             {
-                var urlExist = token.Attrs.Any(attr => attr[0] == "src");
+                var urlExist = token.attrs.Any(attr => attr[0] == "src");
                 var url = urlExist
-                    ? $"http://doc.unity.cn/Data/manual_statics{token.Attrs.Single(attr => attr[0] == "src")[1]}"
+                    ? $"http://doc.unity.cn/Data/manual_statics{token.attrs.Single(attr => attr[0] == "src")[1]}"
                     : "http://images.performgroup.com/di/library/omnisport/59/5/james-harden-cropped_adrrcka6po2g1feaaueg721vj.jpg";
 
                 var widgets = new List<Widget>
@@ -276,15 +275,15 @@ namespace DocCN.Components
                             fit: BoxFit.fill)
                     )
                 };
-                if (token.Children != null &&
-                    token.Children.Length == 1 &&
-                    token.Children[0].Type == "text")
+                if (token.children != null &&
+                    token.children.Length == 1 &&
+                    token.children[0].type == "text")
                 {
                     widgets.Add(
                         new Container(
                             margin: EdgeInsets.only(top: 8.0f),
                             child: new Text(
-                                token.Children[0].Content,
+                                token.children[0].content,
                                 style: new TextStyle(
                                     color: new Color(0xff9b9b9b)
                                 )

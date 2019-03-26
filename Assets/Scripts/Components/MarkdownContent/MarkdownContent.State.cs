@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using DocCN.Models;
+using DocCN.Models.Json;
 using Newtonsoft.Json;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.widgets;
@@ -61,8 +61,8 @@ namespace DocCN.Components
                 var widgetCursor = new BuilderContext();
 
                 var widgets = _tokens
-                    .Where(token => Mappings.ContainsKey(token.Type))
-                    .Select(token => Mappings[token.Type].Invoke(token, widgetCursor))
+                    .Where(token => Mappings.ContainsKey(token.type))
+                    .Select(token => Mappings[token.type].Invoke(token, widgetCursor))
                     .Where(w => !(w is null)).ToList();
 
                 return new Column(

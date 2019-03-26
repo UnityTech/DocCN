@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using DocCN.Style;
 using Newtonsoft.Json;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.widgets;
-using UnityEngine;
 using UnityEngine.Networking;
 using Color = Unity.UIWidgets.ui.Color;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
+using Json = DocCN.Models.Json;
 
 namespace DocCN.Components
 {
@@ -15,7 +14,7 @@ namespace DocCN.Components
     {
         private class MenuState : State<Menu>
         {
-            private Models.Menu _menu;
+            private Json.Menu _menu;
 
             public override void initState()
             {
@@ -31,7 +30,7 @@ namespace DocCN.Components
                     var content = DownloadHandlerBuffer.GetContent(request);
                     using (WindowProvider.of(context).getScope())
                     {
-                        setState(() => _menu = JsonConvert.DeserializeObject<Models.Menu>(content));
+                        setState(() => _menu = JsonConvert.DeserializeObject<Json.Menu>(content));
                     }
                 };
             }
@@ -41,7 +40,7 @@ namespace DocCN.Components
                 setState(action.Invoke);
             }
 
-            private List<MenuItem> BuildMenuItems(IReadOnlyList<Models.Menu> toParse, int level = 0)
+            private List<MenuItem> BuildMenuItems(IReadOnlyList<Json.Menu> toParse, int level = 0)
             {
                 var items = new List<MenuItem>();
                 foreach (var child in toParse)
