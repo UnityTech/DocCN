@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Components\Content.cs" />
     <Compile Include="Assets\Scripts\Components\DocApp\DocApp.cs" />
     <Compile Include="Assets\Scripts\Components\DocApp\DocApp.State.cs" />
+    <Compile Include="Assets\Scripts\Components\DocApp\StringExtension.cs" />
     <Compile Include="Assets\Scripts\Components\EditButton.cs" />
     <Compile Include="Assets\Scripts\Components\Footer.cs" />
     <Compile Include="Assets\Scripts\Components\Header.cs" />
@@ -91,12 +92,14 @@
     <Compile Include="Assets\Scripts\Models\Menu.cs" />
     <Compile Include="Assets\Scripts\Models\Scripting.cs" />
     <Compile Include="Assets\Scripts\Models\Token.cs" />
-    <Compile Include="Assets\Scripts\Page\404.cs" />
-    <Compile Include="Assets\Scripts\Page\DocumentPage.cs" />
-    <Compile Include="Assets\Scripts\Page\LandingPage.cs" />
-    <Compile Include="Assets\Scripts\Page\ScriptingPage.cs" />
-    <Compile Include="Assets\Scripts\Page\SearchPage.cs" />
     <Compile Include="Assets\Scripts\PageCanvas.cs" />
+    <Compile Include="Assets\Scripts\Pages\404.cs" />
+    <Compile Include="Assets\Scripts\Pages\LandingPage.cs" />
+    <Compile Include="Assets\Scripts\Pages\ManualPage\ManualPage.cs" />
+    <Compile Include="Assets\Scripts\Pages\ManualPage\ManualPage.State.cs" />
+    <Compile Include="Assets\Scripts\Pages\ScriptingPage\ScriptingPage.cs" />
+    <Compile Include="Assets\Scripts\Pages\ScriptingPage\ScriptingPage.State.cs" />
+    <Compile Include="Assets\Scripts\Pages\SearchPage.cs" />
     <Compile Include="Assets\Scripts\Reactive.cs" />
     <Compile Include="Assets\Scripts\Style\Icons.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">

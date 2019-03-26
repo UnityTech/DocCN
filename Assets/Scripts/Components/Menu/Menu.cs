@@ -10,7 +10,7 @@ namespace DocCN.Components
         }
 
         public const string TypeManual = "manual_json";
-        public const string TypeScripting = "manual_scripting";
+        public const string TypeScripting = "scripting_json";
 
         private readonly string _type;
 

@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UniRx;
-using DocCN.Page;
+using DocCN.Pages;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.widgets;
+using UnityEngine;
 
 namespace DocCN.Components
 {
@@ -24,7 +25,7 @@ namespace DocCN.Components
                     new Dictionary<string, Func<Dictionary<string, string>, Widget>>
                     {
                         ["/"] = @params => new LandingPage(),
-                        ["/Manual/:name"] = @params => new DocumentPage(@params["name"]),
+                        ["/Manual/:name"] = @params => new ManualPage(@params["name"]),
                         ["/Scripting/:name"] = @params => new ScriptingPage(@params["name"]),
                         ["/Search"] = @params => new SearchPage()
                     };
@@ -71,13 +72,8 @@ namespace DocCN.Components
                     break;
                 }
 
-                if (page == null)
-                {
-                    page = OnUnknownPath();
-                }
-
                 var defaultTextStyle = new DefaultTextStyle(
-                    child: page,
+                    child: page ?? OnUnknownPath(),
                     style: new TextStyle(
                         fontFamily: "PingFang-Regular"
                     )

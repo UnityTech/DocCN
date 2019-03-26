@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Text;
-using System.Xml;
 using System.Xml.Serialization;
 
 namespace DocCN.Models
 {
+    [Obsolete("Use json model instead.")]
     [XmlRoot("Root")]
     public class Scripting
     {
@@ -62,7 +61,6 @@ namespace DocCN.Models
 
         [XmlElement("Section")] public Section section { get; set; }
 
-        [Obsolete]
         public override string ToString()
         {
             var builder = new StringBuilder();

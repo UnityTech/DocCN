@@ -4,23 +4,11 @@ using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.widgets;
 using Color = Unity.UIWidgets.ui.Color;
 
-namespace DocCN.Page
+namespace DocCN.Pages
 {
-    public class DocumentPage : StatefulWidget
+    public partial class ScriptingPage
     {
-        public DocumentPage(string title) : base(new ObjectKey(title))
-        {
-            _title = title;
-        }
-
-        private readonly string _title;
-
-        public override State createState()
-        {
-            return new DocumentPageState();
-        }
-
-        private class DocumentPageState : State<DocumentPage>
+        private class ScriptingPageState : State<ScriptingPage>
         {
             public override Widget build(BuildContext buildContext)
             {
@@ -36,10 +24,10 @@ namespace DocCN.Page
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: new List<Widget>
                                     {
-                                        new Menu(Menu.TypeManual),
+                                        new Menu(Menu.TypeScripting),
                                         new Expanded(
                                             child: new SingleChildScrollView(
-                                                child: new MarkdownContent(widget._title)
+                                                child: new ScriptingContent()
                                             )
                                         ),
                                         new MetaFields()

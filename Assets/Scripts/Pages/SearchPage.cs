@@ -3,7 +3,7 @@ using DocCN.Components;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Page
+namespace DocCN.Pages
 {
     public class SearchPage : StatelessWidget
     {

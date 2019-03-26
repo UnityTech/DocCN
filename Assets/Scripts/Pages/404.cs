@@ -7,7 +7,7 @@ using Unity.UIWidgets.widgets;
 using Image = Unity.UIWidgets.widgets.Image;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
-namespace DocCN.Page
+namespace DocCN.Pages
 {
     public class NotFoundPage : StatelessWidget
     {

@@ -8,7 +8,7 @@ using Unity.UIWidgets.widgets;
 using Banner = DocCN.Components.Banner;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
-namespace DocCN.Page
+namespace DocCN.Pages
 {
     public class LandingPage : StatelessWidget
     {
