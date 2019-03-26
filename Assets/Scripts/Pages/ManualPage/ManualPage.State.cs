@@ -26,9 +26,7 @@ namespace DocCN.Pages
                                     {
                                         new Menu(Menu.TypeManual),
                                         new Expanded(
-                                            child: new SingleChildScrollView(
-                                                child: new MarkdownContent(widget._title)
-                                            )
+                                            child: new MarkdownContent(widget._title)
                                         ),
                                         new MetaFields()
                                     }

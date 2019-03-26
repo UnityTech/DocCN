@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DocCN.Models.Json;
 using Newtonsoft.Json;
+using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.widgets;
 using UnityEngine.Networking;
@@ -65,18 +66,10 @@ namespace DocCN.Components
                     .Select(token => Mappings[token.type].Invoke(token, widgetCursor))
                     .Where(w => !(w is null)).ToList();
 
-                return new Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: new List<Widget>
-                    {
-                        new Breadcrumb(),
-                        new Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: widgets
-                        ),
-                        new Container(height: 64f),
-                    }
-                );
+                return ListView.builder(
+                    padding: EdgeInsets.only(bottom: 64f),
+                    itemCount: widgets.Count + 1,
+                    itemBuilder: (ctx, idx) => idx == 0 ? new Breadcrumb() : widgets[idx - 1]);
             }
         }
     }
