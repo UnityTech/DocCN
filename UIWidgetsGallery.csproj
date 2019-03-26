@@ -57,15 +57,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\demo\colors_demo.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\demo\contacts_demo.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\demo\material\backdrop_demo.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\demo\material\bottom_app_bar_demo.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\demo\material\bottom_navigation_demo.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\demo\material\buttons_demo.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\demo\material\cards_demo.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\demo\typography_demo.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\gallery\app.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\gallery\backdrop.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\gallery\demo.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\gallery\demos.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\gallery\example_code_parser.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\gallery\home.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\gallery\icons.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\gallery\options.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\gallery\scales.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\gallery\syntax_highlighter.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\gallery\themes.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\gallery\updater.cs" />
-    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\main.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\GalleryMain.cs" />
     <None Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\UIWidgetsGallery.asmdef" />
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/home/haog/Unity-2018.3.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

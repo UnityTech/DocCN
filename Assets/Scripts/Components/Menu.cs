@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using DocCN.Models;
-using DocCN.Style;
 using Newtonsoft.Json;
 using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.gestures;
+using Unity.UIWidgets.material;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
@@ -14,6 +14,7 @@ using Unity.UIWidgets.widgets;
 using UnityEngine;
 using UnityEngine.Networking;
 using Color = Unity.UIWidgets.ui.Color;
+using Icons = DocCN.Style.Icons;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
 namespace DocCN.Components
@@ -34,14 +35,14 @@ namespace DocCN.Components
         public override void initState()
         {
             base.initState();
-            var request = UnityWebRequest.Get("http://doc.unity.cn/Menu/toc_tree");
+            var request = UnityWebRequest.Get("http://doc.unity.cn/Menu/toc");
             var asyncOperation = request.SendWebRequest();
             asyncOperation.completed += operation =>
             {
                 var content = DownloadHandlerBuffer.GetContent(request);
                 using (WindowProvider.of(context).getScope())
                 {
-                    this.setState(() => this.menu = JsonConvert.DeserializeObject<Models.Menu>(content));
+                    setState(() => menu = JsonConvert.DeserializeObject<Models.Menu>(content));
                 }
             };
         }
@@ -51,26 +52,27 @@ namespace DocCN.Components
             this.setState(action.Invoke);
         }
 
-        private List<MenuItem> BuildMenuItems(IEnumerable<Models.Menu> toParse, int level = 0)
+        private List<MenuItem> BuildMenuItems(IReadOnlyList<Models.Menu> toParse, int level = 0)
         {
             var items = new List<MenuItem>();
-            foreach (var child in toParse)
+            for (var i = 0; i < toParse.Count; i++)
             {
+                var child = toParse[i];
                 items.Add(
                     new MenuItem(
                         new UniqueKey(),
                         child,
                         this,
                         level: level,
-                        hasChildren: child.Children != null
+                        hasChildren: child.children != null
                     )
                 );
-                if (child.Children == null || !child.Expanded)
+                if (child.children == null || !child.expanded)
                 {
                     continue;
                 }
 
-                var childrenOfChild = BuildMenuItems(child.Children, level + 1);
+                var childrenOfChild = BuildMenuItems(child.children, level + 1);
                 items.AddRange(childrenOfChild);
             }
 
@@ -95,7 +97,7 @@ namespace DocCN.Components
                                 "unity手册",
                                 style: new TextStyle(
                                     fontSize: 24.0f,
-                                    fontFamily: "PingFang W500"
+                                    fontFamily: "PingFang-W500"
                                 )
                             )
                         )
@@ -113,7 +115,7 @@ namespace DocCN.Components
             var items = new List<MenuItem>();
             if (this.menu != null)
             {
-                items = BuildMenuItems(menu.Children);
+                items = BuildMenuItems(menu.children);
             }
 
             return new Container(
@@ -206,15 +208,15 @@ namespace DocCN.Components
 
         private void OnTap()
         {
-            Debug.Log(widget.bind.Link);
-            var link = $"/Manual/{widget.bind.Link}";
+            Debug.Log(widget.bind.link);
+            var link = $"/Manual/{widget.bind.link}";
             Bridge.LocationPush(widget.text, link);
             Reactive.CurrentPath.SetValueAndForceNotify(link);
         }
 
         private void OnExpandTap()
         {
-            widget.parent.UpdateMenu(() => widget.bind.Expanded = !widget.bind.Expanded);
+            widget.parent.UpdateMenu(() => widget.bind.expanded = !widget.bind.expanded);
         }
 
         public override Widget build(BuildContext context)
@@ -223,17 +225,30 @@ namespace DocCN.Components
             {
                 new Expanded(
                     child: new Container(
+                        decoration: new BoxDecoration(
+                            border: new Border(
+                                left: new BorderSide(
+                                    width: 2f,
+                                    color: widget.level > 1 ? ICON_COLOR : NORMAL_COLOR
+                                )
+                            )
+                        ),
+                        margin: EdgeInsets.only(
+                            left: 32f + 16f * widget.level
+                        ),
                         padding: EdgeInsets.only(
-                            left: 48f + 16f * widget.level,
                             top: 4f,
                             bottom: 12f
                         ),
-                        child: new Text(
-                            widget.bind.Title,
-                            style: new TextStyle(
-                                fontSize: 16f,
-                                height: 1.5f,
-                                color: new Color(0xff616161)
+                        child: new Container(
+                            margin: EdgeInsets.only(left: 14f),
+                            child: new Text(
+                                widget.bind.title,
+                                style: new TextStyle(
+                                    fontSize: 16f,
+                                    height: 1.5f,
+                                    color: new Color(0xff616161)
+                                )
                             )
                         )
                     )

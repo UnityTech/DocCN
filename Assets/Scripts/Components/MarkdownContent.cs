@@ -64,8 +64,8 @@ namespace DocCN.Components
             var widgetCursor = new MarkdownContentBuilderContext();
 
             var widgets = this.tokens
-                .Where(token => mappings.ContainsKey(token.Type))
-                .Select(token => mappings[token.Type].Invoke(token, widgetCursor))
+                .Where(token => Mappings.ContainsKey(token.Type))
+                .Select(token => Mappings[token.Type].Invoke(token, widgetCursor))
                 .Where(widget => !(widget is null)).ToList();
 
             return new Column(

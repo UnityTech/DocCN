@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 using DocCN.Page;
 using UniRx;
 using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.widgets;
-using UnityEngine;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
 namespace DocCN
@@ -60,6 +58,7 @@ namespace DocCN
                 {
                     ["/"] = @params => new LandingPage(),
                     ["/Manual/:name"] = @params => new DocumentPage(@params["name"]),
+                    ["/Scripting/:name"] = @params => new ScriptingPage(@params["name"]),
                     ["/Search"] = @params => new SearchPage()
                 };
             router = new Dictionary<Regex, Tuple<Func<Dictionary<string, string>, Widget>, string[]>>();
@@ -117,7 +116,7 @@ namespace DocCN
             var defaultTextStyle = new DefaultTextStyle(
                 child: page,
                 style: new TextStyle(
-                    fontFamily: "PingFang SC"
+                    fontFamily: "PingFang-Regular"
                 )
             );
 

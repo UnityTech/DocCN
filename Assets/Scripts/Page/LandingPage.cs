@@ -5,6 +5,7 @@ using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
+using Banner = DocCN.Components.Banner;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
 namespace DocCN.Page

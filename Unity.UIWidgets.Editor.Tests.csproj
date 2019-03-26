@@ -58,6 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Packages\com.unity.uiwidgets\Tests\Editor\CanvasAndLayers.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Tests\Editor\demo_charts\bar.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Tests\Editor\demo_charts\color_palette.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Tests\Editor\demo_charts\main.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Tests\Editor\demo_charts\tween.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Tests\Editor\EditableTextWiget.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Tests\Editor\EditorExampleTest.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Tests\Editor\Gestures.cs" />
