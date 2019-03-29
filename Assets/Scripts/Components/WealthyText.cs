@@ -97,8 +97,7 @@ namespace DocCN.Components
                 color: Colors.transparent,
                 // letterSpacing: imageWidth + (margin == null ? 0 : margin.horizontal),
                 height: 1f,
-                fontSize: imageHeight + (margin == null ? 0 : margin.vertical),
-                fontFamily: "PingFang-Regular"
+                fontSize: imageHeight + (margin == null ? 0 : margin.vertical)
             ),
             text: "B",
             // text: "\u200b",

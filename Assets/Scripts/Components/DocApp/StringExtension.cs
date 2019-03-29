@@ -21,7 +21,7 @@ namespace DocCN.Components
             {
                 var parameterName = parameter.Substring(1);
                 parameterNameList.Add(parameterName);
-                routerRegexSz = routerRegexSz.Replace(parameter, $@"(?<{parameterName}>[a-zA-Z0-9\.\$@\(\)]+)");
+                routerRegexSz = routerRegexSz.Replace(parameter, $@"(?<{parameterName}>[\-a-zA-Z0-9\.\$@\(\)]+)");
             }
 
             parameterNames = parameterNameList.ToArray();

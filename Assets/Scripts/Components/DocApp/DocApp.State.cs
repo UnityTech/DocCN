@@ -75,7 +75,7 @@ namespace DocCN.Components
                 var defaultTextStyle = new DefaultTextStyle(
                     child: page ?? OnUnknownPath(),
                     style: new TextStyle(
-                        fontFamily: "PingFang-Regular"
+                        fontFamily: "PingFang"
                     )
                 );
 

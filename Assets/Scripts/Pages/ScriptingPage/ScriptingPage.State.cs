@@ -27,7 +27,7 @@ namespace DocCN.Pages
                                         new Menu(Menu.TypeScripting),
                                         new Expanded(
                                             child: new SingleChildScrollView(
-                                                child: new ScriptingContent()
+                                                child: new ScriptingContent(widget._title)
                                             )
                                         ),
                                         new MetaFields()

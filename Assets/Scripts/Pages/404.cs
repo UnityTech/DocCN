@@ -57,7 +57,7 @@ namespace DocCN.Pages
                                                         fontSize: 24f,
                                                         color: new Color(0xffd8d8d8),
                                                         height: 1.33333333333f,
-                                                        fontFamily: "PingFang-W500"
+                                                        fontWeight: FontWeight.w500
                                                     )
                                                 )
                                             ),

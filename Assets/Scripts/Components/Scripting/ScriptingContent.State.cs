@@ -2,7 +2,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
-using Xml = DocCN.Models.Xml;
+using Newtonsoft.Json;
+using Unity.UIWidgets.external.simplejson;
+using Json = DocCN.Models.Json;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
@@ -10,32 +12,44 @@ using Unity.UIWidgets.widgets;
 using UnityEngine;
 using UnityEngine.Networking;
 using Color = Unity.UIWidgets.ui.Color;
+using FontStyle = Unity.UIWidgets.ui.FontStyle;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
 namespace DocCN.Components
 {
     public partial class ScriptingContent
     {
-        private static readonly TextStyle NORMAL_TEXT_STYLE = new TextStyle(
+        private static readonly TextStyle NormalTextStyle = new TextStyle(
             fontSize: 16f,
             height: 1.5f
         );
 
-        private static readonly TextStyle HYPER_LINK_STYLE = new TextStyle(
+        private static readonly TextStyle HyperLinkStyle = new TextStyle(
             fontSize: 16f,
             height: 1.5f,
             color: new Color(0xffe91e63),
             decoration: TextDecoration.underline
         );
 
+        private static readonly TextStyle TitleStyle = new TextStyle(
+            fontSize: 30f,
+            height: 38 / 30,
+            color: new Color(0xff212121)
+        );
+
         private class ScriptingContentState : State<ScriptingContent>
         {
-            private Xml.Scripting scripting;
+            private Json.Scripting _scripting;
 
             public override void initState()
             {
                 base.initState();
-                var url = $"http://doc.unity.cn/Data/Scripting/EditorWindow.ShowPopup.xml";
+                Load();
+            }
+
+            private void Load()
+            {
+                var url = $"http://doc.unity.cn/Data/scripting_json/{widget._title}.json";
                 var request = UnityWebRequest.Get(url);
                 var asyncOperation = request.SendWebRequest();
                 asyncOperation.completed += operation =>
@@ -44,20 +58,35 @@ namespace DocCN.Components
                     {
                         return;
                     }
-                    var content = DownloadHandlerBuffer.GetContent(request);
-                    var xmlSerializer = new XmlSerializer(typeof(Xml.Scripting));
-                    var stringReader = new StringReader(content);
-                    var scripting = xmlSerializer.Deserialize(stringReader);
+
                     using (WindowProvider.of(context).getScope())
                     {
-                        setState(() => this.scripting = scripting as Xml.Scripting);
+                        var content = DownloadHandlerBuffer.GetContent(request);
+                        var scripting = JsonConvert.DeserializeObject<Json.Scripting>(content);
+                        setState(() => _scripting = scripting);
                     }
                 };
             }
 
-            private static Widget BuildSegment(BuildContext context, string name, IEnumerable<Xml.Member> members)
+            public override void didUpdateWidget(StatefulWidget oldWidget)
             {
-                return new Container(
+                base.didUpdateWidget(oldWidget);
+                if (!(oldWidget is ScriptingContent old)) return;
+                if (old._title != widget._title)
+                {
+                    Load();
+                }
+            }
+
+            private static void BuildSegment(BuildContext context, ICollection<Widget> columnItems, string name,
+                IReadOnlyCollection<Json.Member> members)
+            {
+                if (members == null || members.Count == 0)
+                {
+                    return;
+                }
+
+                var container = new Container(
                     child: new Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: new List<Widget>
@@ -69,11 +98,7 @@ namespace DocCN.Components
                                 ),
                                 child: new Text(
                                     name,
-                                    style: new TextStyle(
-                                        fontSize: 30f,
-                                        fontFamily: "PingFang-W500",
-                                        height: 1.26666666667f
-                                    )
+                                    style: TitleStyle
                                 )
                             ),
                             new Table(
@@ -96,13 +121,13 @@ namespace DocCN.Components
                                                     ),
                                                     child: new Text(
                                                         member.name,
-                                                        style: HYPER_LINK_STYLE
+                                                        style: HyperLinkStyle
                                                     )
                                                 ),
                                                 new Container(
                                                     padding: EdgeInsets.only(
-                                                        top: 8f,
-                                                        bottom: 8f,
+                                                        top: 4f,
+                                                        bottom: 12f,
                                                         left: 24f,
                                                         right: 24f
                                                     ),
@@ -116,29 +141,39 @@ namespace DocCN.Components
                         }
                     )
                 );
+                columnItems.Add(container);
             }
 
-            private static WealthyText BuildTextUsingMixedContent(BuildContext context, Xml.MixedContent summary)
+            private static Widget BuildTextUsingMixedContent(BuildContext context,
+                IEnumerable<Json.MixedContent> summary)
             {
+                if (summary is null)
+                {
+                    return new Container();
+                }
+
                 return new WealthyText(
-                    textSpanList: summary.items.Select(item =>
+                    textSpanList: summary.Select(item =>
                     {
                         switch (item)
                         {
-                            case string text:
+                            case Json.DocumentCharData charData:
+                                return new TextSpan(charData.content);
+                            case Json.DocumentTagLink link:
                                 return new TextSpan(
-                                    text
+                                    link.content,
+                                    style: HyperLinkStyle
                                 );
-                            case Xml.DocumentLink link:
+                            case Json.DocumentTagBreak br:
+                                return new TextSpan("\n");
+                            case Json.DocumentTagBold bold:
                                 return new TextSpan(
-                                    link.value,
-                                    style: HYPER_LINK_STYLE
+                                    bold.content,
+                                    style: new TextStyle(
+                                        fontWeight: FontWeight.w500
+                                    )
                                 );
-                            case Xml.DocumentBreak br:
-                                return new TextSpan(
-                                    "\n"
-                                );
-                            case Xml.DocumentImage image:
+                            case Json.DocumentTagImage image:
                                 var networkImage = new NetworkImage(
                                     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/James_Harden_%2830735342912%29.jpg/220px-James_Harden_%2830735342912%29.jpg");
                                 networkImage.resolve(new ImageConfiguration())
@@ -151,58 +186,85 @@ namespace DocCN.Components
                                     imageWidth: 220f,
                                     imageHeight: 337f
                                 );
+                            case Json.DocumentTagItalic italic:
+                                return new TextSpan(
+                                    italic.content,
+                                    style: new TextStyle(
+                                        fontStyle: FontStyle.italic
+                                    )
+                                );
                         }
 
                         return null;
                     }).Where(span => span != null).ToList(),
-                    style: NORMAL_TEXT_STYLE
+                    style: NormalTextStyle
                 );
             }
 
             public override Widget build(BuildContext context)
             {
-                if (scripting == null)
+                if (_scripting == null)
                 {
                     return new Container();
                 }
 
+                var children = new List<Widget>
+                {
+                    new Breadcrumb(),
+                    new Container(
+                        child: new Text(
+                            widget._title.Split('.').Last().Replace("-", "."),
+                            style: new TextStyle(
+                                fontSize: 36f,
+                                fontWeight: FontWeight.w500
+                            )
+                        )
+                    )
+                };
+
+                foreach (var sections in _scripting.model.section)
+                {
+                    foreach (var section in sections)
+                    {
+                        switch (section)
+                        {
+                            case Json.Summary summary:
+                                children.Add(BuildTextUsingMixedContent(context, summary.value));
+                                break;
+                            case Json.Description description:
+                                children.Add(BuildTextUsingMixedContent(context, description.value));
+                                break;
+                            case Json.Example example:
+                                children.Add(
+                                    new Container(
+                                        decoration: new BoxDecoration(
+                                            border: Border.all(
+                                                width: 1f,
+                                                color: new Color(0xffe0e0e0)
+                                            )
+                                        ),
+                                        padding: EdgeInsets.all(24f),
+                                        child: BuildTextUsingMixedContent(context, example.cSharp)
+                                    )
+                                );
+                                break;
+                        }
+                    }
+                }
+
+                BuildSegment(context, children, "Static Properties", _scripting.model.staticVars);
+                BuildSegment(context, children, "Properties", _scripting.model.vars);
+                BuildSegment(context, children, "Constructors", _scripting.model.constructors);
+                BuildSegment(context, children, "Public Methods", _scripting.model.memberFunctions);
+                BuildSegment(context, children, "Protected Methods", _scripting.model.protectedFunctions);
+                BuildSegment(context, children, "Static Methods", _scripting.model.staticFunctions);
+                BuildSegment(context, children, "Operators", _scripting.model.operators);
+                BuildSegment(context, children, "Messages", _scripting.model.messages);
+                BuildSegment(context, children, "Events", _scripting.model.events);
+                BuildSegment(context, children, "Delegates", _scripting.model.delegates);
                 return new Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: new List<Widget>
-                    {
-                        new Breadcrumb(),
-                        new Text(
-                            "AudioMixer",
-                            style: new TextStyle(
-                                fontSize: 36f
-                            )
-                        ),
-                        new Container(
-                            child: new Text(
-                                "NavMesh",
-                                style: new TextStyle(
-                                    fontSize: 36f,
-                                    fontFamily: "PingFang-W500"
-                                )
-                            )
-                        ),
-                        BuildTextUsingMixedContent(context, scripting.model.section.description),
-                        new Container(
-                            padding: EdgeInsets.all(24f),
-                            margin: EdgeInsets.only(top: 24f),
-                            decoration: new BoxDecoration(
-                                border: Border.all(
-                                    color: new Color(0xffe0e0e0),
-                                    width: 1f
-                                )
-                            ),
-                            child: BuildTextUsingMixedContent(context, scripting.model.section.example.cSharp)
-                        ),
-                        //BuildSegment(context, "静态属性", scripting.model.staticVars),
-                        //BuildSegment(context, "静态方法", scripting.model.staticFunctions),
-                        //BuildSegment(context, "委托", scripting.model.delegates),
-                        new Container(height: 64f),
-                    }
+                    children: children
                 );
             }
         }

@@ -4,6 +4,7 @@ using DocCN.Style;
 using Unity.UIWidgets.animation;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
+using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
 using UnityEngine;
 using Color = Unity.UIWidgets.ui.Color;
@@ -38,7 +39,7 @@ namespace DocCN.Components
                                         style: new TextStyle(
                                             fontSize: 16f,
                                             color: new Color(0xff212121),
-                                            fontFamily: "PingFang-W500"
+                                            fontWeight: FontWeight.w500
                                         )
                                     ),
                                     new Text(

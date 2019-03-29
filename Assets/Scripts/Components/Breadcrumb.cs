@@ -20,10 +20,7 @@ namespace DocCN.Components
                             alignment: Alignment.bottomLeft,
                             child: new RichText(
                                 text: new TextSpan(
-                                    "Unity用户手册（2018.3） / 导入",
-                                    style: new TextStyle(
-                                        fontFamily: "PingFang-Regular"
-                                    )
+                                    "Unity用户手册（2018.3） / 导入"
                                 )
                             )
                         )

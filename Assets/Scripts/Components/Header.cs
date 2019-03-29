@@ -58,7 +58,7 @@ namespace DocCN.Components
                             style: new Painting.TextStyle(
                                 color: new Color(0xffffffff),
                                 letterSpacing: -0.8f,
-                                fontFamily: "PingFang-W500",
+                                fontWeight: FontWeight.w500,
                                 fontSize: 16.0f
                             )
                         )

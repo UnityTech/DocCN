@@ -23,7 +23,7 @@ namespace DocCN.Components
 
             private void Load()
             {
-                var url = $"http://doc.unity.cn/Data/manual_json/{widget._title}.json";
+                var url = $"http://doc.unity.cn/Data/Manual/{widget._title}.json";
                 var request = UnityWebRequest.Get(url);
                 var asyncOperation = request.SendWebRequest();
                 asyncOperation.completed += operation =>

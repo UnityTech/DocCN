@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Unity.UIWidgets.painting;
+using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
 using UnityEngine.Networking;
 using Color = Unity.UIWidgets.ui.Color;
@@ -84,7 +85,7 @@ namespace DocCN.Components
                                     "unity手册",
                                     style: new TextStyle(
                                         fontSize: 24.0f,
-                                        fontFamily: "PingFang-W500"
+                                        fontWeight: FontWeight.w500
                                     )
                                 )
                             )

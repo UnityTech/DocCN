@@ -63,21 +63,18 @@ namespace DocCN.Components
                     case "h1":
                         ctx.textStyle = new TextStyle(
                             fontSize: 36.0f,
-                            height: 1.16666666667f,
-                            fontFamily: "PingFang-Regular"
+                            height: 1.16666666667f
                         );
                         break;
                     case "h2":
                         ctx.textStyle = new TextStyle(
-                            fontSize: 30.0f,
-                            fontFamily: "PingFang-Regular"
+                            fontSize: 30.0f
                         );
                         break;
                     case "h3":
                         ctx.textStyle = new TextStyle(
                             fontSize: 24.0f,
-                            height: 1.26666666667f,
-                            fontFamily: "PingFang-Regular"
+                            height: 1.26666666667f
                         );
                         break;
                     default:
@@ -130,7 +127,7 @@ namespace DocCN.Components
                 ctx.inline.Push(new TextSpan(
                         children: new List<TextSpan>(),
                         style: new TextStyle(
-                            fontFamily: "PingFang-W500"
+                            fontWeight: FontWeight.w500
                         )
                     )
                 );
@@ -187,8 +184,7 @@ namespace DocCN.Components
             {
                 ctx.textStyle = new TextStyle(
                     fontSize: 16.0f,
-                    height: 1.5f,
-                    fontFamily: "PingFang-Regular"
+                    height: 1.5f
                 );
                 return null;
             }
@@ -307,8 +303,7 @@ namespace DocCN.Components
             {
                 ctx.textStyle = new TextStyle(
                     fontSize: 16.0f,
-                    height: 1.5f,
-                    fontFamily: "PingFang-Regular"
+                    height: 1.5f
                 );
                 return null;
             }
