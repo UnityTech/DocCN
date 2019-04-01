@@ -29,8 +29,7 @@ namespace DocCN.Pages
                                             child: new SingleChildScrollView(
                                                 child: new ScriptingContent(widget._title)
                                             )
-                                        ),
-                                        new MetaFields()
+                                        )
                                     }
                                 )
                             )

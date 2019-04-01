@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using UniRx.Async;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
@@ -9,6 +11,20 @@ namespace DocCN.Components
 {
     public class MetaFields : StatelessWidget
     {
+        public MetaFields(List<string> items)
+        {
+            _items = items;
+        }
+        
+        private static readonly TextStyle ItemStyle = new TextStyle(
+            height: 1.5f,
+            color: new Color(0xff616161),
+            fontSize: 16.0f
+        );
+        private static readonly Color DividerColor = new Color(0xffd8d8d8);
+
+        private readonly List<string> _items;
+
         public override Widget build(BuildContext context)
         {
             return new Container(
@@ -37,9 +53,20 @@ namespace DocCN.Components
                         ),
                         new Container(
                             height: 1f,
-                            color: new Color(0xffd8d8d8)
+                            color: DividerColor
                         ),
-                        new RelatedArticles()
+                        new Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: _items.Select<string, Widget>(
+                                Item => new Container(
+                                    margin: EdgeInsets.only(bottom: 16.0f),
+                                    child: new Text(
+                                        Item,
+                                        style: ItemStyle
+                                    )
+                                )
+                            ).ToList()
+                        )
                     }
                 )
             );

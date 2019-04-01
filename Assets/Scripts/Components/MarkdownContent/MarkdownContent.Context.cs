@@ -13,6 +13,8 @@ namespace DocCN.Components
             public Container imageNode { get; set; }
             public List<List<Container>> rows { get; private set; }
             public List<Container> cells { get; private set; }
+            public bool recordTitle { get; set; }
+            public List<string> titles { get; }
 
 
             public BuilderContext()
@@ -20,6 +22,7 @@ namespace DocCN.Components
                 inline = new Stack<TextSpan>();
                 rows = new List<List<Container>>();
                 cells = new List<Container>();
+                titles = new List<string>();
             }
 
             public void Clear()

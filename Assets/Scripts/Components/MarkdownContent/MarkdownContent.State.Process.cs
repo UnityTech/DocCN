@@ -21,6 +21,8 @@ namespace DocCN.Components
 
             private static readonly EdgeInsets TableCellPadding =
                 EdgeInsets.only(top: 4f, bottom: 12f, left: 16f, right: 16f);
+            
+            private static readonly Color dividerColor = new Color(0xffe0e0e0);
 
             static MarkdownContentState()
             {
@@ -50,7 +52,8 @@ namespace DocCN.Components
                     ["tbody_close"] = DummyProcess,
                     ["td_open"] = DummyProcess,
                     ["td_close"] = ProcessTDClose,
-                    ["image"] = ProcessImage
+                    ["image"] = ProcessImage,
+                    ["hr"] = ProcessHR,
                 };
             }
 
@@ -70,6 +73,7 @@ namespace DocCN.Components
                         ctx.textStyle = new TextStyle(
                             fontSize: 30.0f
                         );
+                        ctx.recordTitle = true;
                         break;
                     case "h3":
                         ctx.textStyle = new TextStyle(
@@ -97,6 +101,12 @@ namespace DocCN.Components
 
             private static Widget ProcessInline(Token token, BuilderContext ctx)
             {
+                if (ctx.recordTitle)
+                {
+                    ctx.recordTitle = false;
+                    ctx.titles.Add(token.content);
+                }
+
                 if (ctx.textStyle == null) return null;
                 ctx.inline.Push(
                     new TextSpan(
@@ -297,6 +307,15 @@ namespace DocCN.Components
                 );
 
                 return null;
+            }
+
+            private static Widget ProcessHR(Token token, BuilderContext ctx)
+            {
+                return new Container(
+                    margin: EdgeInsets.symmetric(vertical: 16f),
+                    height: 1f,
+                    color: dividerColor
+                );
             }
 
             private static Widget ProcessParagraphOpen(Token token, BuilderContext ctx)
