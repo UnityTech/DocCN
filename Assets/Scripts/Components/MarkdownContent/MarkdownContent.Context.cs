@@ -13,16 +13,17 @@ namespace DocCN.Components
             public Container imageNode { get; set; }
             public List<List<Container>> rows { get; private set; }
             public List<Container> cells { get; private set; }
-            public bool recordTitle { get; set; }
-            public List<string> titles { get; }
-
+            public string title { get; set; }
+            public List<PositionRecord> positionRecords { get; }
+            public bool useNotifyContainer { get; set; }
 
             public BuilderContext()
             {
                 inline = new Stack<TextSpan>();
                 rows = new List<List<Container>>();
                 cells = new List<Container>();
-                titles = new List<string>();
+                positionRecords = new List<PositionRecord>();
+                useNotifyContainer = false;
             }
 
             public void Clear()
@@ -30,6 +31,7 @@ namespace DocCN.Components
                 textStyle = null;
                 inline.Clear();
                 imageNode = null;
+                useNotifyContainer = false;
             }
 
             public void ClearColumn()

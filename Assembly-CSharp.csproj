@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Components\Button.cs" />
     <Compile Include="Assets\Scripts\Components\CheckBox.cs" />
     <Compile Include="Assets\Scripts\Components\CheckBox.State.cs" />
+    <Compile Include="Assets\Scripts\Components\Clickable\Clickable.cs" />
     <Compile Include="Assets\Scripts\Components\Content.cs" />
     <Compile Include="Assets\Scripts\Components\DocApp\DocApp.cs" />
     <Compile Include="Assets\Scripts\Components\DocApp\DocApp.State.cs" />
@@ -73,9 +74,16 @@
     <Compile Include="Assets\Scripts\Components\EditButton.cs" />
     <Compile Include="Assets\Scripts\Components\Footer.cs" />
     <Compile Include="Assets\Scripts\Components\Header.cs" />
+    <Compile Include="Assets\Scripts\Components\HyperLink\HyperLink.cs" />
+    <Compile Include="Assets\Scripts\Components\HyperLink\HyperLink.State.cs" />
+    <Compile Include="Assets\Scripts\Components\LanguageSelect\LanguageSelect.cs" />
+    <Compile Include="Assets\Scripts\Components\LanguageSelect\LanguageSelect.State.cs" />
     <Compile Include="Assets\Scripts\Components\LanguageSelection.cs" />
     <Compile Include="Assets\Scripts\Components\MarkdownContent\MarkdownContent.Context.cs" />
     <Compile Include="Assets\Scripts\Components\MarkdownContent\MarkdownContent.cs" />
+    <Compile Include="Assets\Scripts\Components\MarkdownContent\MarkdownContent.NotifyContainer.cs" />
+    <Compile Include="Assets\Scripts\Components\MarkdownContent\MarkdownContent.PositionRecord.cs" />
+    <Compile Include="Assets\Scripts\Components\MarkdownContent\MarkdownContent.Positions.cs" />
     <Compile Include="Assets\Scripts\Components\MarkdownContent\MarkdownContent.State.cs" />
     <Compile Include="Assets\Scripts\Components\MarkdownContent\MarkdownContent.State.Process.cs" />
     <Compile Include="Assets\Scripts\Components\MarkdownTitleRow.cs" />
@@ -83,7 +91,6 @@
     <Compile Include="Assets\Scripts\Components\Menu\Menu.Item.cs" />
     <Compile Include="Assets\Scripts\Components\Menu\Menu.Item.State.cs" />
     <Compile Include="Assets\Scripts\Components\Menu\Menu.State.cs" />
-    <Compile Include="Assets\Scripts\Components\MetaFields.cs" />
     <Compile Include="Assets\Scripts\Components\ModifiedInfo.cs" />
     <Compile Include="Assets\Scripts\Components\RelatedArticles.cs" />
     <Compile Include="Assets\Scripts\Components\Scripting\ScriptingContent.cs" />
@@ -91,7 +98,10 @@
     <Compile Include="Assets\Scripts\Components\Scripting\ScriptingMenu.cs" />
     <Compile Include="Assets\Scripts\Components\SearchBar.cs" />
     <Compile Include="Assets\Scripts\Components\SearchFilter.cs" />
+    <Compile Include="Assets\Scripts\Components\SocialBrand\SocialBrand.cs" />
+    <Compile Include="Assets\Scripts\Components\SocialBrand\SocialBrand.State.cs" />
     <Compile Include="Assets\Scripts\Components\WealthyText.cs" />
+    <Compile Include="Assets\Scripts\LocationUtil.cs" />
     <Compile Include="Assets\Scripts\Models\Json\Menu.cs" />
     <Compile Include="Assets\Scripts\Models\Json\MixedContent.cs" />
     <Compile Include="Assets\Scripts\Models\Json\Scripting.cs" />
@@ -697,6 +707,10 @@
     <ProjectReference Include="UIWidgetsGallery.csproj">
       <Project>{0D3AC704-A2FF-AAC5-E327-DB3B6FFB160C}</Project>
       <Name>UIWidgetsGallery</Name>
+    </ProjectReference>
+    <ProjectReference Include="UIWidgetsTheatre.csproj">
+      <Project>{92B94635-B80F-5C77-A012-9ED4E26B0FAE}</Project>
+      <Name>UIWidgetsTheatre</Name>
     </ProjectReference>
     <ProjectReference Include="UniRx.csproj">
       <Project>{0E2C7A78-00FC-F50F-5D92-DC5017FBE744}</Project>

@@ -16,9 +16,12 @@ namespace DocCN.Components
         {
             private Token[] _tokens;
 
+            private ScrollController _scrollController;
+
             public override void initState()
             {
                 base.initState();
+                _scrollController = new ScrollController();
                 Load();
             }
 
@@ -71,12 +74,20 @@ namespace DocCN.Components
                     children: new List<Widget>
                     {
                         new Expanded(
-                            child: ListView.builder(
+                            child: new SingleChildScrollView(
+                                controller: _scrollController,
+                                child: new Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: widgets
+                                )
+                            )
+                            /*child: ListView.builder(
+                                controller: _scrollController,
                                 padding: EdgeInsets.only(bottom: 64f),
                                 itemCount: widgets.Count + 1,
-                                itemBuilder: (ctx, idx) => idx == 0 ? new Breadcrumb() : widgets[idx - 1])
+                                itemBuilder: (ctx, idx) => idx == 0 ? new Breadcrumb() : widgets[idx - 1])*/
                         ),
-                        new MetaFields(widgetCursor.titles)
+                        new MetaFields(widgetCursor.positionRecords, _scrollController)
                     }
                 );
             }

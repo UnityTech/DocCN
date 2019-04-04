@@ -699,6 +699,10 @@
       <Project>{0D3AC704-A2FF-AAC5-E327-DB3B6FFB160C}</Project>
       <Name>UIWidgetsGallery</Name>
     </ProjectReference>
+    <ProjectReference Include="UIWidgetsTheatre.csproj">
+      <Project>{92B94635-B80F-5C77-A012-9ED4E26B0FAE}</Project>
+      <Name>UIWidgetsTheatre</Name>
+    </ProjectReference>
     <ProjectReference Include="UniRx.csproj">
       <Project>{0E2C7A78-00FC-F50F-5D92-DC5017FBE744}</Project>
       <Name>UniRx</Name>

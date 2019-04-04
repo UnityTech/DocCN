@@ -21,7 +21,7 @@ namespace DocCN.Components
 
             private static readonly EdgeInsets TableCellPadding =
                 EdgeInsets.only(top: 4f, bottom: 12f, left: 16f, right: 16f);
-            
+
             private static readonly Color dividerColor = new Color(0xffe0e0e0);
 
             static MarkdownContentState()
@@ -66,19 +66,30 @@ namespace DocCN.Components
                     case "h1":
                         ctx.textStyle = new TextStyle(
                             fontSize: 36.0f,
-                            height: 1.16666666667f
+                            height: 1.16666666667f,
+                            fontFamily: "PingFang"
                         );
                         break;
                     case "h2":
                         ctx.textStyle = new TextStyle(
-                            fontSize: 30.0f
+                            fontSize: 30.0f,
+                            fontFamily: "PingFang",
+                            height: 1.26666666667f
                         );
-                        ctx.recordTitle = true;
+                        ctx.useNotifyContainer = true;
                         break;
                     case "h3":
                         ctx.textStyle = new TextStyle(
                             fontSize: 24.0f,
-                            height: 1.26666666667f
+                            height: 1.26666666667f,
+                            fontFamily: "PingFang"
+                        );
+                        break;
+                    case "h4":
+                        ctx.textStyle = new TextStyle(
+                            fontSize: 20.0f,
+                            height: 1.26666666667f,
+                            fontFamily: "PingFang"
                         );
                         break;
                     default:
@@ -91,20 +102,34 @@ namespace DocCN.Components
             private static Widget ProcessHeadingClose(Token token, BuilderContext ctx)
             {
                 var richText = new RichText(text: ctx.inline.Pop());
-                var container = new Container(
-                    margin: EdgeInsets.only(top: 40f),
-                    child: richText
-                );
+                Widget container = null;
+                if (ctx.useNotifyContainer)
+                {
+                    var positionRecord = new PositionRecord{title = ctx.title};
+                    container = new NotifyContainer(
+                        margin: EdgeInsets.only(top: 40f),
+                        child: richText,
+                        notifyFn: fn => positionRecord.getPosition = fn
+                    );
+                    ctx.positionRecords.Add(positionRecord);
+                }
+                else
+                {
+                    container = new Container(
+                        margin: EdgeInsets.only(top: 40f),
+                        child: richText
+                    );
+                }
+
                 ctx.Clear();
                 return container;
             }
 
             private static Widget ProcessInline(Token token, BuilderContext ctx)
             {
-                if (ctx.recordTitle)
+                if (ctx.useNotifyContainer)
                 {
-                    ctx.recordTitle = false;
-                    ctx.titles.Add(token.content);
+                    ctx.title = token.content;
                 }
 
                 if (ctx.textStyle == null) return null;
@@ -194,7 +219,8 @@ namespace DocCN.Components
             {
                 ctx.textStyle = new TextStyle(
                     fontSize: 16.0f,
-                    height: 1.5f
+                    height: 1.5f,
+                    fontFamily: "PingFang"
                 );
                 return null;
             }
@@ -291,7 +317,8 @@ namespace DocCN.Components
                             child: new Text(
                                 token.children[0].content,
                                 style: new TextStyle(
-                                    color: new Color(0xff9b9b9b)
+                                    color: new Color(0xff9b9b9b),
+                                    fontFamily: "PingFang"
                                 )
                             )
                         )
@@ -322,7 +349,8 @@ namespace DocCN.Components
             {
                 ctx.textStyle = new TextStyle(
                     fontSize: 16.0f,
-                    height: 1.5f
+                    height: 1.5f,
+                    fontFamily: "PingFang"
                 );
                 return null;
             }

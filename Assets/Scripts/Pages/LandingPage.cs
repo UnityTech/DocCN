@@ -5,7 +5,9 @@ using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
+using UnityEngine;
 using Banner = DocCN.Components.Banner;
+using Color = Unity.UIWidgets.ui.Color;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
 namespace DocCN.Pages
@@ -14,26 +16,43 @@ namespace DocCN.Pages
     {
         public override Widget build(BuildContext context)
         {
-            return new Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: new List<Widget>
-                {
-                    new Header(),
-                    new Banner(),
-                    new Container(
-                        padding: EdgeInsets.only(top: 64.0f, right: 36.0f, bottom: 48.0f, left: 36.0f),
-                        color: new Color(0xffffffff),
-                        child: new Row(
-                            children: new List<Widget>
-                            {
-                                new EntryCard("Unity 用户手册", latestVersion: "最新版本：不可用", description: "使用Unity Editor创建2D和3D游戏，应用程序和体验。"),
-                                new EntryCard("Unity 脚本 API", latestVersion: "最新版本：不可用", description: "本文档的这一部分包含Unity提供的脚本API的详细信息。"),
-                                new EntryCard("Unity 服务手册", description: "通过轻松集成广告，分析，应用内购买等功能为您的应用增值。"),
-                            }
-                        )
-                    ),
-                    new Footer()
-                }
+            var height = MediaQuery.of(context).size.height;
+            const float minHeight = 80f + 277f + 200f + 352f;
+            var verticalPadding = minHeight < height ? (height - minHeight) / 2 : 16f;
+            return new Container(
+                height: height,
+                child: new SingleChildScrollView(
+                    child:
+                    new Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: new List<Widget>
+                        {
+                            new Header(),
+                            new Banner(),
+                            new Container(
+                                padding: EdgeInsets.only(
+                                    top: verticalPadding,
+                                    right: 36.0f,
+                                    bottom: verticalPadding,
+                                    left: 36.0f
+                                ),
+                                color: new Color(0xffffffff),
+                                child: new Row(
+                                    children: new List<Widget>
+                                    {
+                                        new EntryCard("Unity 用户手册", latestVersion: "最新版本：不可用",
+                                            description: "使用Unity Editor创建2D和3D游戏，应用程序和体验。"),
+                                        new EntryCard("Unity 脚本 API", latestVersion: "最新版本：不可用",
+                                            description: "本文档的这一部分包含Unity提供的脚本API的详细信息。"),
+                                        new EntryCard("Unity 服务手册",
+                                            description: "通过轻松集成广告，分析，应用内购买等功能为您的应用增值。"),
+                                    }
+                                )
+                            ),
+                            new Footer()
+                        }
+                    )
+                )
             );
         }
     }
@@ -42,15 +61,15 @@ namespace DocCN.Pages
     {
         public EntryCard(string title = "", string latestVersion = "", string description = "")
         {
-            this.title = title;
-            this.latestVersion = latestVersion;
-            this.description = description;
+            _title = title;
+            _latestVersion = latestVersion;
+            _description = description;
         }
 
-        private static readonly Color TITLE_TEXT_COLOR = new Color(0xff212121);
-        private readonly string title;
-        private readonly string latestVersion;
-        private readonly string description;
+        private static readonly Color TitleTextColor = new Color(0xff212121);
+        private readonly string _title;
+        private readonly string _latestVersion;
+        private readonly string _description;
 
         public override Widget build(BuildContext context)
         {
@@ -67,11 +86,11 @@ namespace DocCN.Pages
                                 child: new Align(
                                     alignment: Alignment.centerLeft,
                                     child: new Text(
-                                        title,
+                                        _title,
                                         style: new TextStyle(
                                             fontSize: 24.0f,
-                                            fontWeight: FontWeight.w700, // w600
-                                            color: TITLE_TEXT_COLOR
+                                            fontWeight: FontWeight.w500,
+                                            color: TitleTextColor
                                         )
                                     )
                                 )
@@ -96,10 +115,10 @@ namespace DocCN.Pages
                                                     new Container(
                                                         margin: EdgeInsets.only(top: 16.0f),
                                                         child: new Text(
-                                                            latestVersion,
+                                                            _latestVersion,
                                                             style: new TextStyle(
                                                                 fontSize: 14.0f,
-                                                                fontWeight: FontWeight.w700,
+                                                                fontWeight: FontWeight.w500,
                                                                 height: 1.42857142857f
                                                             )
                                                         )
@@ -107,18 +126,18 @@ namespace DocCN.Pages
                                                     new Container(
                                                         margin: EdgeInsets.only(top: 4.0f),
                                                         child: new Text(
-                                                            description,
+                                                            _description,
                                                             style: new TextStyle(
                                                                 fontSize: 24.0f,
                                                                 height: 1.33333333333f,
-                                                                fontWeight: FontWeight.w700
+                                                                fontWeight: FontWeight.w500
                                                             )
                                                         )
                                                     ),
                                                     new Container(
                                                         margin: EdgeInsets.only(top: 56.0f),
                                                         child: new Text(
-                                                            description,
+                                                            _description,
                                                             style: new TextStyle(
                                                                 fontSize: 16.0f,
                                                                 height: 1.5f,

@@ -73,43 +73,84 @@ namespace DocCN.Components
         public override Widget build(BuildContext context)
         {
             return new Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: new List<Widget>
                 {
-                    new TabItem("手册", true),
-                    new TabItem("脚本API", false)
+                    new TabItem("手册", true, "/Manual/UnityManual"),
+                    new TabItem("脚本API", false, "/Manual/UnityManual"),
+                    //new TabItem("服务手册", false, "/Manual/UnityManual")
                 }
             );
         }
     }
 
-    internal class TabItem : StatelessWidget
+    internal class TabItem : StatefulWidget
     {
-        internal TabItem(string text, bool isFirst)
+        internal TabItem(string text, bool isFirst, string link)
         {
-            this.text = text;
-            this.isFirst = isFirst;
+            _text = text;
+            _isFirst = isFirst;
+            _link = link;
         }
 
-        private readonly string text;
-        private readonly bool isFirst;
+        private readonly string _text;
+        private readonly bool _isFirst;
+        private readonly string _link;
 
-        public override Widget build(BuildContext context)
+        public override State createState() => new TabItemState();
+
+        private class TabItemState : State<TabItem>
         {
-            var margin = Painting.EdgeInsets.all(0.0f);
-            if (!isFirst)
+            private static readonly Painting.TextStyle NormalStyle = new Painting.TextStyle(
+                fontSize: 16.0f,
+                fontWeight: FontWeight.w400,
+                color: new Color(0xffffffff)
+            );
+
+            private static readonly Painting.TextStyle HoverStyle = new Painting.TextStyle(
+                fontSize: 16.0f,
+                fontWeight: FontWeight.w500,
+                color: new Color(0xff2196f3)
+            );
+
+            private bool _hover;
+
+            public override void initState()
             {
-                margin = Painting.EdgeInsets.only(left: 32.0f);
+                base.initState();
+                _hover = false;
             }
 
-            return new Container(
-                margin: margin,
-                child: new Text(
-                    text,
-                    style: new Painting.TextStyle(
-                        fontSize: 16.0f,
-                        fontWeight: FontWeight.w400,
-                        color: new Color(0xffffffff)))
-            );
+            public override Widget build(BuildContext buildContext)
+            {
+                var margin = Painting.EdgeInsets.all(0.0f);
+                if (!widget._isFirst)
+                {
+                    margin = Painting.EdgeInsets.only(left: 16.0f);
+                }
+
+                return new Clickable(
+                    onTap: () => LocationUtil.Go(widget._link),
+                    hoverChanged: hover =>
+                    {
+                        if (mounted)
+                        {
+                            setState(() => _hover = hover);
+                        }
+                    },
+                    child: new Container(
+                        color: new Color(0x00000000),
+                        margin: margin,
+                        padding: Painting.EdgeInsets.symmetric(horizontal: 8f),
+                        child: new Center(
+                            child: new Text(
+                                widget._text,
+                                style: _hover ? HoverStyle : NormalStyle
+                            )
+                        )
+                    )
+                );
+            }
         }
     }
 }

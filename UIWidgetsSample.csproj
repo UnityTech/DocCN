@@ -82,10 +82,10 @@
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetSample\txt\FontWeightStyle.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetSample\txt\TextFieldSample.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetSample\txt\TextSpanGesture.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetSample\txt\TextStyleSample.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetSample\UIWidgetsSamplePanel.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetSample\Utils.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetSample\VideoSampleComponent.cs" />
-    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsTheatre\UIWidgetsTheatre.cs" />
     <None Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsSample.asmdef" />
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/home/haog/Unity-2018.3.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

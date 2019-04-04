@@ -54,8 +54,7 @@ namespace DocCN.Components
                 private void OnTap()
                 {
                     var link = $"/Manual/{widget._bind.link}";
-                    Bridge.LocationPush(widget._text, link);
-                    Reactive.CurrentPath.SetValueAndForceNotify(link);
+                    LocationUtil.Go(link);
                 }
 
                 private void OnExpandTap()
