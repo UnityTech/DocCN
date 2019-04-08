@@ -71,6 +71,9 @@
     <Compile Include="Assets\Scripts\Components\DocApp\DocApp.cs" />
     <Compile Include="Assets\Scripts\Components\DocApp\DocApp.State.cs" />
     <Compile Include="Assets\Scripts\Components\DocApp\StringExtension.cs" />
+    <Compile Include="Assets\Scripts\Components\DropDown\DropDown.cs" />
+    <Compile Include="Assets\Scripts\Components\DropDown\DropDown.Overlay.cs" />
+    <Compile Include="Assets\Scripts\Components\DropDown\DropDown.State.cs" />
     <Compile Include="Assets\Scripts\Components\EditButton.cs" />
     <Compile Include="Assets\Scripts\Components\Footer.cs" />
     <Compile Include="Assets\Scripts\Components\Header.cs" />
@@ -96,7 +99,11 @@
     <Compile Include="Assets\Scripts\Components\Scripting\ScriptingContent.cs" />
     <Compile Include="Assets\Scripts\Components\Scripting\ScriptingContent.State.cs" />
     <Compile Include="Assets\Scripts\Components\Scripting\ScriptingMenu.cs" />
-    <Compile Include="Assets\Scripts\Components\SearchBar.cs" />
+    <Compile Include="Assets\Scripts\Components\ScrollViewWithOverlay\ScrollViewWithOverlay.cs" />
+    <Compile Include="Assets\Scripts\Components\ScrollViewWithOverlay\ScrollViewWithOverlay.State.cs" />
+    <Compile Include="Assets\Scripts\Components\SearchBar\SearchBar.cs" />
+    <Compile Include="Assets\Scripts\Components\SearchBar\SearchBar.FilterType.cs" />
+    <Compile Include="Assets\Scripts\Components\SearchBar\SearchBar.State.cs" />
     <Compile Include="Assets\Scripts\Components\SearchFilter.cs" />
     <Compile Include="Assets\Scripts\Components\SocialBrand\SocialBrand.cs" />
     <Compile Include="Assets\Scripts\Components\SocialBrand\SocialBrand.State.cs" />

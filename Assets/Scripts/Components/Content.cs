@@ -9,17 +9,17 @@ namespace DocCN.Components
     {
         public Content(T child)
         {
-            this.child = child;
+            this._child = child;
         }
         
-        private readonly T child;
+        private readonly T _child;
 
         public override Widget build(BuildContext context)
         {
             return new Container(
                 padding: EdgeInsets.only(top: 16f, right: 48f, bottom: 48f, left: 48f),
                 color: new Color(0xfff2f1f2),
-                child: child
+                child: _child
             );
         }
     }

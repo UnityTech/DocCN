@@ -76,9 +76,12 @@ namespace DocCN.Components
                         new Expanded(
                             child: new SingleChildScrollView(
                                 controller: _scrollController,
-                                child: new Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: widgets
+                                child: new Container(
+                                    padding: EdgeInsets.only(bottom: 64f),
+                                    child: new Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: widgets
+                                    )
                                 )
                             )
                             /*child: ListView.builder(

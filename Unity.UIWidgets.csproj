@@ -146,6 +146,7 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\button_bar.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\button_theme.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\card.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\checkbox.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\color_scheme.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\colors.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\constants.cs" />
@@ -248,6 +249,10 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\promise\PromiseStateException.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\promise\PromiseTimer.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\promise\Tuple.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\redux\redux_logging.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\redux\redux_thunk.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\redux\store.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\redux\widget_redux.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\animated_size.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\binding.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\box.cs" />
@@ -271,6 +276,7 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\sliver.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\sliver_fill.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\sliver_fixed_extent_list.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\sliver_grid.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\sliver_list.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\sliver_multi_box_adaptor.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\sliver_padding.cs" />
@@ -350,6 +356,7 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\form.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\framework.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\gesture_detector.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\heroes.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\icon.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\icon_data.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\icon_theme.cs" />

@@ -8,9 +8,9 @@ namespace DocCN
         
         static Reactive()
         {
-            CurrentPath = new ReactiveProperty<string>("/Manual/LightingInUnity");
+            //CurrentPath = new ReactiveProperty<string>("/Manual/LightingInUnity");
             //CurrentPath = new ReactiveProperty<string>("/Scripting/IMGUI.Controls.ArcHandle");
-            //CurrentPath = new ReactiveProperty<string>("/Search");
+            CurrentPath = new ReactiveProperty<string>("/Search");
         }
     }
 }

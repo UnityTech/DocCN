@@ -64,6 +64,13 @@
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\demo\material\bottom_navigation_demo.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\demo\material\buttons_demo.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\demo\material\cards_demo.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\demo\shrine\shrine_data.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\demo\shrine\shrine_home.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\demo\shrine\shrine_order.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\demo\shrine\shrine_page.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\demo\shrine\shrine_theme.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\demo\shrine\shrine_types.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\demo\shrine_demo.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\demo\typography_demo.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\gallery\app.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetsGallery\gallery\backdrop.cs" />

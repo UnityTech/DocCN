@@ -12,7 +12,9 @@ namespace DocCN.Style
         public static readonly IconData IconSinaWeiBo = new IconData(0xe9ba, "Brands");
         
         public static readonly IconData MaterialExpandMore = new IconData(0xe313, fontFamily: "MaterialIcons");
-        public static readonly IconData MaterialKeyboardBackspace = new IconData(0xe317, fontFamily: "Material Icons");
-        public static readonly IconData MaterialDone = new IconData(0xe876, fontFamily: "Material Icons");
+        public static readonly IconData MaterialKeyboardBackspace = new IconData(0xe317, fontFamily: "MaterialIcons");
+        public static readonly IconData MaterialDone = new IconData(0xe876, fontFamily: "MaterialIcons");
+        public static readonly IconData MaterialArrowDropDown = new IconData(0xe5c5, fontFamily: "MaterialIcons");
+        public static readonly IconData MaterialSearch = new IconData(0xe8b6, "MaterialIcons");
     }
 }
