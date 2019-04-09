@@ -2,7 +2,7 @@ using System.Runtime.InteropServices;
 using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Utility.Components
+namespace DocCN.Components
 {
     public enum CheckBoxValue
     {

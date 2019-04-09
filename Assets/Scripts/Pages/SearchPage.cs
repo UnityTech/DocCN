@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using DocCN.Utility.Components;
+using DocCN.Components;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Utility.Pages
+namespace DocCN.Pages
 {
     public class SearchPage : StatelessWidget
     {

@@ -1,6 +1,6 @@
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Utility.Pages
+namespace DocCN.Pages
 {
     public partial class ManualPage : StatefulWidget
     {

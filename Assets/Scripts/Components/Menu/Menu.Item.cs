@@ -1,8 +1,8 @@
 using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.widgets;
-using Json = DocCN.Utility.Models.Json;
+using Json = DocCN.Models.Json;
 
-namespace DocCN.Utility.Components
+namespace DocCN.Components
 {
     public partial class Menu
     {

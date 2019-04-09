@@ -3,7 +3,7 @@ using Unity.UIWidgets.painting;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Utility.Components
+namespace DocCN.Components
 {
     public class Content<T> : StatelessWidget where T : Widget
     {

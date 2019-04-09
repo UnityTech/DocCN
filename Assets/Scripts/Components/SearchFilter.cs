@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using DocCN.Utility.Style;
+using DocCN.Style;
 using Unity.UIWidgets.animation;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
@@ -11,7 +11,7 @@ using Color = Unity.UIWidgets.ui.Color;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 using Transform = Unity.UIWidgets.widgets.Transform;
 
-namespace DocCN.Utility.Components
+namespace DocCN.Components
 {
     public class SearchFilter : StatelessWidget
     {

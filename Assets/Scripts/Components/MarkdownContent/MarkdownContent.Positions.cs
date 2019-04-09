@@ -8,7 +8,7 @@ using Unity.UIWidgets.widgets;
 using Color = Unity.UIWidgets.ui.Color;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
-namespace DocCN.Utility.Components
+namespace DocCN.Components
 {
     public partial class MarkdownContent
     {

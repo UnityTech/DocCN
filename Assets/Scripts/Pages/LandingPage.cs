@@ -1,15 +1,14 @@
-using System;
 using System.Collections.Generic;
-using DocCN.Utility.Components;
+using DocCN.Components;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
-using Banner = DocCN.Utility.Components.Banner;
+using Banner = DocCN.Components.Banner;
 using Color = Unity.UIWidgets.ui.Color;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
-namespace DocCN.Utility.Pages
+namespace DocCN.Pages
 {
     public class LandingPage : StatelessWidget
     {
@@ -27,7 +26,7 @@ namespace DocCN.Utility.Pages
                         children: new List<Widget>
                         {
                             new Header(),
-                            new Components.Banner(),
+                            new Banner(),
                             new Container(
                                 padding: EdgeInsets.only(
                                     top: verticalPadding,

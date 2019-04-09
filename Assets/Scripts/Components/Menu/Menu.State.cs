@@ -7,9 +7,9 @@ using Unity.UIWidgets.widgets;
 using UnityEngine.Networking;
 using Color = Unity.UIWidgets.ui.Color;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
-using Json = DocCN.Utility.Models.Json;
+using Json = DocCN.Models.Json;
 
-namespace DocCN.Utility.Components
+namespace DocCN.Components
 {
     public partial class Menu
     {

@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using DocCN.Utility;
 using Unity.UIWidgets.rendering;
 using Painting = Unity.UIWidgets.painting;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Utility.Components
+namespace DocCN.Components
 {
     public class Header : StatelessWidget
     {

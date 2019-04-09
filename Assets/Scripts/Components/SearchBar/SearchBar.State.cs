@@ -1,16 +1,10 @@
 using System.Collections.Generic;
-using DocCN.Utility.Style;
-using Unity.UIWidgets.foundation;
-using Unity.UIWidgets.gestures;
-using Unity.UIWidgets.material;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.widgets;
-using UnityEngine;
 using Color = Unity.UIWidgets.ui.Color;
-using Icons = Unity.UIWidgets.material.Icons;
 
-namespace DocCN.Utility.Components
+namespace DocCN.Components
 {
     public partial class SearchBar : StatefulWidget
     {

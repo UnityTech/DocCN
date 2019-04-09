@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using DocCN.Utility.Pages;
+using DocCN.Pages;
+using DocCN.Utility;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Utility.Components
+namespace DocCN.Components
 {
     public partial class DocApp
     {

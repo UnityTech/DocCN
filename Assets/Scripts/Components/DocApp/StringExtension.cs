@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace DocCN.Utility.Components
+namespace DocCN.Components
 {
     internal static class StringExtension
     {

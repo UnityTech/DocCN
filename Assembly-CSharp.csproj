@@ -105,6 +105,7 @@
     <Compile Include="Assets\Scripts\Components\SearchBar\SearchBar.FilterType.cs" />
     <Compile Include="Assets\Scripts\Components\SearchBar\SearchBar.State.cs" />
     <Compile Include="Assets\Scripts\Components\SearchFilter.cs" />
+    <Compile Include="Assets\Scripts\Components\SearchResultCard\SearchResultCard.cs" />
     <Compile Include="Assets\Scripts\Components\SocialBrand\SocialBrand.cs" />
     <Compile Include="Assets\Scripts\Components\SocialBrand\SocialBrand.State.cs" />
     <Compile Include="Assets\Scripts\Components\WealthyText.cs" />

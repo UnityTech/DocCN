@@ -7,11 +7,10 @@ using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
-using UnityEngine;
 using ImageUtils = Unity.UIWidgets.painting.ImageUtils;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
-namespace DocCN.Utility.Components
+namespace DocCN.Components
 {
     public class WealthyText : Text
     {

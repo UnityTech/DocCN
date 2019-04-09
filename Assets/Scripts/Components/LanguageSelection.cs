@@ -4,7 +4,7 @@ using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
-namespace DocCN.Utility.Components
+namespace DocCN.Components
 {
     public class LanguageSelection : StatelessWidget
     {

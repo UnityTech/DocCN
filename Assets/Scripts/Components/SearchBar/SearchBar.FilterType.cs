@@ -1,6 +1,6 @@
 using System;
 
-namespace DocCN.Utility.Components
+namespace DocCN.Components
 {
     public partial class SearchBar
     {

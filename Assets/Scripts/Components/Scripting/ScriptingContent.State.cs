@@ -1,11 +1,7 @@
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Xml.Serialization;
-using DocCN.Utility.Models.Json;
 using Newtonsoft.Json;
-using Unity.UIWidgets.external.simplejson;
-using Json = DocCN.Utility.Models.Json;
+using DocCN.Models.Json;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
@@ -16,7 +12,7 @@ using Color = Unity.UIWidgets.ui.Color;
 using FontStyle = Unity.UIWidgets.ui.FontStyle;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
-namespace DocCN.Utility.Components
+namespace DocCN.Components
 {
     public partial class ScriptingContent
     {

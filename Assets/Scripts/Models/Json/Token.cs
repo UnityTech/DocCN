@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace DocCN.Utility.Models.Json
+namespace DocCN.Models.Json
 {   
     public class Token
     {

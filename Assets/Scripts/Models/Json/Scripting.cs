@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-namespace DocCN.Utility.Models.Json
+namespace DocCN.Models.Json
 {
     public class Scripting
     {

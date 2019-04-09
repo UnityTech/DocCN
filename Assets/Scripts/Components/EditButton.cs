@@ -1,11 +1,10 @@
+using DocCN.Utility;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.widgets;
-using UnityEditor;
-using UnityEngine;
 using Color = Unity.UIWidgets.ui.Color;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
-namespace DocCN.Utility.Components
+namespace DocCN.Components
 {
     public class EditButton : StatelessWidget
     {

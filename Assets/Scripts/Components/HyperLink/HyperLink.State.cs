@@ -1,7 +1,7 @@
-using Unity.UIWidgets.painting;
+using DocCN.Utility;
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Utility.Components
+namespace DocCN.Components
 {
     public partial class HyperLink
     {
