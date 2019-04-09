@@ -51,26 +51,15 @@ namespace DocCN.Components
                                 {
                                     new DropDown<FilterType>(
                                         items: new[] {FilterType.manual, FilterType.scripting},
-                                        itemBuilder: item => new Clickable(
+                                        itemBuilder: item => new FilterItem(
                                             onTap: () =>
                                             {
-                                                Debug.Log("abcde");
-                                                setState(() => _filterType = item);
+                                                if (mounted)
+                                                {
+                                                    setState(() => _filterType = item);
+                                                }
                                             },
-                                            child: new Container(
-                                                width: 170f,
-                                                height: 48f,
-                                                color: new Color(0xff212121),
-                                                child: new Center(
-                                                    child: new Text(
-                                                        item.Text(),
-                                                        style: new TextStyle(
-                                                            color: new Color(0xffffffff),
-                                                            fontSize: 16f
-                                                        )
-                                                    )
-                                                )
-                                            )
+                                            text: item.Text()
                                         ),
                                         selectBuilder: () => new Container(
                                             width: 170.0f,
@@ -89,22 +78,21 @@ namespace DocCN.Components
                                                     new Text(
                                                         "筛选：",
                                                         style: new TextStyle(
-                                                            color: new Color(0xffd8d8d8)
+                                                            color: new Color(0xffd8d8d8),
+                                                            fontSize: 16f
                                                         )
                                                     ),
                                                     new Text(
                                                         _filterType.Text(),
                                                         style: new TextStyle(
-                                                            color: new Color(0xffffffff)
+                                                            color: new Color(0xffffffff),
+                                                            fontSize: 16f
                                                         )
                                                     ),
-                                                    new Container(
-                                                        padding: EdgeInsets.only(top: 4f),
-                                                        child: new Icon(
-                                                            Style.Icons.MaterialArrowDropDown,
-                                                            color: new Color(0xffffffff),
-                                                            size: 24f
-                                                        )
+                                                    new Icon(
+                                                        Style.Icons.MaterialArrowDropDown,
+                                                        color: new Color(0xffffffff),
+                                                        size: 24f
                                                     )
                                                 }
                                             )
