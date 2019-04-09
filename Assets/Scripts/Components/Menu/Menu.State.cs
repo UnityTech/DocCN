@@ -7,15 +7,15 @@ using Unity.UIWidgets.widgets;
 using UnityEngine.Networking;
 using Color = Unity.UIWidgets.ui.Color;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
-using Json = DocCN.Models.Json;
+using Json = DocCN.Utility.Models.Json;
 
-namespace DocCN.Components
+namespace DocCN.Utility.Components
 {
     public partial class Menu
     {
         private class MenuState : State<Menu>
         {
-            private Json.Menu _menu;
+            private Models.Json.Menu _menu;
 
             public override void initState()
             {
@@ -31,7 +31,7 @@ namespace DocCN.Components
                     var content = DownloadHandlerBuffer.GetContent(request);
                     using (WindowProvider.of(context).getScope())
                     {
-                        setState(() => _menu = JsonConvert.DeserializeObject<Json.Menu>(content));
+                        setState(() => _menu = JsonConvert.DeserializeObject<Models.Json.Menu>(content));
                     }
                 };
             }
@@ -41,7 +41,7 @@ namespace DocCN.Components
                 setState(action.Invoke);
             }
 
-            private List<MenuItem> BuildMenuItems(IReadOnlyList<Json.Menu> toParse, int level = 0)
+            private List<MenuItem> BuildMenuItems(IReadOnlyList<Models.Json.Menu> toParse, int level = 0)
             {
                 var items = new List<MenuItem>();
                 foreach (var child in toParse)

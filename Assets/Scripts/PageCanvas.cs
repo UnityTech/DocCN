@@ -1,11 +1,10 @@
-﻿using DocCN.Components;
-using UniRx;
+﻿using DocCN.Utility.Components;
 using Unity.UIWidgets.engine;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
 using UnityEngine;
 
-namespace DocCN
+namespace DocCN.Utility
 {
     public class PageCanvas : UIWidgetsPanel
     {
@@ -17,7 +16,6 @@ namespace DocCN
             FontManager.instance.addFont(Resources.Load<Font>("Fonts/Brands"), "Brands");
             FontManager.instance.addFont(Resources.Load<Font>("Fonts/MaterialIcons-Regular"), "MaterialIcons");
             Bridge.Initialize();
-            Reactive.CurrentPath.Publish("/");
             Application.targetFrameRate = 60;
         }
 
@@ -31,11 +29,6 @@ namespace DocCN
                         pageBuilder: (context, animation, secondaryAnimation) => builder(context)
                     )
             );
-        }
-
-        public void LocationChange(string pathname)
-        {
-            Reactive.CurrentPath.SetValueAndForceNotify(pathname);
         }
     }
 }

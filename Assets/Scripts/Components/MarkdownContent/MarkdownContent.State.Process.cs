@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DocCN.Models.Json;
+using DocCN.Utility.Models.Json;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
@@ -11,7 +11,7 @@ using FontStyle = Unity.UIWidgets.ui.FontStyle;
 using Image = Unity.UIWidgets.widgets.Image;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
-namespace DocCN.Components
+namespace DocCN.Utility.Components
 {
     public partial class MarkdownContent
     {
@@ -105,7 +105,7 @@ namespace DocCN.Components
                 Widget container = null;
                 if (ctx.useNotifyContainer)
                 {
-                    var positionRecord = new PositionRecord{title = ctx.title};
+                    var positionRecord = new PositionRecord {title = ctx.title};
                     container = new NotifyContainer(
                         margin: EdgeInsets.only(top: 40f),
                         child: richText,
@@ -140,7 +140,7 @@ namespace DocCN.Components
                     )
                 );
 
-                foreach (var tokenChild in token.children)
+                foreach (var tokenChild in token?.children)
                 {
                     if (Mappings.ContainsKey(tokenChild.type))
                     {
@@ -197,6 +197,13 @@ namespace DocCN.Components
 
             private static Widget ProcessLinkOpen(Token token, BuilderContext ctx)
             {
+                var url = token.attrs[0][1];
+                if (url.EndsWith(".html"))
+                {
+                    url = url.Remove(url.IndexOf(".html"));
+                }
+
+                url = $"/Manual/{url}";
                 var span = new TextSpan(
                     children: new List<TextSpan>(),
                     style: new TextStyle(

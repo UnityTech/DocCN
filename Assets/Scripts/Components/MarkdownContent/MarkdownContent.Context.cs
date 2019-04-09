@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Components
+namespace DocCN.Utility.Components
 {
     public partial class MarkdownContent
     {
@@ -16,6 +17,7 @@ namespace DocCN.Components
             public string title { get; set; }
             public List<PositionRecord> positionRecords { get; }
             public bool useNotifyContainer { get; set; }
+            public GestureRecognizer recognizer { get; set; }
 
             public BuilderContext()
             {
@@ -24,6 +26,7 @@ namespace DocCN.Components
                 cells = new List<Container>();
                 positionRecords = new List<PositionRecord>();
                 useNotifyContainer = false;
+                recognizer = null;
             }
 
             public void Clear()
@@ -32,6 +35,7 @@ namespace DocCN.Components
                 inline.Clear();
                 imageNode = null;
                 useNotifyContainer = false;
+                recognizer = null;
             }
 
             public void ClearColumn()

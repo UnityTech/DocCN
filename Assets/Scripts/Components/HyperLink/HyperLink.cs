@@ -1,7 +1,7 @@
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Components
+namespace DocCN.Utility.Components
 {
     public partial class HyperLink : StatefulWidget
     {

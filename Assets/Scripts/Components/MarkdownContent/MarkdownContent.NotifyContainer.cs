@@ -7,7 +7,7 @@ using Unity.UIWidgets.widgets;
 using UnityEngine;
 using Color = Unity.UIWidgets.ui.Color;
 
-namespace DocCN.Components
+namespace DocCN.Utility.Components
 {
     public partial class MarkdownContent : StatefulWidget
     {

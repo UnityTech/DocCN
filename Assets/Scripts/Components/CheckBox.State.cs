@@ -1,11 +1,11 @@
-using DocCN.Style;
+using DocCN.Utility.Style;
 using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.widgets;
 using UnityEngine;
 using Color = Unity.UIWidgets.ui.Color;
 
-namespace DocCN.Components
+namespace DocCN.Utility.Components
 {
     public partial class CheckBox
     {

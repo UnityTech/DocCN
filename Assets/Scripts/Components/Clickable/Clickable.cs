@@ -2,7 +2,7 @@ using System;
 using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Components
+namespace DocCN.Utility.Components
 {
     public class Clickable : StatelessWidget
     {

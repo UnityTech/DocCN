@@ -3,7 +3,7 @@ using System.Linq;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Components
+namespace DocCN.Utility.Components
 {
     public partial class ScrollableOverlay
     {

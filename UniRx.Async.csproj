@@ -12,7 +12,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{A1243529-6536-5B80-75A9-2B768FB97D57}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -57,95 +58,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\AsyncUnit.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\CancellationTokenEqualityComparer.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\CancellationTokenExtensions.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\CancellationTokenSourceExtensions.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\CompilerServices\AsyncMethodBuilderAttribute.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\CompilerServices\AsyncUniTaskMethodBuilder.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\CompilerServices\AsyncUniTaskVoidMethodBuilder.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\CompilerServices\MoveNextRunner.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\DiagnosticsExtensions.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\EnumerableAsyncExtensions.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\EnumeratorAsyncExtensions.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\IAwaiter.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Internal\ArrayPool.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Internal\ArrayPoolUtil.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Internal\ArrayUtil.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Internal\CancellationTokenHelper.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Internal\ContinuationQueue.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Internal\Error.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Internal\Hack.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Internal\LazyPromise.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Internal\MinimumQueue.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Internal\PlayerLoopRunner.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Internal\PromiseHelper.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Internal\ReusablePromise.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Internal\RuntimeHelpersAbstraction.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Internal\TaskTracker.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Internal\WeakDictionary.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\PlayerLoopHelper.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Progress.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncAnimatorTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncAwakeTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncBeginDragTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncCancelTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncCanvasGroupChangedTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncCollision2DTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncCollisionTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncDeselectTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncDestroyTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncDragTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncDropTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncEnableDisableTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncEndDragTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncEventTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncFixedUpdateTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncInitializePotentialDragTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncJointTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncLateUpdateTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncMouseTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncMoveTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncParticleTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncPointerClickTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncPointerDownTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncPointerEnterTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncPointerExitTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncPointerUpTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncRectTransformTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncScrollTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncSelectTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncStartTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncSubmitTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncTransformChangedTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncTrigger2DTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncTriggerBase.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncTriggerExtensions.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncTriggerTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncUpdateSelectedTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncUpdateTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Triggers\AsyncVisibleTrigger.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\UniTask.Bridge.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\UniTask.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\UniTask.Delay.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\UniTask.Factory.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\UniTask.Run.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\UniTask.Threading.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\UniTask.WaitUntil.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\UniTask.WhenAll.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\UniTask.WhenAll.Generated.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\UniTask.WhenAny.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\UniTask.WhenAny.Generated.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\UniTaskCompletionSource.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\UniTaskExtensions.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\UniTaskExtensions.Shorthand.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\UniTaskScheduler.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\UniTaskVoid.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\UnityAsyncExtensions.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\UnityAsyncExtensions.Jobs.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\UnityAsyncExtensions.uGUI.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\UnityEqualityComparer.cs" />
-    <None Include="Assets\Plugins\UniRx\Scripts\Async\UniRx.Async.asmdef" />
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/home/haog/Unity-2018.3.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
     </Reference>
@@ -749,6 +661,9 @@
     <Reference Include="mscorlib">
       <HintPath>/home/haog/Unity-2018.3.0f2/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/mscorlib.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Plugins" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

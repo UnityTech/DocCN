@@ -2,9 +2,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using DocCN.Utility.Models.Json;
 using Newtonsoft.Json;
 using Unity.UIWidgets.external.simplejson;
-using Json = DocCN.Models.Json;
+using Json = DocCN.Utility.Models.Json;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
@@ -15,7 +16,7 @@ using Color = Unity.UIWidgets.ui.Color;
 using FontStyle = Unity.UIWidgets.ui.FontStyle;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
-namespace DocCN.Components
+namespace DocCN.Utility.Components
 {
     public partial class ScriptingContent
     {
@@ -39,7 +40,7 @@ namespace DocCN.Components
 
         private class ScriptingContentState : State<ScriptingContent>
         {
-            private Json.Scripting _scripting;
+            private Models.Json.Scripting _scripting;
 
             public override void initState()
             {
@@ -62,7 +63,7 @@ namespace DocCN.Components
                     using (WindowProvider.of(context).getScope())
                     {
                         var content = DownloadHandlerBuffer.GetContent(request);
-                        var scripting = JsonConvert.DeserializeObject<Json.Scripting>(content);
+                        var scripting = JsonConvert.DeserializeObject<Models.Json.Scripting>(content);
                         setState(() => _scripting = scripting);
                     }
                 };
@@ -79,7 +80,7 @@ namespace DocCN.Components
             }
 
             private static void BuildSegment(BuildContext context, ICollection<Widget> columnItems, string name,
-                IReadOnlyCollection<Json.Member> members)
+                IReadOnlyCollection<Member> members)
             {
                 if (members == null || members.Count == 0)
                 {
@@ -145,7 +146,7 @@ namespace DocCN.Components
             }
 
             private static Widget BuildTextUsingMixedContent(BuildContext context,
-                IEnumerable<Json.MixedContent> summary)
+                IEnumerable<MixedContent> summary)
             {
                 if (summary is null)
                 {
@@ -157,23 +158,23 @@ namespace DocCN.Components
                     {
                         switch (item)
                         {
-                            case Json.DocumentCharData charData:
+                            case DocumentCharData charData:
                                 return new TextSpan(charData.content);
-                            case Json.DocumentTagLink link:
+                            case DocumentTagLink link:
                                 return new TextSpan(
                                     link.content,
                                     style: HyperLinkStyle
                                 );
-                            case Json.DocumentTagBreak br:
+                            case DocumentTagBreak br:
                                 return new TextSpan("\n");
-                            case Json.DocumentTagBold bold:
+                            case DocumentTagBold bold:
                                 return new TextSpan(
                                     bold.content,
                                     style: new TextStyle(
                                         fontWeight: FontWeight.w500
                                     )
                                 );
-                            case Json.DocumentTagImage image:
+                            case DocumentTagImage image:
                                 var networkImage = new NetworkImage(
                                     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/James_Harden_%2830735342912%29.jpg/220px-James_Harden_%2830735342912%29.jpg");
                                 networkImage.resolve(new ImageConfiguration())
@@ -186,7 +187,7 @@ namespace DocCN.Components
                                     imageWidth: 220f,
                                     imageHeight: 337f
                                 );
-                            case Json.DocumentTagItalic italic:
+                            case DocumentTagItalic italic:
                                 return new TextSpan(
                                     italic.content,
                                     style: new TextStyle(
@@ -228,13 +229,13 @@ namespace DocCN.Components
                     {
                         switch (section)
                         {
-                            case Json.Summary summary:
+                            case Summary summary:
                                 children.Add(BuildTextUsingMixedContent(context, summary.value));
                                 break;
-                            case Json.Description description:
+                            case Description description:
                                 children.Add(BuildTextUsingMixedContent(context, description.value));
                                 break;
-                            case Json.Example example:
+                            case Example example:
                                 children.Add(
                                     new Container(
                                         decoration: new BoxDecoration(

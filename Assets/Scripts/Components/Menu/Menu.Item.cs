@@ -1,8 +1,8 @@
 using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.widgets;
-using Json = DocCN.Models.Json;
+using Json = DocCN.Utility.Models.Json;
 
-namespace DocCN.Components
+namespace DocCN.Utility.Components
 {
     public partial class Menu
     {
@@ -10,7 +10,7 @@ namespace DocCN.Components
         {
             public MenuItem(
                 Key key,
-                Json.Menu bind,
+                Models.Json.Menu bind,
                 MenuState parent,
                 bool hasChildren,
                 int level = 0
@@ -22,7 +22,7 @@ namespace DocCN.Components
                 _hasChildren = hasChildren;
             }
 
-            private readonly Json.Menu _bind;
+            private readonly Models.Json.Menu _bind;
 
             private readonly int _level;
 

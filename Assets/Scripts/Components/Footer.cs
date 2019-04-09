@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using DocCN.Style;
+using DocCN.Utility.Style;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
@@ -8,7 +8,7 @@ using Unity.UIWidgets.widgets;
 using Color = Unity.UIWidgets.ui.Color;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
-namespace DocCN.Components
+namespace DocCN.Utility.Components
 {
     public class Footer : StatelessWidget
     {

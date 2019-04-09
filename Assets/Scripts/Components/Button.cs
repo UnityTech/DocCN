@@ -7,7 +7,7 @@ using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
-namespace DocCN.Components
+namespace DocCN.Utility.Components
 {
     public class Button : StatefulWidget
     {

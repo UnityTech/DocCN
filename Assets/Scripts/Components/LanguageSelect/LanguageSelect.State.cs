@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using DocCN.Style;
+using DocCN.Utility.Style;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Components
+namespace DocCN.Utility.Components
 {
     public partial class LanguageSelect
     {

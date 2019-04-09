@@ -1,4 +1,4 @@
-namespace DocCN.Components.Scripting
+namespace DocCN.Utility.Components.Scripting
 {
     public class ScriptingMenu
     {

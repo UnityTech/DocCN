@@ -12,7 +12,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{A09EA727-B7FD-B6DC-E339-528FFD2B5F6B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -57,10 +58,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Editor\SplitterGUILayout.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Editor\UniTaskTrackerTreeView.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Async\Editor\UniTaskTrackerWindow.cs" />
-    <None Include="Assets\Plugins\UniRx\Scripts\Async\Editor\UniRx.Async.Editor.asmdef" />
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/home/haog/Unity-2018.3.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
     </Reference>
@@ -679,6 +676,9 @@
       <Project>{A1243529-6536-5B80-75A9-2B768FB97D57}</Project>
       <Name>UniRx.Async</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Plugins" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -11,7 +11,7 @@ using UnityEngine;
 using ImageUtils = Unity.UIWidgets.painting.ImageUtils;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
-namespace DocCN.Components
+namespace DocCN.Utility.Components
 {
     public class WealthyText : Text
     {

@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace DocCN.Models.Json
+namespace DocCN.Utility.Models.Json
 {
     public class Menu
     {

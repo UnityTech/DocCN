@@ -1,6 +1,6 @@
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Style
+namespace DocCN.Utility.Style
 {
     public static class Icons
     {

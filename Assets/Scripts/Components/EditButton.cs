@@ -5,7 +5,7 @@ using UnityEngine;
 using Color = Unity.UIWidgets.ui.Color;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
-namespace DocCN.Components
+namespace DocCN.Utility.Components
 {
     public class EditButton : StatelessWidget
     {

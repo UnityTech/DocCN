@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace DocCN.Models.Xml
+namespace DocCN.Utility.Models.Xml
 {
     [Obsolete("Use json model instead.")]
     [XmlRoot("Root")]

@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using UniRx;
-using DocCN.Pages;
+using DocCN.Utility.Pages;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.widgets;
-using UnityEngine;
 
-namespace DocCN.Components
+namespace DocCN.Utility.Components
 {
     public partial class DocApp
     {
@@ -17,8 +15,6 @@ namespace DocCN.Components
             private static readonly Func<Widget> OnUnknownPath = () => new NotFoundPage();
             private string _currentPath = "/";
             private ScrollController _controller;
-            private IDisposable _subscription;
-
             static DocAppState()
             {
                 var rawRouter =
@@ -41,17 +37,24 @@ namespace DocCN.Components
             public override void initState()
             {
                 base.initState();
-                _subscription = Reactive.CurrentPath.Subscribe(path =>
+                ObservableUtil.currentPath.OnChanged += OnPathChanged;
+                _currentPath = ObservableUtil.currentPath.value;
+                _controller = new ScrollController();
+            }
+
+            private void OnPathChanged(string path)
+            {
+                if (mounted)
                 {
                     setState(() => _currentPath = path);
-                });
-                _controller = new ScrollController();
+                }
             }
 
             public override void dispose()
             {
                 base.dispose();
-                _subscription.Dispose();
+                _controller.dispose();
+                ObservableUtil.currentPath.OnChanged -= OnPathChanged;
             }
 
             public override Widget build(BuildContext buildContext)

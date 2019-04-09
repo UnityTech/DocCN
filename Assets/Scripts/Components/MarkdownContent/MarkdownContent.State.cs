@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using DocCN.Models.Json;
+using DocCN.Utility.Models.Json;
 using Newtonsoft.Json;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
@@ -8,7 +8,7 @@ using Unity.UIWidgets.widgets;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace DocCN.Components
+namespace DocCN.Utility.Components
 {
     public partial class MarkdownContent
     {

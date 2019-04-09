@@ -6,7 +6,7 @@ using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
 using UnityEngine;
 
-namespace DocCN.Components
+namespace DocCN.Utility.Components
 {
     public partial class DropDown<T>
     {
@@ -55,8 +55,12 @@ namespace DocCN.Components
                 {
                     if (evt is PointerDownEvent)
                     {
-                        GestureBinding.instance.pointerRouter.removeGlobalRoute(_pointerRoute);
-                        ScrollableOverlay.of(context).Remove(_dropDownOverlayBuilder);
+                        var renderBox = context.findRenderObject() as RenderBox;
+                        if (!renderBox.paintBounds.contains(evt.position))
+                        {
+                            GestureBinding.instance.pointerRouter.removeGlobalRoute(_pointerRoute);
+                            ScrollableOverlay.of(context).Remove(_dropDownOverlayBuilder);
+                        }
                     }
                 };
             }

@@ -703,10 +703,6 @@
       <Project>{92B94635-B80F-5C77-A012-9ED4E26B0FAE}</Project>
       <Name>UIWidgetsTheatre</Name>
     </ProjectReference>
-    <ProjectReference Include="UniRx.csproj">
-      <Project>{0E2C7A78-00FC-F50F-5D92-DC5017FBE744}</Project>
-      <Name>UniRx</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.UIWidgets.Editor.csproj">
       <Project>{801CB4BB-CBB5-1BD9-D905-B25029E9E4C2}</Project>
       <Name>Unity.UIWidgets.Editor</Name>
@@ -718,14 +714,6 @@
     <ProjectReference Include="UIWidgetsSample.csproj">
       <Project>{DF5F0DD4-B25A-7DD9-F5BB-A55C208045B4}</Project>
       <Name>UIWidgetsSample</Name>
-    </ProjectReference>
-    <ProjectReference Include="UniRx.Async.csproj">
-      <Project>{A1243529-6536-5B80-75A9-2B768FB97D57}</Project>
-      <Name>UniRx.Async</Name>
-    </ProjectReference>
-    <ProjectReference Include="UniRx.Async.Editor.csproj">
-      <Project>{A09EA727-B7FD-B6DC-E339-528FFD2B5F6B}</Project>
-      <Name>UniRx.Async.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

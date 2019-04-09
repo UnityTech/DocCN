@@ -60,7 +60,6 @@
     <Compile Include="Assets\Hbx\WebGL\Demo\WebGLRetinaToolsDemo.cs" />
     <Compile Include="Assets\Hbx\WebGL\DevicePixelRatio.cs" />
     <Compile Include="Assets\Hbx\WebGL\DynamicResolutionManger.cs" />
-    <Compile Include="Assets\Scripts\Bridge.cs" />
     <Compile Include="Assets\Scripts\Components\Banner.cs" />
     <Compile Include="Assets\Scripts\Components\Breadcrumb.cs" />
     <Compile Include="Assets\Scripts\Components\Button.cs" />
@@ -102,13 +101,13 @@
     <Compile Include="Assets\Scripts\Components\ScrollViewWithOverlay\ScrollViewWithOverlay.cs" />
     <Compile Include="Assets\Scripts\Components\ScrollViewWithOverlay\ScrollViewWithOverlay.State.cs" />
     <Compile Include="Assets\Scripts\Components\SearchBar\SearchBar.cs" />
+    <Compile Include="Assets\Scripts\Components\SearchBar\SearchBar.FilterItem.cs" />
     <Compile Include="Assets\Scripts\Components\SearchBar\SearchBar.FilterType.cs" />
     <Compile Include="Assets\Scripts\Components\SearchBar\SearchBar.State.cs" />
     <Compile Include="Assets\Scripts\Components\SearchFilter.cs" />
     <Compile Include="Assets\Scripts\Components\SocialBrand\SocialBrand.cs" />
     <Compile Include="Assets\Scripts\Components\SocialBrand\SocialBrand.State.cs" />
     <Compile Include="Assets\Scripts\Components\WealthyText.cs" />
-    <Compile Include="Assets\Scripts\LocationUtil.cs" />
     <Compile Include="Assets\Scripts\Models\Json\Menu.cs" />
     <Compile Include="Assets\Scripts\Models\Json\MixedContent.cs" />
     <Compile Include="Assets\Scripts\Models\Json\Scripting.cs" />
@@ -123,8 +122,10 @@
     <Compile Include="Assets\Scripts\Pages\ScriptingPage\ScriptingPage.cs" />
     <Compile Include="Assets\Scripts\Pages\ScriptingPage\ScriptingPage.State.cs" />
     <Compile Include="Assets\Scripts\Pages\SearchPage.cs" />
-    <Compile Include="Assets\Scripts\Reactive.cs" />
     <Compile Include="Assets\Scripts\Style\Icons.cs" />
+    <Compile Include="Assets\Scripts\Utility\Bridge.cs" />
+    <Compile Include="Assets\Scripts\Utility\LocationUtil.cs" />
+    <Compile Include="Assets\Scripts\Utility\ObservableUtil.cs" />
     <None Include="Assets\Hbx\WebGL\Demo\WebGLRetinaToolsRippleEffect.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/home/haog/Workspace/DocCN/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
@@ -719,10 +720,6 @@
       <Project>{92B94635-B80F-5C77-A012-9ED4E26B0FAE}</Project>
       <Name>UIWidgetsTheatre</Name>
     </ProjectReference>
-    <ProjectReference Include="UniRx.csproj">
-      <Project>{0E2C7A78-00FC-F50F-5D92-DC5017FBE744}</Project>
-      <Name>UniRx</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.UIWidgets.Editor.csproj">
       <Project>{801CB4BB-CBB5-1BD9-D905-B25029E9E4C2}</Project>
       <Name>Unity.UIWidgets.Editor</Name>
@@ -734,14 +731,6 @@
     <ProjectReference Include="UIWidgetsSample.csproj">
       <Project>{DF5F0DD4-B25A-7DD9-F5BB-A55C208045B4}</Project>
       <Name>UIWidgetsSample</Name>
-    </ProjectReference>
-    <ProjectReference Include="UniRx.Async.csproj">
-      <Project>{A1243529-6536-5B80-75A9-2B768FB97D57}</Project>
-      <Name>UniRx.Async</Name>
-    </ProjectReference>
-    <ProjectReference Include="UniRx.Async.Editor.csproj">
-      <Project>{A09EA727-B7FD-B6DC-E339-528FFD2B5F6B}</Project>
-      <Name>UniRx.Async.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

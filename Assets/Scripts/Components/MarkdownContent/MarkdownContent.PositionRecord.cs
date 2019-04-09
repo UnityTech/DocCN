@@ -1,6 +1,6 @@
 using System;
 
-namespace DocCN.Components
+namespace DocCN.Utility.Components
 {
     public partial class MarkdownContent
     {

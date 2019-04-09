@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using DocCN.Components;
+using DocCN.Utility.Components;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
@@ -7,7 +7,7 @@ using Unity.UIWidgets.widgets;
 using Image = Unity.UIWidgets.widgets.Image;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
-namespace DocCN.Pages
+namespace DocCN.Utility.Pages
 {
     public class NotFoundPage : StatelessWidget
     {

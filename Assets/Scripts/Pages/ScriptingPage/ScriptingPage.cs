@@ -1,6 +1,6 @@
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Pages
+namespace DocCN.Utility.Pages
 {
     public partial class ScriptingPage : StatefulWidget
     {
