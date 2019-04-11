@@ -69,8 +69,11 @@ namespace DocCN.Components
                     .Where(token => Mappings.ContainsKey(token.type))
                     .Select(token => Mappings[token.type].Invoke(token, widgetCursor))
                     .Where(w => !(w is null)).ToList();
+                
+                widgets.Insert(0, new Breadcrumbs(null));
 
                 return new Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: new List<Widget>
                     {
                         new Expanded(
@@ -79,16 +82,12 @@ namespace DocCN.Components
                                 child: new Container(
                                     padding: EdgeInsets.only(bottom: 64f),
                                     child: new Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: widgets
                                     )
                                 )
                             )
-                            /*child: ListView.builder(
-                                controller: _scrollController,
-                                padding: EdgeInsets.only(bottom: 64f),
-                                itemCount: widgets.Count + 1,
-                                itemBuilder: (ctx, idx) => idx == 0 ? new Breadcrumb() : widgets[idx - 1])*/
                         ),
                         new MetaFields(widgetCursor.positionRecords, _scrollController)
                     }

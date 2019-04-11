@@ -207,7 +207,7 @@ namespace DocCN.Components
 
                 var children = new List<Widget>
                 {
-                    new Breadcrumb(),
+                    new Breadcrumbs(null),
                     new Container(
                         child: new Text(
                             widget._title.Split('.').Last().Replace("-", "."),

@@ -61,7 +61,8 @@
     <Compile Include="Assets\Hbx\WebGL\DevicePixelRatio.cs" />
     <Compile Include="Assets\Hbx\WebGL\DynamicResolutionManger.cs" />
     <Compile Include="Assets\Scripts\Components\Banner.cs" />
-    <Compile Include="Assets\Scripts\Components\Breadcrumb.cs" />
+    <Compile Include="Assets\Scripts\Components\Breadcrumbs\Breadcrumbs.ClickableText.cs" />
+    <Compile Include="Assets\Scripts\Components\Breadcrumbs\Breadcrumbs.cs" />
     <Compile Include="Assets\Scripts\Components\Button.cs" />
     <Compile Include="Assets\Scripts\Components\CheckBox.cs" />
     <Compile Include="Assets\Scripts\Components\CheckBox.State.cs" />
@@ -94,6 +95,8 @@
     <Compile Include="Assets\Scripts\Components\Menu\Menu.Item.State.cs" />
     <Compile Include="Assets\Scripts\Components\Menu\Menu.State.cs" />
     <Compile Include="Assets\Scripts\Components\ModifiedInfo.cs" />
+    <Compile Include="Assets\Scripts\Components\Pager\Pager.cs" />
+    <Compile Include="Assets\Scripts\Components\Pager\Pager.Item.cs" />
     <Compile Include="Assets\Scripts\Components\RelatedArticles.cs" />
     <Compile Include="Assets\Scripts\Components\Scripting\ScriptingContent.cs" />
     <Compile Include="Assets\Scripts\Components\Scripting\ScriptingContent.State.cs" />
@@ -109,11 +112,14 @@
     <Compile Include="Assets\Scripts\Components\SocialBrand\SocialBrand.cs" />
     <Compile Include="Assets\Scripts\Components\SocialBrand\SocialBrand.State.cs" />
     <Compile Include="Assets\Scripts\Components\WealthyText.cs" />
+    <Compile Include="Assets\Scripts\Models\Json\Breadcrumb.cs" />
     <Compile Include="Assets\Scripts\Models\Json\Menu.cs" />
     <Compile Include="Assets\Scripts\Models\Json\MixedContent.cs" />
     <Compile Include="Assets\Scripts\Models\Json\Scripting.cs" />
+    <Compile Include="Assets\Scripts\Models\Json\SearchResults.cs" />
     <Compile Include="Assets\Scripts\Models\Json\Section.cs" />
     <Compile Include="Assets\Scripts\Models\Json\Token.cs" />
+    <Compile Include="Assets\Scripts\Models\Xml\Highlight.cs" />
     <Compile Include="Assets\Scripts\Models\Xml\Scripting.cs" />
     <Compile Include="Assets\Scripts\PageCanvas.cs" />
     <Compile Include="Assets\Scripts\Pages\404.cs" />
@@ -122,7 +128,8 @@
     <Compile Include="Assets\Scripts\Pages\ManualPage\ManualPage.State.cs" />
     <Compile Include="Assets\Scripts\Pages\ScriptingPage\ScriptingPage.cs" />
     <Compile Include="Assets\Scripts\Pages\ScriptingPage\ScriptingPage.State.cs" />
-    <Compile Include="Assets\Scripts\Pages\SearchPage.cs" />
+    <Compile Include="Assets\Scripts\Pages\SearchPage\SearchPage.cs" />
+    <Compile Include="Assets\Scripts\Pages\SearchPage\SearchPage.State.cs" />
     <Compile Include="Assets\Scripts\Style\Icons.cs" />
     <Compile Include="Assets\Scripts\Utility\Bridge.cs" />
     <Compile Include="Assets\Scripts\Utility\LocationUtil.cs" />

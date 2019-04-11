@@ -160,6 +160,7 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\expand_icon.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\expansion_panel.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\expansion_tile.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\feedback.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\flat_button.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\flexible_space_bar.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\float_action_button.cs" />
@@ -186,6 +187,8 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\progress_indicator.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\radio.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\raised_button.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\refresh_indicator.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\reorderable_list.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\scaffold.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\scrollbar.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\shadows.cs" />
@@ -204,6 +207,7 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\toggleable.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\tooltip.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\typography.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\user_accounts_drawer_header.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\painting\alignment.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\painting\basic_types.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\painting\beveled_rectangle_border.cs" />
@@ -371,6 +375,7 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\navigator.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\notification_listener.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\overlay.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\overscroll_indicator.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\page_storage.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\page_view.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\pages.cs" />

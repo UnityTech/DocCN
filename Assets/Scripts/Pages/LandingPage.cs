@@ -15,8 +15,8 @@ namespace DocCN.Pages
         public override Widget build(BuildContext context)
         {
             var height = MediaQuery.of(context).size.height;
-            const float minHeight = 80f + 277f + 200f + 352f;
-            var verticalPadding = minHeight < height ? (height - minHeight) / 2 : 16f;
+            const float minHeight = 60f + 277f + 200f + 400f; // header, banner, footer, entryCard minSize
+            var verticalPadding = minHeight < height ? (height - minHeight) / 2 + 16f: 16f;
             return new Container(
                 height: height,
                 child: new SingleChildScrollView(

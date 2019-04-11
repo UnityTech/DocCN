@@ -140,11 +140,14 @@ namespace DocCN.Components
                     )
                 );
 
-                foreach (var tokenChild in token?.children)
+                if (token.children != null)
                 {
-                    if (Mappings.ContainsKey(tokenChild.type))
+                    foreach (var tokenChild in token.children)
                     {
-                        Mappings[tokenChild.type].Invoke(tokenChild, ctx);
+                        if (Mappings.ContainsKey(tokenChild.type))
+                        {
+                            Mappings[tokenChild.type].Invoke(tokenChild, ctx);
+                        }
                     }
                 }
 

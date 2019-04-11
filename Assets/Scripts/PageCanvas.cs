@@ -30,5 +30,10 @@ namespace DocCN.Utility
                     )
             );
         }
+        
+        public void LocationChange(string pathname)
+        {
+            ObservableUtil.currentPath.value = pathname;
+        }
     }
 }
