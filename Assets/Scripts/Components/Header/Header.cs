@@ -9,10 +9,11 @@ namespace DocCN.Components
 {
     public class Header : StatelessWidget
     {
+        public const float Height = 60f; 
         public override Widget build(BuildContext context)
         {
             return new Container(
-                height: 60.0f,
+                height: Height,
                 color: new Color(0xff000000),
                 child: new Row(
                     children: new List<Widget>

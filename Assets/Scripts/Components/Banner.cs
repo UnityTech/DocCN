@@ -9,6 +9,7 @@ namespace DocCN.Components
 {
     public class Banner : StatelessWidget
     {
+        public const float Height = 277f;
         public override Widget build(BuildContext context)
         {
             return new Container(
@@ -17,7 +18,7 @@ namespace DocCN.Components
                     right: 48.0f,
                     bottom: 16.0f,
                     left: 48.0f),
-                height: 277.0f,
+                height: Height,
                 decoration: new BoxDecoration(
                     color: new Color(0xff000000),
                     image: new DecorationImage(

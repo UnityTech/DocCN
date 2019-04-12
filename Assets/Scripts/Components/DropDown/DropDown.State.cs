@@ -4,6 +4,7 @@ using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
+using UnityEngine;
 
 namespace DocCN.Components
 {
@@ -33,6 +34,7 @@ namespace DocCN.Components
                                 top: offset.dy,
                                 left: offset.dx,
                                 color: widget._overlayColor,
+                                border: widget._overlayBorder,
                                 children: widget._items.Select(item => widget._itemBuilder.Invoke(item)).ToList()
                             );
                         }
@@ -41,8 +43,9 @@ namespace DocCN.Components
                             var offset = renderBox.localToGlobal(Offset.zero, overlayRenderBox);
                             return new DropDownOverlay(
                                 left: offset.dx,
-                                bottom: offset.dy,
+                                bottom: overlayRenderBox.size.height - offset.dy,
                                 color: widget._overlayColor,
+                                border: widget._overlayBorder,
                                 children: widget._items.Select(item => widget._itemBuilder.Invoke(item)).ToList()
                             );
                         }

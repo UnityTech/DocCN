@@ -36,9 +36,11 @@ namespace DocCN.Components
             public override Widget build(BuildContext context)
             {
                 return new Container(
+                    height: Height,
                     padding: EdgeInsets.only(top: 8.0f, right: 48.0f, bottom: 8.0f, left: 48.0f),
                     color: new Color(0xff212121),
                     child: new Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: new List<Widget>
                         {
                             new DropDown<FilterType>(
@@ -55,7 +57,6 @@ namespace DocCN.Components
                                 ),
                                 selectBuilder: () => new Container(
                                     width: 170.0f,
-                                    height: 56.0f,
                                     decoration: new BoxDecoration(
                                         border: new Border(
                                             top: FilterBorderSide,
@@ -92,7 +93,6 @@ namespace DocCN.Components
                             ),
                             new Expanded(
                                 child: new Container(
-                                    height: 56.0f,
                                     color: new Color(0xff424242),
                                     padding: EdgeInsets.symmetric(horizontal: 24f),
                                     child: new Center(
@@ -118,7 +118,6 @@ namespace DocCN.Components
                                 onTap: () => widget._onSearch?.Invoke(_textEditingController.value.text),
                                 child: new Container(
                                     width: 56.0f,
-                                    height: 56.0f,
                                     color: new Color(0xff565656),
                                     child: new Center(
                                         child: new Icon(

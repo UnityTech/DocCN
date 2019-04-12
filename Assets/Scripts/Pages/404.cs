@@ -11,7 +11,7 @@ namespace DocCN.Pages
 {
     public class NotFoundPage : StatelessWidget
     {
-        private static readonly TextStyle EM_STYLE = new TextStyle(
+        private static readonly TextStyle EmStyle = new TextStyle(
             color: new Color(0xff88b4e7)
         );
 
@@ -48,9 +48,9 @@ namespace DocCN.Pages
                                                     children: new List<TextSpan>
                                                     {
                                                         new TextSpan("抱歉，您所访问的页面已被"),
-                                                        new TextSpan("移除", style: EM_STYLE),
+                                                        new TextSpan("移除", style: EmStyle),
                                                         new TextSpan("或"),
-                                                        new TextSpan("不存在", style: EM_STYLE),
+                                                        new TextSpan("不存在", style: EmStyle),
                                                         new TextSpan("。")
                                                     },
                                                     style: new TextStyle(

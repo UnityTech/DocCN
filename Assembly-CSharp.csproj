@@ -57,26 +57,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Hbx\WebGL\Demo\WebGLRetinaToolsDemo.cs" />
-    <Compile Include="Assets\Hbx\WebGL\DevicePixelRatio.cs" />
-    <Compile Include="Assets\Hbx\WebGL\DynamicResolutionManger.cs" />
     <Compile Include="Assets\Scripts\Components\Banner.cs" />
     <Compile Include="Assets\Scripts\Components\Breadcrumbs\Breadcrumbs.ClickableText.cs" />
     <Compile Include="Assets\Scripts\Components\Breadcrumbs\Breadcrumbs.cs" />
-    <Compile Include="Assets\Scripts\Components\Button.cs" />
+    <Compile Include="Assets\Scripts\Components\Button\Button.cs" />
+    <Compile Include="Assets\Scripts\Components\Button\Button.State.cs" />
     <Compile Include="Assets\Scripts\Components\CheckBox.cs" />
     <Compile Include="Assets\Scripts\Components\CheckBox.State.cs" />
     <Compile Include="Assets\Scripts\Components\Clickable\Clickable.cs" />
     <Compile Include="Assets\Scripts\Components\Content.cs" />
     <Compile Include="Assets\Scripts\Components\DocApp\DocApp.cs" />
-    <Compile Include="Assets\Scripts\Components\DocApp\DocApp.State.cs" />
+    <Compile Include="Assets\Scripts\Components\DocApp\DocAppState.cs" />
     <Compile Include="Assets\Scripts\Components\DocApp\StringExtension.cs" />
     <Compile Include="Assets\Scripts\Components\DropDown\DropDown.cs" />
     <Compile Include="Assets\Scripts\Components\DropDown\DropDown.Overlay.cs" />
     <Compile Include="Assets\Scripts\Components\DropDown\DropDown.State.cs" />
     <Compile Include="Assets\Scripts\Components\EditButton.cs" />
-    <Compile Include="Assets\Scripts\Components\Footer.cs" />
-    <Compile Include="Assets\Scripts\Components\Header.cs" />
+    <Compile Include="Assets\Scripts\Components\Footer\Footer.cs" />
+    <Compile Include="Assets\Scripts\Components\Footer\Footer.Styles.cs" />
+    <Compile Include="Assets\Scripts\Components\Header\Header.cs" />
     <Compile Include="Assets\Scripts\Components\HyperLink\HyperLink.cs" />
     <Compile Include="Assets\Scripts\Components\HyperLink\HyperLink.State.cs" />
     <Compile Include="Assets\Scripts\Components\LanguageSelect\LanguageSelect.cs" />
@@ -113,6 +112,7 @@
     <Compile Include="Assets\Scripts\Components\SocialBrand\SocialBrand.State.cs" />
     <Compile Include="Assets\Scripts\Components\WealthyText.cs" />
     <Compile Include="Assets\Scripts\Models\Json\Breadcrumb.cs" />
+    <Compile Include="Assets\Scripts\Models\Json\ManualModel.cs" />
     <Compile Include="Assets\Scripts\Models\Json\Menu.cs" />
     <Compile Include="Assets\Scripts\Models\Json\MixedContent.cs" />
     <Compile Include="Assets\Scripts\Models\Json\Scripting.cs" />
@@ -134,7 +134,6 @@
     <Compile Include="Assets\Scripts\Utility\Bridge.cs" />
     <Compile Include="Assets\Scripts\Utility\LocationUtil.cs" />
     <Compile Include="Assets\Scripts\Utility\ObservableUtil.cs" />
-    <None Include="Assets\Hbx\WebGL\Demo\WebGLRetinaToolsRippleEffect.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/home/haog/Workspace/DocCN/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

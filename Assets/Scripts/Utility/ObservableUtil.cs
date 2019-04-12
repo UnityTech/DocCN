@@ -6,7 +6,7 @@ namespace DocCN.Utility
 
         static ObservableUtil()
         {
-            currentPath = new Observable<string>("/Search");
+            currentPath = new Observable<string>("/Manual/Unity2D");
         }
     }
 

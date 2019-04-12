@@ -1,36 +1,85 @@
 using System;
 using System.Collections.Generic;
 using DocCN.Style;
+using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
-using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
 using Color = Unity.UIWidgets.ui.Color;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
 namespace DocCN.Components
 {
-    public class Footer : StatelessWidget
+    public partial class Footer : StatelessWidget
     {
-        private static readonly TextStyle SiteLinkStyle = new TextStyle(
-            fontSize: 14f,
-            color: new Color(0xffd8d8d8),
-            decoration: TextDecoration.underline
-        );
+        public Footer(
+            bool showSocials = true,
+            Style style = null,
+            Key key = null) : base(key)
+        {
+            _showSocials = showSocials;
+            _style = style ?? Dark;
+        }
 
-        private static readonly TextStyle LegalLinkStyle = new TextStyle(
-            fontSize: 14.0f,
-            color: new Color(0xff2196f3),
-            decoration: TextDecoration.underline
-        );
+        private readonly bool _showSocials;
+        private readonly Style _style;
 
-        private static readonly TextStyle HintTextStyle = new TextStyle(
-            fontSize: 14.0f,
-            color: new Color(0xffd8d8d8)
-        );
+        public const float Height = 193f;
 
         public override Widget build(BuildContext context)
         {
+            var rightPartChildren = new List<Widget>();
+            if (_showSocials)
+            {
+                rightPartChildren.Add(
+                    new Container(
+                        width: 180f,
+                        height: 72f,
+                        child: new Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: new List<Widget>
+                            {
+                                new Text(
+                                    "社交媒体",
+                                    style: _style.hintTextStyle
+                                ),
+                                new Row(
+                                    children: new List<Widget>
+                                    {
+                                        new SocialBrand(Icons.IconSinaWeiBo, new Color(0xffe6162d)),
+                                        new SocialBrand(Icons.IconWeChat, new Color(0xff7bb32e))
+                                    }
+                                )
+                            }
+                        )
+                    )
+                );
+            }
+
+            rightPartChildren.Add(
+                new Container(
+                    width: 180f,
+                    height: 72f,
+                    child: new Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: new List<Widget>
+                        {
+                            new Text(
+                                "语言",
+                                style: _style.hintTextStyle
+                            ),
+                            new LanguageSelect(
+                                selectTextColor: _style.langSelectTextColor,
+                                underlineColor: _style.langUnderlineColor,
+                                expandIconColor: _style.langExpandIconColor
+                            )
+                        }
+                    )
+                )
+            );
+
             var secondRow = new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: new List<Widget>
@@ -45,7 +94,7 @@ namespace DocCN.Components
                                 width: 132.0f,
                                 decoration: new BoxDecoration(
                                     image: new DecorationImage(
-                                        image: new AssetImage("Images/unity-master-white"),
+                                        image: _style.unityBrand,
                                         fit: BoxFit.fill
                                     )
                                 )
@@ -55,17 +104,14 @@ namespace DocCN.Components
                                 {
                                     new Text(
                                         $"Copyright © {DateTime.Now.Year} Unity Technologies",
-                                        style: new TextStyle(
-                                            color: new Color(0xffd8d8d8),
-                                            fontSize: 14.0f
-                                        )
+                                        style: _style.copyRightStyle
                                     ),
                                     new Container(
                                         margin: EdgeInsets.only(left: 40.0f),
                                         child: new HyperLink(
                                             text: "法律相关",
                                             link: "https://unity3d.com/legal",
-                                            style: LegalLinkStyle
+                                            style: _style.legalLinkStyle
                                         )
                                     ),
                                     new Container(
@@ -73,7 +119,7 @@ namespace DocCN.Components
                                         child: new HyperLink(
                                             text: "隐私条款",
                                             link: "https://unity3d.com/legal/privacy-policy",
-                                            style: LegalLinkStyle
+                                            style: _style.legalLinkStyle
                                         )
                                     ),
                                     new Container(
@@ -81,7 +127,7 @@ namespace DocCN.Components
                                         child: new HyperLink(
                                             text: "Cookies",
                                             link: "https://unity3d.com/legal/cookie-policy",
-                                            style: LegalLinkStyle
+                                            style: _style.legalLinkStyle
                                         )
                                     )
                                 }
@@ -93,62 +139,22 @@ namespace DocCN.Components
                         children: new List<Widget>
                         {
                             new Row(
-                                children: new List<Widget>
-                                {
-                                    new Container(
-                                        width: 180f,
-                                        height: 72f,
-                                        child: new Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: new List<Widget>
-                                            {
-                                                new Text(
-                                                    "社交媒体",
-                                                    style: HintTextStyle
-                                                ),
-                                                new Row(
-                                                    children: new List<Widget>
-                                                    {
-                                                        new SocialBrand(Icons.IconSinaWeiBo, new Color(0xffe6162d)),
-                                                        new SocialBrand(Icons.IconWeChat, new Color(0xff7bb32e))
-                                                    }
-                                                )
-                                            }
-                                        )
-                                    ),
-                                    new Container(
-                                        width: 180f,
-                                        height: 72f,
-                                        child: new Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: new List<Widget>
-                                            {
-                                                new Text(
-                                                    "语言",
-                                                    style: HintTextStyle
-                                                ),
-                                                new LanguageSelect()
-                                            }
-                                        )
-                                    )
-                                }
+                                children: rightPartChildren
                             ),
                         }
                     )
                 }
             );
             return new Container(
-                height: 200.0f,
-                color: new Color(0xff111111),
-                padding: EdgeInsets.only(right: 48.0f, left: 48.0f),
+                height: Height,
+                color: _style.bgColor,
+                padding: _style.horizontalPadding ? EdgeInsets.only(right: 48.0f, left: 48.0f) : EdgeInsets.zero,
                 child: new Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: new List<Widget>
                     {
                         new Container(
-                            height: 56f,
+                            height: 53f,
                             decoration: new BoxDecoration(
                                 border: new Border(
                                     bottom: new BorderSide(
@@ -162,14 +168,14 @@ namespace DocCN.Components
                                 {
                                     new HyperLink(
                                         text: "社区问答",
-                                        style: SiteLinkStyle,
+                                        style: _style.siteLinkStyle,
                                         link: "https://unity3d.com/cn/learn"
                                     ),
                                     new Container(
                                         margin: EdgeInsets.only(left: 24),
                                         child: new HyperLink(
                                             text: "教程",
-                                            style: SiteLinkStyle,
+                                            style: _style.siteLinkStyle,
                                             link: "https://answers.unity.com"
                                         )
                                     ),
@@ -177,7 +183,7 @@ namespace DocCN.Components
                                         margin: EdgeInsets.only(left: 24),
                                         child: new HyperLink(
                                             text: "知识库",
-                                            style: SiteLinkStyle,
+                                            style: _style.siteLinkStyle,
                                             link: "https://support.unity3d.com/hc/zh-cn"
                                         )
                                     ),
@@ -185,7 +191,7 @@ namespace DocCN.Components
                                         margin: EdgeInsets.only(left: 24),
                                         child: new HyperLink(
                                             text: "论坛",
-                                            style: SiteLinkStyle,
+                                            style: _style.siteLinkStyle,
                                             link: "https://forum.unity.com"
                                         )
                                     ),
@@ -193,7 +199,7 @@ namespace DocCN.Components
                                         margin: EdgeInsets.only(left: 24),
                                         child: new HyperLink(
                                             text: "素材商店",
-                                            style: SiteLinkStyle,
+                                            style: _style.siteLinkStyle,
                                             link: "https://assetstore.unity.com"
                                         )
                                     ),

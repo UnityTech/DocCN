@@ -11,6 +11,8 @@ namespace DocCN.Components
             _onSearch = onSearch;
         }
 
+        public const float Height = 70f; 
+
         private readonly Action<string> _onSearch;
         public override State createState() => new SearchBarState();
     }

@@ -3,10 +3,17 @@ using Unity.UIWidgets.widgets;
 
 namespace DocCN.Components
 {
-    public partial class DocApp : StatefulWidget
+    public class DocApp : StatefulWidget
     {
         public DocApp(Key key = null) : base(key)
         {
+        }
+        
+        public static DocAppState of(BuildContext context)
+        {
+            var result =
+                (DocAppState) context.ancestorStateOfType(new TypeMatcher<DocAppState>());
+            return result;
         }
 
         public override State createState() => new DocAppState();

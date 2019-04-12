@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Unity.UIWidgets.foundation;
+using Unity.UIWidgets.painting;
 using Unity.UIWidgets.widgets;
 using Color = Unity.UIWidgets.ui.Color;
 
@@ -17,7 +18,8 @@ namespace DocCN.Components
                 float? bottom = null,
                 float? width = null,
                 List<Widget> children = null,
-                Color color = null) : base(key)
+                Color color = null,
+                Border border = null) : base(key)
             {
                 _left = left;
                 _top = top;
@@ -26,6 +28,7 @@ namespace DocCN.Components
                 _width = width;
                 _children = children;
                 _color = color;
+                _border = border;
             }
 
             private readonly float? _left;
@@ -35,6 +38,8 @@ namespace DocCN.Components
             private readonly float? _width;
             private readonly List<Widget> _children;
             private readonly Color _color;
+            private readonly Border _border;
+
             public override Widget build(BuildContext context)
             {
                 return new Positioned(
@@ -44,7 +49,10 @@ namespace DocCN.Components
                     bottom: _bottom,
                     child: new Container(
                         width: _width,
-                        color: _color,
+                        decoration: new BoxDecoration(
+                            color: _color,
+                            border: _border
+                        ),
                         child: new Column(
                             children: _children
                         )

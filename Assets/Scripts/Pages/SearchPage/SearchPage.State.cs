@@ -96,7 +96,7 @@ namespace DocCN.Pages
                 }
 
                 var pageHeight = MediaQuery.of(context).size.height;
-                const float minHeight = 60f + 70f + 200f;
+                const float minHeight = Header.Height + SearchBar.Height + Footer.Height;
 
                 return new Container(
                     constraints: new BoxConstraints(

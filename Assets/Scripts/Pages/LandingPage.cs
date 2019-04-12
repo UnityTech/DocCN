@@ -15,8 +15,8 @@ namespace DocCN.Pages
         public override Widget build(BuildContext context)
         {
             var height = MediaQuery.of(context).size.height;
-            const float minHeight = 60f + 277f + 200f + 400f; // header, banner, footer, entryCard minSize
-            var verticalPadding = minHeight < height ? (height - minHeight) / 2 + 16f: 16f;
+            const float minHeight = Header.Height + Footer.Height + Banner.Height + EntryCard.Height;
+            var verticalPadding = minHeight < height ? (height - minHeight) / 2 : 16f;
             return new Container(
                 height: height,
                 child: new SingleChildScrollView(
@@ -64,6 +64,8 @@ namespace DocCN.Pages
             _description = description;
         }
 
+        public const float Height = 400f;
+
         private static readonly Color TitleTextColor = new Color(0xff212121);
         private readonly string _title;
         private readonly string _latestVersion;
@@ -73,6 +75,7 @@ namespace DocCN.Pages
         {
             return new Expanded(
                 child: new Container(
+                    height: Height,
                     margin: EdgeInsets.only(left: 12.0f, right: 12.0f),
                     child: new Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,60 +96,61 @@ namespace DocCN.Pages
                                     )
                                 )
                             ),
-                            new Container(
-                                height: 320.0f,
-                                child: new Stack(
-                                    children: new List<Widget>
-                                    {
-                                        new Opacity(
-                                            opacity: 0.3f,
-                                            child: new Container(
-                                                color: new Color(0xff000000)
+                            new Expanded(
+                                child: new Container(
+                                    child: new Stack(
+                                        children: new List<Widget>
+                                        {
+                                            new Opacity(
+                                                opacity: 0.3f,
+                                                child: new Container(
+                                                    color: new Color(0xff000000)
+                                                )
+                                            ),
+                                            new Container(
+                                                padding: EdgeInsets.all(24.0f),
+                                                child: new Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: new List<Widget>
+                                                    {
+                                                        new Container(
+                                                            margin: EdgeInsets.only(top: 16.0f),
+                                                            child: new Text(
+                                                                _latestVersion,
+                                                                style: new TextStyle(
+                                                                    fontSize: 14.0f,
+                                                                    fontWeight: FontWeight.w500,
+                                                                    height: 1.42857142857f
+                                                                )
+                                                            )
+                                                        ),
+                                                        new Container(
+                                                            margin: EdgeInsets.only(top: 4.0f),
+                                                            child: new Text(
+                                                                _description,
+                                                                style: new TextStyle(
+                                                                    fontSize: 24.0f,
+                                                                    height: 1.33333333333f,
+                                                                    fontWeight: FontWeight.w500
+                                                                )
+                                                            )
+                                                        ),
+                                                        new Container(
+                                                            margin: EdgeInsets.only(top: 56.0f),
+                                                            child: new Text(
+                                                                _description,
+                                                                style: new TextStyle(
+                                                                    fontSize: 16.0f,
+                                                                    height: 1.5f,
+                                                                    fontWeight: FontWeight.w400
+                                                                )
+                                                            )
+                                                        )
+                                                    }
+                                                )
                                             )
-                                        ),
-                                        new Container(
-                                            padding: EdgeInsets.all(24.0f),
-                                            child: new Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: new List<Widget>
-                                                {
-                                                    new Container(
-                                                        margin: EdgeInsets.only(top: 16.0f),
-                                                        child: new Text(
-                                                            _latestVersion,
-                                                            style: new TextStyle(
-                                                                fontSize: 14.0f,
-                                                                fontWeight: FontWeight.w500,
-                                                                height: 1.42857142857f
-                                                            )
-                                                        )
-                                                    ),
-                                                    new Container(
-                                                        margin: EdgeInsets.only(top: 4.0f),
-                                                        child: new Text(
-                                                            _description,
-                                                            style: new TextStyle(
-                                                                fontSize: 24.0f,
-                                                                height: 1.33333333333f,
-                                                                fontWeight: FontWeight.w500
-                                                            )
-                                                        )
-                                                    ),
-                                                    new Container(
-                                                        margin: EdgeInsets.only(top: 56.0f),
-                                                        child: new Text(
-                                                            _description,
-                                                            style: new TextStyle(
-                                                                fontSize: 16.0f,
-                                                                height: 1.5f,
-                                                                fontWeight: FontWeight.w400
-                                                            )
-                                                        )
-                                                    )
-                                                }
-                                            )
-                                        )
-                                    }
+                                        }
+                                    )
                                 )
                             ),
                         }

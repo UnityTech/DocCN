@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.UIWidgets.painting;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
 
@@ -18,6 +19,7 @@ namespace DocCN.Components
             IEnumerable<T> items = null,
             Func<T, Widget> itemBuilder = null,
             Color overlayColor = null,
+            Border overlayBorder = null,
             DropDownDirection direction = DropDownDirection.bottom
         )
         {
@@ -26,6 +28,7 @@ namespace DocCN.Components
             _itemBuilder = itemBuilder;
             _overlayColor = overlayColor;
             _direction = direction;
+            _overlayBorder = overlayBorder;
         }
         
         private readonly Func<Widget> _selectBuilder;
@@ -37,6 +40,8 @@ namespace DocCN.Components
         private readonly Color _overlayColor;
 
         private readonly DropDownDirection _direction;
+
+        private readonly Border _overlayBorder;
         public override State createState() => new DropDownState();
     }
 }
