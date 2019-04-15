@@ -21,6 +21,7 @@ namespace DocCN.Utility
 
         protected override Widget createWidget()
         {
+            Debug.Log(Configuration.instance.apiHost);
             return new WidgetsApp(
                 home: new DocApp(),
                 pageRouteBuilder: (settings, builder) =>
