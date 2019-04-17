@@ -12,14 +12,15 @@ namespace DocCN.Pages
         {
             public override Widget build(BuildContext buildContext)
             {
-                var child = widget._title == string.Empty
+                var scriptingContent = widget._title == string.Empty
                     ? new ScriptingContent.Entrance() as Widget
-                    : new ScriptingContent(widget._title); 
+                    : new ScriptingContent(widget._title);
                 var column = new Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: new List<Widget>
                     {
                         new Header(),
+                        new SearchBar(),
                         new Expanded(
                             child: new Container(
                                 color: new Color(0xffffffff),
@@ -30,7 +31,21 @@ namespace DocCN.Pages
                                         new Menu(Menu.TypeScripting),
                                         new Expanded(
                                             child: new SingleChildScrollView(
-                                                child: child
+                                                child: new ScrollableOverlay(
+                                                    child: new Container(
+                                                        constraints: new BoxConstraints(
+                                                            minHeight: MediaQuery.of(context).size.height - Header.Height -
+                                                                       SearchBar.Height - Footer.Height
+                                                        ),
+                                                        child: new Column(
+                                                            children: new List<Widget>
+                                                            {
+                                                                scriptingContent,
+                                                                new Footer(style: Footer.Light)
+                                                            }
+                                                        )
+                                                    )
+                                                )
                                             )
                                         )
                                     }

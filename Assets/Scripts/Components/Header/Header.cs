@@ -79,7 +79,7 @@ namespace DocCN.Components
                 children: new List<Widget>
                 {
                     new TabItem("手册", true, "/Manual/UnityManual"),
-                    new TabItem("脚本API", false, "/Manual/UnityManual"),
+                    new TabItem("脚本API", false, "/Scripting"),
                     //new TabItem("服务手册", false, "/Manual/UnityManual")
                 }
             );
