@@ -10,6 +10,7 @@ namespace DocCN.Components
     public class Banner : StatelessWidget
     {
         public const float Height = 277f;
+
         public override Widget build(BuildContext context)
         {
             return new Container(
@@ -23,8 +24,9 @@ namespace DocCN.Components
                     color: new Color(0xff000000),
                     image: new DecorationImage(
                         fit: BoxFit.cover,
-                        image: new NetworkImage(
-                            "http://unitydocstrafficmanagerstaging.trafficmanager.net/publishing/html/env1/img/hero.png")
+                        image: new AssetImage(
+                            "Images/hero@3x"
+                        )
                     )
                 ),
                 child: new Column(

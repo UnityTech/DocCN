@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DocCN.Utility;
 using Newtonsoft.Json;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.ui;
@@ -20,7 +21,7 @@ namespace DocCN.Components
             public override void initState()
             {
                 base.initState();
-                var request = UnityWebRequest.Get($"http://doc.unity.cn/Data/{widget._type}/toc.json");
+                var request = UnityWebRequest.Get($"{Configuration.Instance.apiHost}/api/documentation/resource/v/0000.0/t/{widget._type}/f/toc.json");
                 var asyncOperation = request.SendWebRequest();
                 asyncOperation.completed += operation =>
                 {

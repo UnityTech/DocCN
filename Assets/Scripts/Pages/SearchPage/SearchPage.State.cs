@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using DocCN.Components;
 using DocCN.Models.Json;
+using DocCN.Utility;
 using Newtonsoft.Json;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
@@ -17,22 +18,28 @@ namespace DocCN.Pages
             private SearchResults _results;
 
             private string _keyword;
+            private int _page;
 
             public override void initState()
             {
                 base.initState();
+                _keyword = widget._keyword;
+                _page = widget._page;
+                DoSearch();
             }
 
-            private void onSearch(
-                string keyword,
-                int page)
+            public override void didUpdateWidget(StatefulWidget oldWidget)
             {
-                if (keyword == null)
-                {
-                    keyword = _keyword;
-                }
+                base.didUpdateWidget(oldWidget);
+                _keyword = widget._keyword;
+                _page = widget._page;
+                DoSearch();
+            }
+
+            private void DoSearch()
+            {
                 var url =
-                    $"http://doc.unity.cn/api/documentation/search/v/2018.1/t/manual?query={keyword}&page={page}&pageSize=10";
+                    $"{Configuration.Instance.apiHost}/api/documentation/search/v/2018.1/t/manual?query={_keyword}&page={_page}&pageSize=10";
                 var request = UnityWebRequest.Get(url);
                 var asyncOperation = request.SendWebRequest();
                 asyncOperation.completed += operation =>
@@ -46,11 +53,7 @@ namespace DocCN.Pages
                     {
                         var content = DownloadHandlerBuffer.GetContent(request);
                         var results = JsonConvert.DeserializeObject<SearchResults>(content);
-                        setState(() =>
-                        {
-                            _keyword = keyword;
-                            _results = results;
-                        });
+                        setState(() => { _results = results; });
                     }
                 };
             }
@@ -89,7 +92,7 @@ namespace DocCN.Pages
                                 pages: _results.pages,
                                 currentPage: _results.currentPage,
                                 totalPages: _results.totalPages,
-                                onPageChanged: page => onSearch(null, page)
+                                onPageChanged: page => LocationUtil.Go($"/Search/{_keyword}/{page}")
                             )
                         )
                     );
@@ -110,9 +113,7 @@ namespace DocCN.Pages
                                 children: new List<Widget>
                                 {
                                     new Header(),
-                                    new SearchBar(
-                                        onSearch: keyword => onSearch(keyword, 0)
-                                    ),
+                                    new SearchBar(),
                                     new Container(
                                         constraints: new BoxConstraints(
                                             minHeight: minHeight < pageHeight ? pageHeight - minHeight : 0

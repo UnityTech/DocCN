@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DocCN.Models.Json;
+using DocCN.Utility;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
@@ -22,7 +23,7 @@ namespace DocCN.Components
             private static readonly EdgeInsets TableCellPadding =
                 EdgeInsets.only(top: 4f, bottom: 12f, left: 16f, right: 16f);
 
-            private static readonly Color dividerColor = new Color(0xffe0e0e0);
+            private static readonly Color DividerColor = new Color(0xffe0e0e0);
 
             static MarkdownContentState()
             {
@@ -304,18 +305,17 @@ namespace DocCN.Components
             // assume image's format is fixed
             private static Widget ProcessImage(Token token, BuilderContext ctx)
             {
-                var urlExist = token.attrs.Any(attr => attr[0] == "src");
-                var url = urlExist
-                    ? $"http://doc.unity.cn/Data/manual_statics{token.attrs.Single(attr => attr[0] == "src")[1]}"
-                    : "http://images.performgroup.com/di/library/omnisport/59/5/james-harden-cropped_adrrcka6po2g1feaaueg721vj.jpg";
+                var imageName = token.attrs.Single(attr => attr[0] == "src")[1];
+                var url =
+                    $"{Configuration.Instance.apiHost}/api/documentation/resource/v/2018.1/t/manual_static/f/{imageName}";
 
                 var widgets = new List<Widget>
                 {
-                    new Container(
-                        child: Image.network(
-                            url,
-                            fit: BoxFit.fill)
-                    )
+                    new ImageWithPlaceholder(
+                        ctx.imageMetas[imageName].width,
+                        ctx.imageMetas[imageName].height,
+                        new NetworkImage(url)
+                    ),
                 };
                 if (token.children != null &&
                     token.children.Length == 1 &&
@@ -351,7 +351,7 @@ namespace DocCN.Components
                 return new Container(
                     margin: EdgeInsets.symmetric(vertical: 16f),
                     height: 1f,
-                    color: dividerColor
+                    color: DividerColor
                 );
             }
 

@@ -1,10 +1,10 @@
-#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 
+#if UNITY_EDITOR
 public class Build
 {
     private static Action BuildFactory(string environment)
@@ -20,11 +20,19 @@ public class Build
             };
 
 
-            //PlayerSettings.SetScriptingDefineSymbolsForGroup();
+            var oldSymbolsForGroup = PlayerSettings.GetScriptingDefineSymbolsForGroup(
+                BuildTargetGroup.WebGL
+            );
+
+            PlayerSettings.SetScriptingDefineSymbolsForGroup(
+                BuildTargetGroup.WebGL,
+                $"{oldSymbolsForGroup};DOC_BUILD_{environment.ToUpper()}"
+            );
 
             var report = BuildPipeline.BuildPlayer(buildPlayerOptions);
             var summary = report.summary;
 
+            PlayerSettings.SetScriptingDefineSymbolsForGroup(BuildTargetGroup.WebGL, oldSymbolsForGroup);
             switch (summary.result)
             {
                 case BuildResult.Succeeded:
@@ -39,16 +47,6 @@ public class Build
         };
     }
 
-    [MenuItem("Build/Test")]
-    public static void Test()
-    {
-
-        PlayerSettings.SetScriptingDefineSymbolsForGroup(
-            EditorUserBuildSettings.selectedBuildTargetGroup,
-            ""
-        );
-    }
-
     static Build()
     {
         BuildMethods = new Dictionary<string, Action>();
@@ -61,19 +59,19 @@ public class Build
     private static readonly Dictionary<string, Action> BuildMethods;
 
     [MenuItem("Build/Build Local")]
-    public static void BuildLocal()
+    public static void Build_local()
     {
         BuildMethods["local"].Invoke();
     }
 
     [MenuItem("Build/Build Test")]
-    public static void BuildTest()
+    public static void Build_test()
     {
         BuildMethods["test"].Invoke();
     }
 
     [MenuItem("Build/Build Prd")]
-    public static void BuildProduction()
+    public static void Build_prd()
     {
         BuildMethods["prd"].Invoke();
     }

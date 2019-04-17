@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DocCN.Models.Json;
@@ -6,6 +7,7 @@ using DocCN.Utility;
 using Newtonsoft.Json;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
+using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -27,6 +29,8 @@ namespace DocCN.Components
 
             private ScrollController _scrollController;
 
+            private ImageMeta[] _imageMetas; 
+
             public override void initState()
             {
                 base.initState();
@@ -36,7 +40,8 @@ namespace DocCN.Components
 
             private void Load()
             {
-                var url = $"http://doc.unity.cn/Data/Manual/{widget._title}.json";
+                var url =
+                    $"{Configuration.Instance.apiHost}/api/documentation/resource/v/2018.1/t/manual_json/f/{widget._title}.json";
                 var request = UnityWebRequest.Get(url);
                 var asyncOperation = request.SendWebRequest();
                 asyncOperation.completed += operation =>
@@ -62,6 +67,7 @@ namespace DocCN.Components
                                 _prevLink = model.prev;
                                 _nextLink = model.next;
                                 _breadcrumbs = model.breadcrumbs;
+                                _imageMetas = model.imageMetas;
                             });
                         }
                     }
@@ -85,7 +91,7 @@ namespace DocCN.Components
                     return new Container();
                 }
 
-                var widgetCursor = new BuilderContext();
+                var widgetCursor = new BuilderContext(_imageMetas);
 
                 var widgets = new List<Widget>();
                 widgets.AddRange(_tokens
@@ -125,7 +131,8 @@ namespace DocCN.Components
                                     {
                                         if (!string.IsNullOrEmpty(_prevLink?.link))
                                         {
-                                            LocationUtil.Go($"/Manual/{_prevLink?.link}");
+                                            LocationUtil.Go(
+                                                $"/Manual/{_prevLink?.link}");
                                         }
                                     },
                                     prefix: Icons.MaterialArrowBack
@@ -136,7 +143,8 @@ namespace DocCN.Components
                                     {
                                         if (!string.IsNullOrEmpty(_nextLink?.link))
                                         {
-                                            LocationUtil.Go($"/Manual/{_nextLink?.link}");
+                                            LocationUtil.Go(
+                                                $"/Manual/{_nextLink?.link}");
                                         }
                                     },
                                     suffix: Icons.MaterialArrowForward
@@ -145,8 +153,6 @@ namespace DocCN.Components
                         )
                     )
                 );
-
-                widgets.Add(new Footer(style: Footer.Light, showSocials: false));
 
                 return new Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,9 +163,21 @@ namespace DocCN.Components
                                 controller: _scrollController,
                                 child: new ScrollableOverlay(
                                     child: new Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: widgets
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: new List<Widget>
+                                        {
+                                            new Container(
+                                                constraints: new BoxConstraints(
+                                                    minHeight: MediaQuery.of(context).size.height - Header.Height -
+                                                               SearchBar.Height - Footer.Height
+                                                ),
+                                                child: new Column(
+                                                    mainAxisAlignment: MainAxisAlignment.start,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: widgets)
+                                            ),
+                                            new Footer(style: Footer.Light, showSocials: false)
+                                        }
                                     )
                                 )
                             )

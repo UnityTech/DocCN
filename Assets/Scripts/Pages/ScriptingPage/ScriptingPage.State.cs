@@ -12,6 +12,9 @@ namespace DocCN.Pages
         {
             public override Widget build(BuildContext buildContext)
             {
+                var child = widget._title == string.Empty
+                    ? new ScriptingContent.Entrance() as Widget
+                    : new ScriptingContent(widget._title); 
                 var column = new Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: new List<Widget>
@@ -27,7 +30,7 @@ namespace DocCN.Pages
                                         new Menu(Menu.TypeScripting),
                                         new Expanded(
                                             child: new SingleChildScrollView(
-                                                child: new ScriptingContent(widget._title)
+                                                child: child
                                             )
                                         )
                                     }

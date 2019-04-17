@@ -4,7 +4,6 @@ using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
-using UnityEngine;
 
 namespace DocCN.Components
 {
@@ -15,6 +14,8 @@ namespace DocCN.Components
             private PointerRoute _pointerRoute;
 
             private WidgetBuilder _dropDownOverlayBuilder;
+
+            private Guid? _guid;
 
             public override void initState()
             {
@@ -61,7 +62,10 @@ namespace DocCN.Components
                         if (!renderBox.paintBounds.contains(evt.position))
                         {
                             GestureBinding.instance.pointerRouter.removeGlobalRoute(_pointerRoute);
-                            ScrollableOverlay.of(context).Remove(_dropDownOverlayBuilder);
+                            if (_guid != null)
+                            {
+                                ScrollableOverlay.of(context).Remove(_guid.Value);
+                            }
                         }
                     }
                 };
@@ -73,7 +77,7 @@ namespace DocCN.Components
                     onTap: () =>
                     {
                         GestureBinding.instance.pointerRouter.addGlobalRoute(_pointerRoute);
-                        ScrollableOverlay.of(buildContext).Add(_dropDownOverlayBuilder);
+                        _guid = ScrollableOverlay.of(buildContext).Add(_dropDownOverlayBuilder);
                     },
                     child: widget._selectBuilder.Invoke()
                 );

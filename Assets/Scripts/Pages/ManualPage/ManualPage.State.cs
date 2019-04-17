@@ -17,6 +17,7 @@ namespace DocCN.Pages
                     children: new List<Widget>
                     {
                         new Header(),
+                        new SearchBar(),
                         new Expanded(
                             child: new Container(
                                 color: new Color(0xffffffff),

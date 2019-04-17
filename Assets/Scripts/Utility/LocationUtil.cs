@@ -4,8 +4,9 @@ namespace DocCN.Utility
     {
         public static void Go(string path)
         {
-            ObservableUtil.currentPath.value = path;
-            Bridge.LocationPush(path);
+            var appendedPrefix = $"{Configuration.Instance.pageBase}{path}";
+            ObservableUtil.currentPath.value = appendedPrefix;
+            Bridge.LocationPush(appendedPrefix);
         }
 
         public static void HrefTo(string path)

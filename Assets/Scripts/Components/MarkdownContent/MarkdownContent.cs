@@ -4,7 +4,7 @@ namespace DocCN.Components
 {
     public partial class MarkdownContent : StatefulWidget
     {
-        public MarkdownContent(string title) : base(new ObjectKey("markdown-content"))
+        public MarkdownContent(string title) : base(new ObjectKey(title))
         {
             _title = title;
         }

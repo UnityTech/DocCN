@@ -18,10 +18,11 @@ namespace DocCN.Components
                 _hover = false;
             }
 
-            public override Widget build(BuildContext context)
+            public override Widget build(BuildContext buildContext)
             {
                 return new Clickable(
                     hoverChanged: hover => setState(() => _hover = hover),
+                    onTap: () => widget._onTap(context),
                     child: new Container(
                         margin: EdgeInsets.only(right: 20.0f),
                         child: new Icon(

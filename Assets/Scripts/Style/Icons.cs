@@ -18,5 +18,7 @@ namespace DocCN.Style
         public static readonly IconData MaterialSearch = new IconData(0xe8b6, "MaterialIcons");
         public static readonly IconData MaterialArrowBack = new IconData(0xe5c4, fontFamily: "MaterialIcons");
         public static readonly IconData MaterialArrowForward = new IconData(0xe5c8, fontFamily: "MaterialIcons");
+        public static readonly IconData MaterialClose = new IconData(0xe5cd, fontFamily: "MaterialIcons");
+        public static readonly IconData MaterialImage = new IconData(0xe3f4, fontFamily: "MaterialIcons");
     }
 }

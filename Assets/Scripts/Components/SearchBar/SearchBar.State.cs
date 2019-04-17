@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DocCN.Utility;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.widgets;
@@ -104,18 +105,18 @@ namespace DocCN.Components
                                                 fontSize: 16f,
                                                 fontFamily: "PingFang"
                                             ),
-                                            cursorColor: new Color(0xffff0000),
+                                            cursorColor: new Color(0xffffffff),
                                             onEditingComplete: () =>
                                             {
                                                 _focusNode.unfocus();
-                                                widget._onSearch?.Invoke(_textEditingController.value.text);
+                                                LocationUtil.Go($"/Search/{_textEditingController.value.text}");
                                             }
                                         )
                                     )
                                 )
                             ),
                             new Clickable(
-                                onTap: () => widget._onSearch?.Invoke(_textEditingController.value.text),
+                                onTap: () => LocationUtil.Go($"/Search/{_textEditingController.value.text}"),
                                 child: new Container(
                                     width: 56.0f,
                                     color: new Color(0xff565656),

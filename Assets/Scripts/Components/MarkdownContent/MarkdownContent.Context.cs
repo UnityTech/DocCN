@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using DocCN.Models.Json;
 using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.widgets;
@@ -18,8 +20,9 @@ namespace DocCN.Components
             public List<PositionRecord> positionRecords { get; }
             public bool useNotifyContainer { get; set; }
             public GestureRecognizer recognizer { get; set; }
+            public Dictionary<string, ImageMeta> imageMetas { get; }
 
-            public BuilderContext()
+            public BuilderContext(IEnumerable<ImageMeta> imageMetas)
             {
                 inline = new Stack<TextSpan>();
                 rows = new List<List<Container>>();
@@ -27,6 +30,9 @@ namespace DocCN.Components
                 positionRecords = new List<PositionRecord>();
                 useNotifyContainer = false;
                 recognizer = null;
+                this.imageMetas = imageMetas.ToDictionary(
+                    meta => meta.name,
+                    meta => meta);
             }
 
             public void Clear()

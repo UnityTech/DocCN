@@ -69,7 +69,7 @@ namespace DocCN.Components
                                 children: _items.Select<PositionRecord, Widget>(
                                     Item => new Clickable(
                                         onTap: () => _controller.animateTo(
-                                            _controller.position.pixels - Item.getPosition.Invoke() - 24,
+                                            _controller.position.pixels - Item.getPosition.Invoke() - 96,
                                             new TimeSpan(0, 0, 0, 0, 240),
                                             curve: Curves.easeInOut)
                                         ,

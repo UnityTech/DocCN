@@ -19,13 +19,18 @@ namespace DocCN.Components
 
         static DocAppState()
         {
+            var pageBase = Configuration.Instance.pageBase;
             var rawRouter =
                 new Dictionary<string, Func<Dictionary<string, string>, Widget>>
                 {
-                    ["/"] = @params => new LandingPage(),
-                    ["/Manual/:name"] = @params => new ManualPage(@params["name"]),
-                    ["/Scripting/:name"] = @params => new ScriptingPage(@params["name"]),
-                    ["/Search"] = @params => new SearchPage(),
+                    [$"{pageBase}/"] = @params => new LandingPage(),
+                    [$"{pageBase}/Manual/:name"] = @params => new ManualPage(@params["name"]),
+                    [$"{pageBase}/Scripting"] = @params => new ScriptingPage(""),
+                    [$"{pageBase}/Scripting/"] = @params => new ScriptingPage(""),
+                    [$"{pageBase}/Scripting/:name"] = @params => new ScriptingPage(@params["name"]),
+                    [$"{pageBase}/Search"] = @params => new SearchPage(),
+                    [$"{pageBase}/Search/:keyword"] = @params => new SearchPage(keyword: @params["keyword"]),
+                    [$"{pageBase}/Search/:keyword/:page"] = @params => new SearchPage(keyword: @params["keyword"], page: int.Parse(@params["page"])),
                 };
             Router = new Dictionary<Regex, Tuple<Func<Dictionary<string, string>, Widget>, string[]>>();
             foreach (var entry in rawRouter)

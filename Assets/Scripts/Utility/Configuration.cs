@@ -2,9 +2,13 @@ namespace DocCN.Utility
 {
     public class Configuration
     {
+        public string domain { get; private set; }
+        public string schema { get; private set; }
         public string apiHost { get; private set; }
+        public string pageBase { get; private set; }
+        
 
-        public static readonly Configuration instance = new Configuration();
+        public static readonly Configuration Instance = new Configuration();
 
         private Configuration()
         {
@@ -13,16 +17,23 @@ namespace DocCN.Utility
         static Configuration()
         {
 #if DOC_BUILD_LOCAL || UNITY_EDITOR
-            instance.apiHost = "https://connect-local.unity.com:8443";
+            Instance.domain = "doc.unity.cn";
+            Instance.schema = "http";
+            Instance.pageBase = "";
 #endif
 
-#if DOC_BUILD_TEST
-            instance.apiHost = "https://connect-test.unity.com";
+#if DOC_BUILD_TEST || UNITY_EDITOR
+            Instance.domain = "connect-test.unity.com";
+            Instance.schema = "https";
+            Instance.pageBase = "/doc";
 #endif
 
 #if DOC_BUILD_PRD
-            instance.apiHost = "https://connect.unity.com";
+            Instance.domain = "connect.unity.com";
+            Instance.schema = "https";
+            Instance.pageBase = "/doc";
 #endif
+            Instance.apiHost = $"{Instance.schema}://{Instance.domain}";
         }
     }
 }

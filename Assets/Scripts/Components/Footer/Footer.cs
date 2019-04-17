@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using DocCN.Style;
+using DocCN.Utility;
 using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
+using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
 using Color = Unity.UIWidgets.ui.Color;
-using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
 namespace DocCN.Components
 {
@@ -47,8 +48,30 @@ namespace DocCN.Components
                                 new Row(
                                     children: new List<Widget>
                                     {
-                                        new SocialBrand(Icons.IconSinaWeiBo, new Color(0xffe6162d)),
-                                        new SocialBrand(Icons.IconWeChat, new Color(0xff7bb32e))
+                                        new SocialBrand(
+                                            Icons.IconSinaWeiBo,
+                                            new Color(0xffe6162d),
+                                            socialBrandCtx => LocationUtil.HrefTo("https://www.weibo.com/unitychina")
+                                        ),
+                                        new SocialBrand(
+                                            Icons.IconWeChat,
+                                            new Color(0xff7bb32e),
+                                            socialBrandCtx =>
+                                            {
+                                                Guid? guid = null;
+                                                guid = ScrollableOverlay.of(context).Add(ctx =>
+                                                {
+                                                    var overlayRenderBox = ctx.findRenderObject() as RenderBox;
+                                                    var renderBox = socialBrandCtx.findRenderObject() as RenderBox;
+                                                    var offset = renderBox.localToGlobal(Offset.zero, overlayRenderBox);
+                                                    return new WechatOfficialAccount(
+                                                        () => ScrollableOverlay.of(context).Remove(guid.Value),
+                                                        left: offset.dx - 128,
+                                                        bottom: overlayRenderBox.size.height - offset.dy + 16
+                                                    );
+                                                });
+                                            }
+                                        )
                                     }
                                 )
                             }

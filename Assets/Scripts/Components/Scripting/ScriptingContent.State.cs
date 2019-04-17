@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using DocCN.Models.Json;
+using DocCN.Utility;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
@@ -46,7 +47,7 @@ namespace DocCN.Components
 
             private void Load()
             {
-                var url = $"http://doc.unity.cn/Data/scripting_json/{widget._title}.json";
+                var url = $"{Configuration.Instance.apiHost}/api/documentation/resource/v/2018.1/t/scripting_json/f/{widget._title}.json";
                 var request = UnityWebRequest.Get(url);
                 var asyncOperation = request.SendWebRequest();
                 asyncOperation.completed += operation =>
