@@ -25,7 +25,7 @@ namespace DocCN.Pages
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: new List<Widget>
                                     {
-                                        new Menu(Menu.TypeManual),
+                                        new Menu(MenuType.manual),
                                         new Expanded(
                                             child: new MarkdownContent(widget._title)
                                         ),                                        

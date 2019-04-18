@@ -1,0 +1,14 @@
+font_name: IconFont
+
+fonts:
+  ttf: true
+
+input:
+  vectors: ./svg
+
+output:
+  fonts: ./Builds
+  Icons.IconFont.cs: ../../Assets/Scripts/Style
+
+templates:
+  - Icons.IconFont.cs

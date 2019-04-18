@@ -23,6 +23,11 @@ namespace DocCN.Components
 
     public static class LanguagesExtension
     {
+        public static string FontFamily(this Language l)
+        {
+            return l == Language.koKr ? "NotoSans" : "PingFang";
+        }
+        
         public static string Text(this Language l)
         {
             switch (l)
@@ -123,7 +128,8 @@ namespace DocCN.Components
                                 widget._language.Text(),
                                 style: new TextStyle(
                                     fontSize: 16,
-                                    color: new Color(0xff616161)
+                                    color: new Color(0xff616161),
+                                    fontFamily: widget._language.FontFamily()
                                 )
                             )
                         )

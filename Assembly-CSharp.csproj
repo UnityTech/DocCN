@@ -57,7 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Components\Banner.cs" />
+    <Compile Include="Assets\Scripts\Components\Banner\Banner.cs" />
     <Compile Include="Assets\Scripts\Components\Breadcrumbs\Breadcrumbs.ClickableText.cs" />
     <Compile Include="Assets\Scripts\Components\Breadcrumbs\Breadcrumbs.cs" />
     <Compile Include="Assets\Scripts\Components\Button\Button.cs" />
@@ -95,6 +95,7 @@
     <Compile Include="Assets\Scripts\Components\Menu\Menu.Item.cs" />
     <Compile Include="Assets\Scripts\Components\Menu\Menu.Item.State.cs" />
     <Compile Include="Assets\Scripts\Components\Menu\Menu.State.cs" />
+    <Compile Include="Assets\Scripts\Components\Menu\MenuType.cs" />
     <Compile Include="Assets\Scripts\Components\ModifiedInfo.cs" />
     <Compile Include="Assets\Scripts\Components\Pager\Pager.cs" />
     <Compile Include="Assets\Scripts\Components\Pager\Pager.Item.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="Assets\Scripts\Components\SearchBar\SearchBar.FilterItem.cs" />
     <Compile Include="Assets\Scripts\Components\SearchBar\SearchBar.FilterType.cs" />
     <Compile Include="Assets\Scripts\Components\SearchBar\SearchBar.State.cs" />
+    <Compile Include="Assets\Scripts\Components\SearchBar\SearchBarStyle.cs" />
     <Compile Include="Assets\Scripts\Components\SearchFilter.cs" />
     <Compile Include="Assets\Scripts\Components\SearchResultCard\SearchResultCard.cs" />
     <Compile Include="Assets\Scripts\Components\SocialBrand\SocialBrand.cs" />
@@ -135,6 +137,7 @@
     <Compile Include="Assets\Scripts\Pages\SearchPage\SearchPage.cs" />
     <Compile Include="Assets\Scripts\Pages\SearchPage\SearchPage.State.cs" />
     <Compile Include="Assets\Scripts\Style\Icons.cs" />
+    <Compile Include="Assets\Scripts\Style\Icons.IconFont.cs" />
     <Compile Include="Assets\Scripts\Utility\Bridge.cs" />
     <Compile Include="Assets\Scripts\Utility\Configuration.cs" />
     <Compile Include="Assets\Scripts\Utility\LocationUtil.cs" />

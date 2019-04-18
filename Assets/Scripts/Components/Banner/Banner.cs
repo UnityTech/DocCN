@@ -49,7 +49,7 @@ namespace DocCN.Components
                             )
                         ),
                         new Container(
-                            margin: EdgeInsets.only(top: 32.0f),
+                            margin: EdgeInsets.only(top: 32.0f, bottom: 12f),
                             height: 32.0f,
                             child: new Align(
                                 alignment: Alignment.centerLeft,
@@ -64,17 +64,7 @@ namespace DocCN.Components
                                 )
                             )
                         ),
-                        new Container(
-                            margin: EdgeInsets.only(top: 12.0f),
-                            height: 56.0f,
-                            decoration: new BoxDecoration(
-                                border: Border.all(
-                                    width: 1.0f,
-                                    color: new Color(0xff979797)
-                                ),
-                                color: new Color(0xffffffff)
-                            )
-                        )
+                        new SearchBar(SearchBarStyle.embed)
                     }
                 )
             );

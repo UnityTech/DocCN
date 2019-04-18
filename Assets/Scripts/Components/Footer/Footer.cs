@@ -49,12 +49,12 @@ namespace DocCN.Components
                                     children: new List<Widget>
                                     {
                                         new SocialBrand(
-                                            Icons.IconSinaWeiBo,
+                                            Icons.BrandsSinaWeiBo,
                                             new Color(0xffe6162d),
                                             socialBrandCtx => LocationUtil.HrefTo("https://www.weibo.com/unitychina")
                                         ),
                                         new SocialBrand(
-                                            Icons.IconWeChat,
+                                            Icons.BrandsWeChat,
                                             new Color(0xff7bb32e),
                                             socialBrandCtx =>
                                             {

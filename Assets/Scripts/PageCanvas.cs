@@ -1,4 +1,5 @@
 ﻿using DocCN.Components;
+using DocCN.Style;
 using Unity.UIWidgets.engine;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
@@ -15,6 +16,8 @@ namespace DocCN.Utility
             FontManager.instance.addFont(Resources.Load<Font>("Fonts/PingFang-W500"), "PingFang", FontWeight.w500);
             FontManager.instance.addFont(Resources.Load<Font>("Fonts/Brands"), "Brands");
             FontManager.instance.addFont(Resources.Load<Font>("Fonts/MaterialIcons-Regular"), "MaterialIcons");
+            FontManager.instance.addFont(Resources.Load<Font>("Fonts/NotoSans"), "NotoSans");
+            Icons.LoadIconFont();
             Bridge.Initialize();
             Application.targetFrameRate = 60;
         }

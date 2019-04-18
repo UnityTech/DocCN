@@ -20,44 +20,45 @@ namespace DocCN.Pages
             return new Container(
                 height: height,
                 child: new SingleChildScrollView(
-                    child:
-                    new Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: new List<Widget>
-                        {
-                            new Header(),
-                            new Banner(),
-                            new Container(
-                                padding: EdgeInsets.only(
-                                    top: verticalPadding,
-                                    right: 36.0f,
-                                    bottom: verticalPadding,
-                                    left: 36.0f
+                    child: new ScrollableOverlay(
+                        child: new Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: new List<Widget>
+                            {
+                                new Header(),
+                                new Banner(),
+                                new Container(
+                                    padding: EdgeInsets.only(
+                                        top: verticalPadding,
+                                        right: 36.0f,
+                                        bottom: verticalPadding,
+                                        left: 36.0f
+                                    ),
+                                    color: new Color(0xffffffff),
+                                    child: new Row(
+                                        children: new List<Widget>
+                                        {
+                                            new EntryCard(
+                                                title: "Unity 用户手册",
+                                                latestVersion: "最新版本：不可用",
+                                                description: "使用Unity Editor创建2D和3D游戏，应用程序和体验。",
+                                                imageLocation: "Images/block1@2x"
+                                            ),
+                                            new EntryCard(
+                                                title: "Unity 脚本 API",
+                                                latestVersion: "最新版本：不可用",
+                                                description: "本文档的这一部分包含Unity提供的脚本API的详细信息。",
+                                                imageLocation: "Images/block2@2x"),
+                                            new EntryCard(
+                                                title: "Unity 服务手册",
+                                                description: "通过轻松集成广告，分析，应用内购买等功能为您的应用增值。",
+                                                imageLocation: "Images/block3@2x"),
+                                        }
+                                    )
                                 ),
-                                color: new Color(0xffffffff),
-                                child: new Row(
-                                    children: new List<Widget>
-                                    {
-                                        new EntryCard(
-                                            title: "Unity 用户手册",
-                                            latestVersion: "最新版本：不可用",
-                                            description: "使用Unity Editor创建2D和3D游戏，应用程序和体验。",
-                                            imageLocation: "Images/block1@2x"
-                                        ),
-                                        new EntryCard(
-                                            title: "Unity 脚本 API",
-                                            latestVersion: "最新版本：不可用",
-                                            description: "本文档的这一部分包含Unity提供的脚本API的详细信息。",
-                                            imageLocation: "Images/block2@2x"),
-                                        new EntryCard(
-                                            title: "Unity 服务手册",
-                                            description: "通过轻松集成广告，分析，应用内购买等功能为您的应用增值。",
-                                            imageLocation: "Images/block3@2x"),
-                                    }
-                                )
-                            ),
-                            new Footer()
-                        }
+                                new Footer()
+                            }
+                        )
                     )
                 )
             );

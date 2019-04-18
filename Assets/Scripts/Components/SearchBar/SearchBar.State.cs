@@ -3,7 +3,6 @@ using DocCN.Utility;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.widgets;
-using UnityEngine;
 using Color = Unity.UIWidgets.ui.Color;
 
 namespace DocCN.Components
@@ -15,9 +14,6 @@ namespace DocCN.Components
             private FilterType _filterType;
             private TextEditingController _textEditingController;
             private FocusNode _focusNode;
-
-            private static readonly BorderSide FilterBorderSide =
-                new BorderSide(width: 2.0f, color: new Color(0xff424242));
 
             public override void initState()
             {
@@ -36,10 +32,9 @@ namespace DocCN.Components
 
             public override Widget build(BuildContext context)
             {
-                return new Container(
-                    height: Height,
-                    padding: EdgeInsets.only(top: 8.0f, right: 48.0f, bottom: 8.0f, left: 48.0f),
-                    color: new Color(0xff212121),
+                var stylePack = widget._style.StylePack();
+                var row = new Container(
+                    height: 56,
                     child: new Row(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: new List<Widget>
@@ -54,17 +49,12 @@ namespace DocCN.Components
                                             setState(() => _filterType = item);
                                         }
                                     },
-                                    text: item.Text()
+                                    text: item.Text(),
+                                    stylePack: widget._style.FilterItemStylePack()
                                 ),
                                 selectBuilder: () => new Container(
                                     width: 170.0f,
-                                    decoration: new BoxDecoration(
-                                        border: new Border(
-                                            top: FilterBorderSide,
-                                            left: FilterBorderSide,
-                                            bottom: FilterBorderSide
-                                        )
-                                    ),
+                                    decoration: stylePack.filterDecoration,
                                     child: new Row(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: new List<Widget>
@@ -72,40 +62,41 @@ namespace DocCN.Components
                                             new Text(
                                                 "筛选：",
                                                 style: new TextStyle(
-                                                    color: new Color(0xffd8d8d8),
+                                                    color: stylePack.filterStrongColor,
                                                     fontSize: 16f
                                                 )
                                             ),
                                             new Text(
                                                 _filterType.Text(),
                                                 style: new TextStyle(
-                                                    color: new Color(0xffffffff),
+                                                    color: stylePack.filterTextColor,
                                                     fontSize: 16f
                                                 )
                                             ),
                                             new Icon(
                                                 Style.Icons.MaterialArrowDropDown,
-                                                color: new Color(0xffffffff),
+                                                color: stylePack.filterTextColor,
                                                 size: 24f
                                             )
                                         }
                                     )
-                                )
+                                ),
+                                overlayBorder: stylePack.filterItemsBorder
                             ),
                             new Expanded(
                                 child: new Container(
-                                    color: new Color(0xff424242),
+                                    color: stylePack.searchInputBackgroundColor,
                                     padding: EdgeInsets.symmetric(horizontal: 24f),
                                     child: new Center(
                                         child: new EditableText(
                                             controller: _textEditingController,
                                             focusNode: _focusNode,
                                             style: new TextStyle(
-                                                color: new Color(0xffffffff),
+                                                color: stylePack.searchInputColor,
                                                 fontSize: 16f,
                                                 fontFamily: "PingFang"
                                             ),
-                                            cursorColor: new Color(0xffffffff),
+                                            cursorColor: stylePack.searchInputColor,
                                             onEditingComplete: () =>
                                             {
                                                 _focusNode.unfocus();
@@ -119,7 +110,7 @@ namespace DocCN.Components
                                 onTap: () => LocationUtil.Go($"/Search/{_textEditingController.value.text}"),
                                 child: new Container(
                                     width: 56.0f,
-                                    color: new Color(0xff565656),
+                                    color: stylePack.searchIconBackgroundColor,
                                     child: new Center(
                                         child: new Icon(
                                             Style.Icons.MaterialSearch,
@@ -130,6 +121,17 @@ namespace DocCN.Components
                             )
                         }
                     )
+                );
+                if (widget._style == SearchBarStyle.embed)
+                {
+                    return row;
+                }
+
+                return new Container(
+                    height: Height,
+                    padding: EdgeInsets.only(top: 8.0f, right: 48.0f, bottom: 8.0f, left: 48.0f),
+                    color: new Color(0xff212121),
+                    child: row
                 );
             }
         }

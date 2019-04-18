@@ -29,6 +29,7 @@ namespace DocCN.Components
                     [$"{pageBase}/Scripting/"] = @params => new ScriptingPage(""),
                     [$"{pageBase}/Scripting/:name"] = @params => new ScriptingPage(@params["name"]),
                     [$"{pageBase}/Search"] = @params => new SearchPage(),
+                    [$"{pageBase}/Search/"] = @params => new SearchPage(),
                     [$"{pageBase}/Search/:keyword"] = @params => new SearchPage(keyword: @params["keyword"]),
                     [$"{pageBase}/Search/:keyword/:page"] = @params => new SearchPage(keyword: @params["keyword"], page: int.Parse(@params["page"])),
                 };

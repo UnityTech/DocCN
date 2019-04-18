@@ -163,7 +163,6 @@ namespace DocCN.Components
                                 controller: _scrollController,
                                 child: new ScrollableOverlay(
                                     child: new Column(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: new List<Widget>
                                         {
                                             new Container(

@@ -54,7 +54,7 @@ namespace DocCN.Components
 
                 private void OnTap()
                 {
-                    var link = $"/Manual/{widget._bind.link}";
+                    var link = $"{widget._parent.widget._type.PageUrlPrefix()}/{widget._bind.link}";
                     LocationUtil.Go(link);
                 }
 

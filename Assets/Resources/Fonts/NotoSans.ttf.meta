@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 494c40bfd636cc66b87627e8e13ebe22
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: icomoon
+  fontNames:
+  - NotoSans
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 5836bd85e68cbd7158392ad44407b621, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

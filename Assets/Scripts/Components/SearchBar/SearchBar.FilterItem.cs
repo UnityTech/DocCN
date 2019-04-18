@@ -15,35 +15,21 @@ namespace DocCN.Components
             public FilterItem(
                 string text = null,
                 GestureTapCallback onTap = null,
+                FilterItemStylePack stylePack = null,
                 Key key = null) : base(key)
             {
                 _text = text;
                 _onTap = onTap;
+                _stylePack = stylePack;
             }
 
             private readonly string _text;
 
             private readonly GestureTapCallback _onTap;
+
+            private readonly FilterItemStylePack _stylePack;
             public override State createState() => new FilterItemState();
 
-            private static readonly Color NormalColor = new Color(0xff212121);
-
-            private static readonly Color HoverColor = new Color(0xff204f74);
-            
-            private static readonly Color TransparentColor = new Color(0x00000000);
-
-            private static readonly TextStyle TransparentStyle = new TextStyle(
-                color: TransparentColor,
-                fontSize: 16f
-            );
-
-            private static readonly TextStyle NormalStyle = new TextStyle(
-                color: new Color(0xffffffff),
-                fontSize: 16f
-            );
-            
-            private static readonly BorderSide TransparentBorderSide =
-                new BorderSide(width: 2.0f, color: TransparentColor);
 
             private class FilterItemState : State<FilterItem>
             {
@@ -54,6 +40,18 @@ namespace DocCN.Components
                     _hover = false;
                     base.initState();
                 }
+
+                private static readonly BorderSide TransparentBorderSide = new BorderSide(
+                    width: 2.0f,
+                    color: new Color(0x00000000)
+                );
+                
+                private static readonly TextStyle TransparentStyle = new TextStyle(
+                    color: new Color(0x00000000),
+                    fontSize: 16f
+                );
+                
+                private static readonly Color TransparentColor = new Color(0x00000000);
 
                 public override Widget build(BuildContext buildContext)
                 {
@@ -67,10 +65,12 @@ namespace DocCN.Components
                             }
                         },
                         child: new Container(
-                            width: 170.0f,
+                            width: 168.0f,
                             height: 48.0f,
                             decoration: new BoxDecoration(
-                                color: _hover ? HoverColor : NormalColor,
+                                color: _hover ?
+                                    widget._stylePack.hoverColor :
+                                    widget._stylePack.normalColor,
                                 border: new Border(
                                     top: TransparentBorderSide,
                                     left: TransparentBorderSide,
@@ -87,7 +87,7 @@ namespace DocCN.Components
                                     ),
                                     new Text(
                                         widget._text,
-                                        style: NormalStyle
+                                        style: widget._stylePack.normalStyle
                                     ),
                                     new Icon(
                                         Style.Icons.MaterialArrowDropDown,

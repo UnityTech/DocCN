@@ -9,7 +9,8 @@ namespace DocCN.Components
 {
     public class Header : StatelessWidget
     {
-        public const float Height = 60f; 
+        public const float Height = 60f;
+
         public override Widget build(BuildContext context)
         {
             return new Container(
@@ -30,41 +31,44 @@ namespace DocCN.Components
     {
         public override Widget build(BuildContext context)
         {
-            return new Container(
-                width: 336.0f,
-                child: new Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: new List<Widget>
-                    {
-                        new Container(
-                            margin: Painting.EdgeInsets.only(left: 48.0f),
-                            height: 34.0f,
-                            width: 93.5f,
-                            decoration: new Painting.BoxDecoration(
-                                image: new Painting.DecorationImage(
-                                    image: new Painting.AssetImage(
-                                        "Images/unity-master-white"
-                                    ),
-                                    fit: Painting.BoxFit.fill
+            return new Clickable(
+                onTap: () => LocationUtil.Go("/"),
+                child: new Container(
+                    width: 336.0f,
+                    child: new Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: new List<Widget>
+                        {
+                            new Container(
+                                margin: Painting.EdgeInsets.only(left: 48.0f),
+                                height: 34.0f,
+                                width: 93.5f,
+                                decoration: new Painting.BoxDecoration(
+                                    image: new Painting.DecorationImage(
+                                        image: new Painting.AssetImage(
+                                            "Images/unity-master-white"
+                                        ),
+                                        fit: Painting.BoxFit.fill
+                                    )
+                                )
+                            ),
+                            new Container(
+                                height: 34.0f,
+                                width: 2.0f,
+                                margin: Painting.EdgeInsets.only(right: 8.0f, left: 8.0f),
+                                color: new Color(0xffffffff)
+                            ),
+                            new Text(
+                                "DOCUMENTATION",
+                                style: new Painting.TextStyle(
+                                    color: new Color(0xffffffff),
+                                    letterSpacing: -0.8f,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16.0f
                                 )
                             )
-                        ),
-                        new Container(
-                            height: 34.0f,
-                            width: 2.0f,
-                            margin: Painting.EdgeInsets.only(right: 8.0f, left: 8.0f),
-                            color: new Color(0xffffffff)
-                        ),
-                        new Text(
-                            "DOCUMENTATION",
-                            style: new Painting.TextStyle(
-                                color: new Color(0xffffffff),
-                                letterSpacing: -0.8f,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16.0f
-                            )
-                        )
-                    }
+                        }
+                    )
                 )
             );
         }

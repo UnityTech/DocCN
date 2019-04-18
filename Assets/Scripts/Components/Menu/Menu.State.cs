@@ -21,7 +21,7 @@ namespace DocCN.Components
             public override void initState()
             {
                 base.initState();
-                var request = UnityWebRequest.Get($"{Configuration.Instance.apiHost}/api/documentation/resource/v/0000.0/t/{widget._type}/f/toc.json");
+                var request = UnityWebRequest.Get($"{Configuration.Instance.apiHost}/api/documentation/resource/v/0000.0/t/{widget._type.RequestUrlPrefix()}/f/toc.json");
                 var asyncOperation = request.SendWebRequest();
                 asyncOperation.completed += operation =>
                 {

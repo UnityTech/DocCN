@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DocCN.Components;
+using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.widgets;
 using Color = Unity.UIWidgets.ui.Color;
@@ -28,19 +29,23 @@ namespace DocCN.Pages
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: new List<Widget>
                                     {
-                                        new Menu(Menu.TypeScripting),
+                                        new Menu(MenuType.scripting),
                                         new Expanded(
                                             child: new SingleChildScrollView(
                                                 child: new ScrollableOverlay(
                                                     child: new Container(
-                                                        constraints: new BoxConstraints(
-                                                            minHeight: MediaQuery.of(context).size.height - Header.Height -
-                                                                       SearchBar.Height - Footer.Height
-                                                        ),
+                                                        padding: EdgeInsets.only(right: 48f),
                                                         child: new Column(
                                                             children: new List<Widget>
                                                             {
-                                                                scriptingContent,
+                                                                new Container(
+                                                                    constraints: new BoxConstraints(
+                                                                        minHeight: MediaQuery.of(context).size.height -
+                                                                                   Header.Height -
+                                                                                   SearchBar.Height - Footer.Height
+                                                                    ),
+                                                                    child: scriptingContent
+                                                                ),
                                                                 new Footer(style: Footer.Light)
                                                             }
                                                         )
