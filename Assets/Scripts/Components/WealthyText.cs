@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.material;
@@ -7,7 +8,11 @@ using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
+using UnityEngine;
+using Color = Unity.UIWidgets.ui.Color;
+using Icons = DocCN.Style.Icons;
 using ImageUtils = Unity.UIWidgets.painting.ImageUtils;
+using Rect = Unity.UIWidgets.ui.Rect;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
 namespace DocCN.Components
@@ -98,7 +103,7 @@ namespace DocCN.Components
                 height: 1f,
                 fontSize: imageHeight + (margin == null ? 0 : margin.vertical)
             ),
-            text: "B",
+            text: "X",
             // text: "\u200b",
             children: null
             //recognizer: recognizer
@@ -119,6 +124,12 @@ namespace DocCN.Components
         public float width => _imageWidth + (_margin == null ? 0 : _margin.horizontal);
 
         public float height => _imageHeight + (_margin == null ? 0 : _margin.vertical);
+
+        public float innerHeight => _imageHeight;
+
+        public float innerWidth => _imageWidth;
+
+        public EdgeInsets margin => _margin;
 
         internal ImageResolver imageResolver { get; }
     }
@@ -153,6 +164,7 @@ namespace DocCN.Components
             {
                 return;
             }
+
             oldImageStream?.removeListener(HandleImageChanged);
             _imageStream.addListener(HandleImageChanged);
         }
@@ -224,6 +236,15 @@ namespace DocCN.Components
         {
         }
 
+        private static readonly Paint ImagePlaceholderPaint;
+        private static readonly Paint ImagePlaceholderBackgroundPaint;
+
+        static WealthyRenderParagraph()
+        {
+            ImagePlaceholderPaint = new Paint {color = new Color(0xffffffff)};
+            ImagePlaceholderBackgroundPaint = new Paint {color = new Color(0xffefefef)};
+        }
+
         public override void paint(PaintingContext context, Offset offset)
         {
             base.paint(context, offset);
@@ -262,13 +283,43 @@ namespace DocCN.Components
                     {
                         return;
                     }
-                    
+
                     var topLeftOffset = new Offset(
                         offset.dx + offsetForCaret.dx - (textOffset == 0 ? 0 : 0),
                         offset.dy + offsetForCaret.dy
                     );
                     if (imageSpan.imageResolver.image == null)
                     {
+                        canvas.drawRect(
+                            rect: Rect.fromLTWH(
+                                topLeftOffset.dx + imageSpan.margin.left,
+                                topLeftOffset.dy + imageSpan.margin.top,
+                                imageSpan.innerWidth,
+                                imageSpan.innerHeight
+                            ),
+                            paint: ImagePlaceholderBackgroundPaint);
+                        var textBlobBuilder = new TextBlobBuilder();
+                        var text = $"{(char) Icons.MaterialImage.codePoint}";
+                        var iconSize = imageSpan.innerWidth > imageSpan.innerHeight * 3
+                            ? imageSpan.innerHeight * 3 / 4
+                            : imageSpan.innerWidth / 4;
+                        textBlobBuilder.allocRunPos(
+                            style: new TextStyle(
+                                fontFamily: Icons.MaterialImage.fontFamily,
+                                fontSize: iconSize
+                            ),
+                            text: text,
+                            offset: 0,
+                            size: text.Length);
+                        var rect = topLeftOffset & new Size(imageSpan.innerWidth, imageSpan.innerHeight);
+                        textBlobBuilder.setBounds(rect);
+                        canvas.drawTextBlob(
+                            textBlobBuilder.make(),
+                            new Offset(
+                                rect.left + (rect.width - iconSize) / 2,
+                                rect.top + (rect.height + iconSize) / 2),
+                            ImagePlaceholderPaint);
+
                         imageSpan.imageResolver.Resolve((imageInfo, synchronousCall) =>
                         {
                             if (synchronousCall)
@@ -290,12 +341,18 @@ namespace DocCN.Components
                             }
                         });
                         textOffset += imageSpan.toPlainText().Length;
+
                         continue;
                     }
-                    
+
                     ImageUtils.paintImage(
                         canvas: canvas,
-                        rect: topLeftOffset & new Size(imageSpan.width, imageSpan.height),
+                        rect: Rect.fromLTWH(
+                            topLeftOffset.dx + imageSpan.margin.left,
+                            topLeftOffset.dy + imageSpan.margin.top,
+                            imageSpan.innerWidth,
+                            imageSpan.innerHeight
+                        ),
                         image: imageSpan.imageResolver.image,
                         fit: BoxFit.scaleDown,
                         alignment: Alignment.center
@@ -304,6 +361,7 @@ namespace DocCN.Components
 
                 textOffset += span.toPlainText().Length;
             }
+
             canvas.restore();
         }
     }

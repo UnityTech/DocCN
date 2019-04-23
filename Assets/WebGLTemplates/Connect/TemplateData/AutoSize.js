@@ -1,10 +1,19 @@
 function resize() {
     var canvas = document.getElementById('#canvas');
-    canvas.setAttribute('width', window.innerWidth.toString());
-    canvas.setAttribute('height', window.innerHeight.toString());
+    canvas.setAttribute('width', (window.innerWidth * window.devicePixelRatio).toString());
+    canvas.setAttribute('height', (window.innerHeight * window.devicePixelRatio).toString());
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    window.onresize = resize;
+    var originOnResize = window.onresize;
+    if (originOnResize) {
+        window.onresize = function (ev) {
+            originOnResize(ev);
+            resize();
+        };
+    } else {
+        window.onresize = resize;
+    }
+    
     document.getElementById('gameContainer').addEventListener('DOMSubtreeModified', resize);
 });

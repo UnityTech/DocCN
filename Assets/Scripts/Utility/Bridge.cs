@@ -22,6 +22,9 @@ namespace DocCN.Utility
         
         [DllImport("__Internal")]
         public static extern void HrefTo(string url);
+        
+        [DllImport("__Internal")]
+        public static extern void Download(string url, string filename);
 #else
         public static void Initialize()
         {
@@ -44,6 +47,10 @@ namespace DocCN.Utility
         }
 
         public static void HrefTo(string url)
+        {
+        }
+
+        public static void Download(string url, string filename)
         {
         }
 #endif

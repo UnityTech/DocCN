@@ -22,7 +22,8 @@ namespace DocCN.Components
             hoverColor = new Color(0xff204f74),
             normalStyle = new TextStyle(
                 color: new Color(0xffffffff),
-                fontSize: 16f
+                fontSize: 16f,
+                fontFamily: "PingFang"
             ),
         };
 
@@ -32,7 +33,8 @@ namespace DocCN.Components
             hoverColor = new Color(0xffd8d8d8),
             normalStyle = new TextStyle(
                 color: new Color(0xff212121),
-                fontSize: 16f
+                fontSize: 16f,
+                fontFamily: "PingFang"
             )
         };
     }

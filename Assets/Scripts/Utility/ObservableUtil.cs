@@ -24,8 +24,12 @@ namespace DocCN.Utility
             get => _value;
             set
             {
+                if (!Equals(_value, value))
+                {
+                    OnChanged?.Invoke(value);                    
+                }
                 _value = value;
-                OnChanged?.Invoke(_value);
+                
             }
         }
 

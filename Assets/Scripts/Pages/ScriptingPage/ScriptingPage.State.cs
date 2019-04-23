@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using DocCN.Components;
-using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.widgets;
 using Color = Unity.UIWidgets.ui.Color;
@@ -21,7 +20,9 @@ namespace DocCN.Pages
                     children: new List<Widget>
                     {
                         new Header(),
-                        new SearchBar(),
+                        new SearchBar(
+                            filterDropDownOverlayType: DropDownOverlayType.builtin
+                        ),
                         new Expanded(
                             child: new Container(
                                 color: new Color(0xffffffff),
@@ -30,29 +31,7 @@ namespace DocCN.Pages
                                     children: new List<Widget>
                                     {
                                         new Menu(MenuType.scripting),
-                                        new Expanded(
-                                            child: new SingleChildScrollView(
-                                                child: new ScrollableOverlay(
-                                                    child: new Container(
-                                                        padding: EdgeInsets.only(right: 48f),
-                                                        child: new Column(
-                                                            children: new List<Widget>
-                                                            {
-                                                                new Container(
-                                                                    constraints: new BoxConstraints(
-                                                                        minHeight: MediaQuery.of(context).size.height -
-                                                                                   Header.Height -
-                                                                                   SearchBar.Height - Footer.Height
-                                                                    ),
-                                                                    child: scriptingContent
-                                                                ),
-                                                                new Footer(style: Footer.Light)
-                                                            }
-                                                        )
-                                                    )
-                                                )
-                                            )
-                                        )
+                                        new Expanded(child: scriptingContent)
                                     }
                                 )
                             )

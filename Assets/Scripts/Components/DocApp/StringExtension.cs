@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace DocCN.Components
 {
-    internal static class StringExtension
+    internal static partial class StringExtension
     {
         public static Regex CompileAsRouter(this string sz, out string[] parameterNames)
         {
@@ -21,7 +21,7 @@ namespace DocCN.Components
             {
                 var parameterName = parameter.Substring(1);
                 parameterNameList.Add(parameterName);
-                routerRegexSz = routerRegexSz.Replace(parameter, $@"(?<{parameterName}>[\-a-zA-Z0-9\.\$@\(\)]+)");
+                routerRegexSz = routerRegexSz.Replace(parameter, $@"(?<{parameterName}>[\-a-zA-Z0-9+%\.\$@\(\)]+)");
             }
 
             parameterNames = parameterNameList.ToArray();

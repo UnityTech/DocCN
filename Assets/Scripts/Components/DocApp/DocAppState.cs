@@ -23,6 +23,7 @@ namespace DocCN.Components
             var rawRouter =
                 new Dictionary<string, Func<Dictionary<string, string>, Widget>>
                 {
+                    [$"{pageBase}"] = @params => new LandingPage(),
                     [$"{pageBase}/"] = @params => new LandingPage(),
                     [$"{pageBase}/Manual/:name"] = @params => new ManualPage(@params["name"]),
                     [$"{pageBase}/Scripting"] = @params => new ScriptingPage(""),
@@ -30,8 +31,8 @@ namespace DocCN.Components
                     [$"{pageBase}/Scripting/:name"] = @params => new ScriptingPage(@params["name"]),
                     [$"{pageBase}/Search"] = @params => new SearchPage(),
                     [$"{pageBase}/Search/"] = @params => new SearchPage(),
-                    [$"{pageBase}/Search/:keyword"] = @params => new SearchPage(keyword: @params["keyword"]),
-                    [$"{pageBase}/Search/:keyword/:page"] = @params => new SearchPage(keyword: @params["keyword"], page: int.Parse(@params["page"])),
+                    [$"{pageBase}/Search/:type/:keyword"] = @params => new SearchPage(filterType: @params["type"].ToFilterType(), keyword: @params["keyword"]),
+                    [$"{pageBase}/Search/:type/:keyword/:page"] = @params => new SearchPage(filterType: @params["type"].ToFilterType(), keyword: @params["keyword"], page: int.Parse(@params["page"])),
                 };
             Router = new Dictionary<Regex, Tuple<Func<Dictionary<string, string>, Widget>, string[]>>();
             foreach (var entry in rawRouter)
@@ -61,7 +62,11 @@ namespace DocCN.Components
 
         private void OnPathChanged(string path)
         {
-            if (mounted)
+            if (!mounted)
+            {
+                return;
+            }
+            using (WindowProvider.of(context).getScope())
             {
                 setState(() =>
                 {
@@ -89,7 +94,10 @@ namespace DocCN.Components
             {
                 foreach (var entry in Router)
                 {
-                    if (!entry.Key.IsMatch(_currentPath)) continue;
+                    if (!entry.Key.IsMatch(_currentPath))
+                    {
+                        continue;
+                    }
                     var match = entry.Key.Match(_currentPath);
                     var arguments = new Dictionary<string, string>();
                     foreach (var parameterName in entry.Value.Item2)
@@ -102,9 +110,13 @@ namespace DocCN.Components
                     break;
                 }
             }
+            
+            var screenOverlay = new ScreenOverlay(
+                child: page ?? OnUnknownPath()
+            );
 
             var defaultTextStyle = new DefaultTextStyle(
-                child: page ?? OnUnknownPath(),
+                child: screenOverlay,
                 style: new TextStyle(
                     fontFamily: "PingFang"
                 )

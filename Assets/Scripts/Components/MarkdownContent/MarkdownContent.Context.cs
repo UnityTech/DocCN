@@ -19,8 +19,9 @@ namespace DocCN.Components
             public string title { get; set; }
             public List<PositionRecord> positionRecords { get; }
             public bool useNotifyContainer { get; set; }
-            public GestureRecognizer recognizer { get; set; }
             public Dictionary<string, ImageMeta> imageMetas { get; }
+            public List<TapGestureRecognizer> spanRecognizers { get; }
+            public bool useRecognizer { get; set; }
 
             public BuilderContext(IEnumerable<ImageMeta> imageMetas)
             {
@@ -29,10 +30,14 @@ namespace DocCN.Components
                 cells = new List<Container>();
                 positionRecords = new List<PositionRecord>();
                 useNotifyContainer = false;
-                recognizer = null;
-                this.imageMetas = imageMetas.ToDictionary(
+                this.imageMetas = imageMetas?
+                    .GroupBy(item => item.name)
+                    .Select(group => group.ToArray().First())
+                    .ToDictionary(
                     meta => meta.name,
                     meta => meta);
+                spanRecognizers = new List<TapGestureRecognizer>();
+                useRecognizer = false;
             }
 
             public void Clear()
@@ -41,7 +46,6 @@ namespace DocCN.Components
                 inline.Clear();
                 imageNode = null;
                 useNotifyContainer = false;
-                recognizer = null;
             }
 
             public void ClearColumn()

@@ -83,6 +83,8 @@
     <Compile Include="Assets\Scripts\Components\LanguageSelect\LanguageSelect.cs" />
     <Compile Include="Assets\Scripts\Components\LanguageSelect\LanguageSelect.State.cs" />
     <Compile Include="Assets\Scripts\Components\LanguageSelection.cs" />
+    <Compile Include="Assets\Scripts\Components\Loading\Loading.cs" />
+    <Compile Include="Assets\Scripts\Components\Loading\Loading.State.cs" />
     <Compile Include="Assets\Scripts\Components\MarkdownContent\MarkdownContent.Context.cs" />
     <Compile Include="Assets\Scripts\Components\MarkdownContent\MarkdownContent.cs" />
     <Compile Include="Assets\Scripts\Components\MarkdownContent\MarkdownContent.NotifyContainer.cs" />
@@ -100,10 +102,11 @@
     <Compile Include="Assets\Scripts\Components\Pager\Pager.cs" />
     <Compile Include="Assets\Scripts\Components\Pager\Pager.Item.cs" />
     <Compile Include="Assets\Scripts\Components\RelatedArticles.cs" />
+    <Compile Include="Assets\Scripts\Components\ScreenOverlay\ScreenOverlay.cs" />
+    <Compile Include="Assets\Scripts\Components\ScreenOverlay\ScreenOverlay.State.cs" />
     <Compile Include="Assets\Scripts\Components\Scripting\ScriptingContent.cs" />
     <Compile Include="Assets\Scripts\Components\Scripting\ScriptingContent.Entrance.cs" />
     <Compile Include="Assets\Scripts\Components\Scripting\ScriptingContent.State.cs" />
-    <Compile Include="Assets\Scripts\Components\Scripting\ScriptingMenu.cs" />
     <Compile Include="Assets\Scripts\Components\ScrollViewWithOverlay\ScrollViewWithOverlay.cs" />
     <Compile Include="Assets\Scripts\Components\ScrollViewWithOverlay\ScrollViewWithOverlay.State.cs" />
     <Compile Include="Assets\Scripts\Components\SearchBar\SearchBar.cs" />
@@ -111,8 +114,10 @@
     <Compile Include="Assets\Scripts\Components\SearchBar\SearchBar.FilterType.cs" />
     <Compile Include="Assets\Scripts\Components\SearchBar\SearchBar.State.cs" />
     <Compile Include="Assets\Scripts\Components\SearchBar\SearchBarStyle.cs" />
+    <Compile Include="Assets\Scripts\Components\SearchBar\StringExtension.cs" />
     <Compile Include="Assets\Scripts\Components\SearchFilter.cs" />
     <Compile Include="Assets\Scripts\Components\SearchResultCard\SearchResultCard.cs" />
+    <Compile Include="Assets\Scripts\Components\SearchResultCard\StringExtension.cs" />
     <Compile Include="Assets\Scripts\Components\SocialBrand\SocialBrand.cs" />
     <Compile Include="Assets\Scripts\Components\SocialBrand\SocialBrand.State.cs" />
     <Compile Include="Assets\Scripts\Components\WealthyText.cs" />
@@ -142,6 +147,8 @@
     <Compile Include="Assets\Scripts\Utility\Configuration.cs" />
     <Compile Include="Assets\Scripts\Utility\LocationUtil.cs" />
     <Compile Include="Assets\Scripts\Utility\ObservableUtil.cs" />
+    <Compile Include="Assets\Scripts\Utility\SearchResultHighlightParser.cs" />
+    <None Include="Assets\link.xml" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/home/haog/Workspace/DocCN/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

@@ -149,7 +149,11 @@ namespace DocCN.Components
                     direction: DropDownDirection.top,
                     items: Enum.GetValues(typeof(Language)).Cast<Language>(),
                     overlayBorder: Border.all(color: new Color(0xffd8d8d8), width: 1f),
-                    itemBuilder: lang => new LanguageItem(lang),
+                    itemBuilder: (state, lang) =>
+                    {
+                        state.Dismiss();
+                        return new LanguageItem(lang);
+                    },
                     overlayColor: new Color(0xffd8d8d8),
                     selectBuilder: () => new Container(
                         height: 32f,

@@ -4,7 +4,7 @@ namespace DocCN.Components
 {
     public partial class SearchBar
     {
-        internal enum FilterType
+        public enum FilterType
         {
             all,
             manual,
@@ -27,6 +27,6 @@ namespace DocCN.Components
                 default:
                     return string.Empty;
             }
-        } 
+        }
     }
 }

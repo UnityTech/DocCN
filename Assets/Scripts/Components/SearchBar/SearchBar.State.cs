@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Web;
 using DocCN.Utility;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
@@ -30,6 +31,13 @@ namespace DocCN.Components
                 base.dispose();
             }
 
+            private void GoToSearch()
+            {
+                _focusNode.unfocus();
+                var encodedKeyword = HttpUtility.UrlEncode(_textEditingController.value.text);
+                LocationUtil.Go($"/Search/{_filterType}/{encodedKeyword}");
+            }
+
             public override Widget build(BuildContext context)
             {
                 var stylePack = widget._style.StylePack();
@@ -40,10 +48,12 @@ namespace DocCN.Components
                         children: new List<Widget>
                         {
                             new DropDown<FilterType>(
+                                overlayType: widget._filterDropDownOverlayType,
                                 items: new[] {FilterType.manual, FilterType.scripting},
-                                itemBuilder: item => new FilterItem(
+                                itemBuilder: (state, item) => new FilterItem(
                                     onTap: () =>
                                     {
+                                        state.Dismiss();
                                         if (mounted)
                                         {
                                             setState(() => _filterType = item);
@@ -97,17 +107,13 @@ namespace DocCN.Components
                                                 fontFamily: "PingFang"
                                             ),
                                             cursorColor: stylePack.searchInputColor,
-                                            onEditingComplete: () =>
-                                            {
-                                                _focusNode.unfocus();
-                                                LocationUtil.Go($"/Search/{_textEditingController.value.text}");
-                                            }
+                                            onEditingComplete: GoToSearch
                                         )
                                     )
                                 )
                             ),
                             new Clickable(
-                                onTap: () => LocationUtil.Go($"/Search/{_textEditingController.value.text}"),
+                                onTap: GoToSearch,
                                 child: new Container(
                                     width: 56.0f,
                                     color: stylePack.searchIconBackgroundColor,

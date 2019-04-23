@@ -334,6 +334,7 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\ui\txt\paragraph.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\ui\txt\paragraph_builder.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\ui\txt\styled_runs.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\ui\txt\text_buff.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\ui\txt\utils.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\ui\txt\word_separate.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\ui\txt\wordbreaker.cs" />
@@ -398,6 +399,7 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\scroll_view.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\scrollable.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\scrollbar.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\selectable_text.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\single_child_scroll_view.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\sliver.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\sliver_persistent_header.cs" />

@@ -5,11 +5,10 @@ using DocCN.Models.Json;
 using DocCN.Style;
 using DocCN.Utility;
 using Newtonsoft.Json;
+using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
-using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
-using UnityEngine;
 using UnityEngine.Networking;
 using Color = Unity.UIWidgets.ui.Color;
 
@@ -29,7 +28,11 @@ namespace DocCN.Components
 
             private ScrollController _scrollController;
 
-            private ImageMeta[] _imageMetas; 
+            private ImageMeta[] _imageMetas;
+
+            private bool _loading;
+
+            private List<TapGestureRecognizer> _spanRecognizers;
 
             public override void initState()
             {
@@ -40,6 +43,7 @@ namespace DocCN.Components
 
             private void Load()
             {
+                _loading = true;
                 var url =
                     $"{Configuration.Instance.apiHost}/api/documentation/resource/v/2018.1/t/manual_json/f/{widget._title}.json";
                 var request = UnityWebRequest.Get(url);
@@ -68,6 +72,7 @@ namespace DocCN.Components
                                 _nextLink = model.next;
                                 _breadcrumbs = model.breadcrumbs;
                                 _imageMetas = model.imageMetas;
+                                _loading = false;
                             });
                         }
                     }
@@ -86,18 +91,26 @@ namespace DocCN.Components
 
             public override Widget build(BuildContext buildContext)
             {
-                if (_tokens == null)
+                if (_loading)
                 {
-                    return new Container();
+                    return new Container(
+                        child: new Center(
+                            child: new Loading(
+                                size: 48f
+                            )
+                        )
+                    );
                 }
 
-                var widgetCursor = new BuilderContext(_imageMetas);
+                var markdownBuildCtx = new BuilderContext(_imageMetas);
+                _spanRecognizers?.ForEach(recognizer => recognizer.dispose());
 
                 var widgets = new List<Widget>();
                 widgets.AddRange(_tokens
                     .Where(token => Mappings.ContainsKey(token.type))
-                    .Select(token => Mappings[token.type].Invoke(token, widgetCursor))
+                    .Select(token => Mappings[token.type].Invoke(token, markdownBuildCtx))
                     .Where(w => !(w is null)));
+                _spanRecognizers = markdownBuildCtx.spanRecognizers;
 
                 widgets.Insert(0,
                     new Container(
@@ -181,7 +194,7 @@ namespace DocCN.Components
                                 )
                             )
                         ),
-                        new MetaFields(widgetCursor.positionRecords, _scrollController)
+                        new MetaFields(markdownBuildCtx.positionRecords, _scrollController)
                     }
                 );
             }

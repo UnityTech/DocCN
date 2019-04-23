@@ -7,7 +7,6 @@ using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
-using UnityEngine;
 using UnityEngine.Networking;
 using Color = Unity.UIWidgets.ui.Color;
 using FontStyle = Unity.UIWidgets.ui.FontStyle;
@@ -35,9 +34,19 @@ namespace DocCN.Components
             color: new Color(0xff212121)
         );
 
+        private static readonly TextStyle NamespaceStyle = new TextStyle(
+            fontSize: 16f,
+            height: 1.5f,
+            color: new Color(0xff979797)
+        );
+
         private class ScriptingContentState : State<ScriptingContent>
         {
             private Models.Json.Scripting _scripting;
+
+            private bool _loading = false;
+
+            private Dictionary<string, ImageMeta> _imageMetas;
 
             public override void initState()
             {
@@ -47,7 +56,10 @@ namespace DocCN.Components
 
             private void Load()
             {
-                var url = $"{Configuration.Instance.apiHost}/api/documentation/resource/v/2018.1/t/scripting_json/f/{widget._title}.json";
+                _loading = true;
+                _imageMetas = new Dictionary<string, ImageMeta>();
+                var url =
+                    $"{Configuration.Instance.apiHost}/api/documentation/resource/v/2018.1/t/scripting_json/f/{widget._title}.json";
                 var request = UnityWebRequest.Get(url);
                 var asyncOperation = request.SendWebRequest();
                 asyncOperation.completed += operation =>
@@ -61,7 +73,14 @@ namespace DocCN.Components
                     {
                         var content = DownloadHandlerBuffer.GetContent(request);
                         var scripting = JsonConvert.DeserializeObject<Models.Json.Scripting>(content);
-                        setState(() => _scripting = scripting);
+                        setState(() =>
+                        {
+                            _scripting = scripting;
+                            _loading = false;
+                            _imageMetas = scripting.imageMetas?.ToDictionary(
+                                meta => meta.name,
+                                meta => meta);
+                        });
                     }
                 };
             }
@@ -76,7 +95,9 @@ namespace DocCN.Components
                 }
             }
 
-            private static void BuildSegment(BuildContext context, ICollection<Widget> columnItems, string name,
+            private void BuildSegment(
+                BuildContext context,
+                ICollection<Widget> columnItems, string name,
                 IReadOnlyCollection<Member> members)
             {
                 if (members == null || members.Count == 0)
@@ -117,9 +138,12 @@ namespace DocCN.Components
                                                         left: 24f,
                                                         right: 24f
                                                     ),
-                                                    child: new Text(
-                                                        member.name,
-                                                        style: HyperLinkStyle
+                                                    child: new Clickable(
+                                                        onTap: () => LocationUtil.Go($"/Scripting/{member.id}"),
+                                                        child: new Text(
+                                                            member.name,
+                                                            style: HyperLinkStyle
+                                                        )
                                                     )
                                                 ),
                                                 new Container(
@@ -142,7 +166,8 @@ namespace DocCN.Components
                 columnItems.Add(container);
             }
 
-            private static Widget BuildTextUsingMixedContent(BuildContext context,
+            private Widget BuildTextUsingMixedContent(
+                BuildContext context,
                 IEnumerable<MixedContent> summary)
             {
                 if (summary is null)
@@ -172,17 +197,15 @@ namespace DocCN.Components
                                     )
                                 );
                             case DocumentTagImage image:
-                                var networkImage = new NetworkImage(
-                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/James_Harden_%2830735342912%29.jpg/220px-James_Harden_%2830735342912%29.jpg");
-                                networkImage.resolve(new ImageConfiguration())
-                                    .addListener((info, call) =>
-                                    {
-                                        Debug.Log($"{info.image.width}*{info.image.height}");
-                                    });
+                                var networkImage =
+                                    new NetworkImage(
+                                        $"{Configuration.Instance.apiHost}/api/documentation/resource/v/2018.1/t/scripting_static/f/{image.name}");
+                                networkImage.resolve(new ImageConfiguration());
                                 return new ImageSpan(
                                     networkImage,
-                                    imageWidth: 220f,
-                                    imageHeight: 337f
+                                    margin: EdgeInsets.symmetric(vertical: 16f),
+                                    imageWidth: _imageMetas[image.name].width,
+                                    imageHeight: _imageMetas[image.name].height
                                 );
                             case DocumentTagItalic italic:
                                 return new TextSpan(
@@ -201,15 +224,21 @@ namespace DocCN.Components
 
             public override Widget build(BuildContext context)
             {
-                if (_scripting == null)
+                if (_loading)
                 {
-                    return new Container();
+                    return new Container(
+                        child: new Center(
+                            child: new Loading(
+                                size: 48f
+                            )
+                        )
+                    );
                 }
 
                 var children = new List<Widget>
                 {
-                    new Breadcrumbs(null),
                     new Container(
+                        margin: EdgeInsets.only(top: 24, bottom: 8f),
                         child: new Text(
                             widget._title.Split('.').Last().Replace("-", "."),
                             style: new TextStyle(
@@ -217,8 +246,20 @@ namespace DocCN.Components
                                 fontWeight: FontWeight.w500
                             )
                         )
-                    )
+                    ),
                 };
+
+                if (!string.IsNullOrEmpty(_scripting.model.@namespace))
+                {
+                    children.Add(new Container(
+                            child: new Text(
+                                $"class in {_scripting.model.@namespace}",
+                                style: NamespaceStyle
+                            ),
+                            margin: EdgeInsets.only(bottom: 24)
+                        )
+                    );
+                }
 
                 foreach (var sections in _scripting.model.section)
                 {
@@ -242,6 +283,7 @@ namespace DocCN.Components
                                             )
                                         ),
                                         padding: EdgeInsets.all(24f),
+                                        margin: EdgeInsets.only(top: 16, bottom: 24),
                                         child: BuildTextUsingMixedContent(context, example.cSharp)
                                     )
                                 );
@@ -260,9 +302,31 @@ namespace DocCN.Components
                 BuildSegment(context, children, "Messages", _scripting.model.messages);
                 BuildSegment(context, children, "Events", _scripting.model.events);
                 BuildSegment(context, children, "Delegates", _scripting.model.delegates);
-                return new Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: children
+                var padding = new Container(height: 48f);
+                children.Add(padding);
+                return new SingleChildScrollView(
+                    child: new ScrollableOverlay(
+                        child: new Container(
+                            padding: EdgeInsets.only(right: 48f),
+                            child: new Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: new List<Widget>
+                                {
+                                    new Container(
+                                        constraints: new BoxConstraints(
+                                            minHeight: MediaQuery.of(context).size.height - Header.Height -
+                                                       SearchBar.Height - Footer.Height
+                                        ),
+                                        child: new Column(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: children)
+                                    ),
+                                    new Footer(style: Footer.Light, showSocials: false)
+                                }
+                            )
+                        )
+                    )
                 );
             }
         }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
@@ -24,9 +25,12 @@ public class Build
                 BuildTargetGroup.WebGL
             );
 
+            var newSymbols = oldSymbolsForGroup.Split(';').ToList();
+            newSymbols.Add($"DOC_BUILD_{environment.ToUpper()}");
+
             PlayerSettings.SetScriptingDefineSymbolsForGroup(
                 BuildTargetGroup.WebGL,
-                $"{oldSymbolsForGroup};DOC_BUILD_{environment.ToUpper()}"
+                string.Join(";", newSymbols.Distinct())
             );
 
             var report = BuildPipeline.BuildPlayer(buildPlayerOptions);

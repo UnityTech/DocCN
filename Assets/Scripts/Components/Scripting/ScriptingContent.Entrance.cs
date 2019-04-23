@@ -17,7 +17,8 @@ namespace DocCN.Components
             private static readonly TextStyle EntranceNormalTextStyle = new TextStyle(
                 fontSize: 16,
                 color: new Color(0xff212121),
-                fontFamily: "PingFang"
+                fontFamily: "PingFang",
+                height: 1.5f
             );
 
             private static readonly TextStyle EntranceBoldTextStyle = new TextStyle(

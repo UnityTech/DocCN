@@ -4,8 +4,9 @@ using DocCN.Utility;
 using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
-using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
+using UnityEngine;
+using Color = Unity.UIWidgets.ui.Color;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
 namespace DocCN.Components
@@ -54,8 +55,15 @@ namespace DocCN.Components
 
                 private void OnTap()
                 {
-                    var link = $"{widget._parent.widget._type.PageUrlPrefix()}/{widget._bind.link}";
-                    LocationUtil.Go(link);
+                    if (string.IsNullOrEmpty(widget._bind.link) || "null".Equals(widget._bind.link))
+                    {
+                        OnExpandTap();
+                    }
+                    else
+                    {
+                        var link = $"{widget._parent.widget._type.PageUrlPrefix()}/{widget._bind.link}";
+                        LocationUtil.Go(link);
+                    }
                 }
 
                 private void OnExpandTap()

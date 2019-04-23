@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using UnityEngine;
 
 namespace DocCN.Models.Json
 {
@@ -40,7 +39,7 @@ namespace DocCN.Models.Json
                 case "image":
                     return new DocumentTagImage
                     {
-                        url = serializer.Deserialize<string>(jObject["value"]["url"].CreateReader())
+                        name = serializer.Deserialize<string>(jObject["value"]["url"].CreateReader())
                     };
                 case "i":
                     return new DocumentTagItalic
@@ -59,7 +58,7 @@ namespace DocCN.Models.Json
     public interface MixedContent
     {
     }
-
+    
     public class DocumentCharData : MixedContent
     {
         public string content { get; set; }
@@ -79,7 +78,7 @@ namespace DocCN.Models.Json
 
     public class DocumentTagImage : MixedContent
     {
-        public string url { get; set; }
+        public string name { get; set; }
     }
 
     public class DocumentTagTeletype : MixedContent

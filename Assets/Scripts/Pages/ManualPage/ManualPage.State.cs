@@ -17,7 +17,9 @@ namespace DocCN.Pages
                     children: new List<Widget>
                     {
                         new Header(),
-                        new SearchBar(),
+                        new SearchBar(
+                            filterDropDownOverlayType: DropDownOverlayType.builtin
+                        ),
                         new Expanded(
                             child: new Container(
                                 color: new Color(0xffffffff),
@@ -28,7 +30,7 @@ namespace DocCN.Pages
                                         new Menu(MenuType.manual),
                                         new Expanded(
                                             child: new MarkdownContent(widget._title)
-                                        ),                                        
+                                        ),
                                     }
                                 )
                             )

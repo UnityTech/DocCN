@@ -4,7 +4,7 @@ namespace DocCN.Components
 {
     public partial class ScriptingContent : StatefulWidget
     {
-        public ScriptingContent(string title)
+        public ScriptingContent(string title) : base(key: new ObjectKey(title))
         {
             _title = title;
         }

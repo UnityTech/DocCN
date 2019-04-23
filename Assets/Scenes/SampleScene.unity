@@ -393,7 +393,7 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
-  devicePixelRatioOverride: 1
+  devicePixelRatioOverride: 0
   antiAliasingOverride: 4
 --- !u!222 &1013962116
 CanvasRenderer:

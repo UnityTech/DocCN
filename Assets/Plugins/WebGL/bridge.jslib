@@ -1,7 +1,9 @@
 mergeInto(LibraryManager.library, {
     Initialize: function () {
-        window.addEventListener('popstate', function (e) {
-
+        window.addEventListener('popstate', function () {
+            setTimeout(function() {
+                SendMessage('Panel', 'LocationChange', window.location.pathname);
+            }, 0);
         });
         SendMessage('Panel', 'LocationChange', window.location.pathname);
     },
@@ -24,5 +26,12 @@ mergeInto(LibraryManager.library, {
 
     HrefTo: function (url) {
         window.location.href = Pointer_stringify(url);
+    },
+    
+    Download: function (url, filename) {
+        var a = document.createElement('a');
+        a.href = Pointer_stringify(url);
+        a.download = Pointer_stringify(filename);
+        a.click();
     },
 });

@@ -1,13 +1,11 @@
-using System;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using UnityEngine;
 
 namespace DocCN.Models.Json
 {
     public class Scripting
     {
         [JsonProperty("model")] public Model model { get; set; }
+        [JsonProperty("image_meta")] public ImageMeta[] imageMetas { get; set; }
     }
 
     public class Model

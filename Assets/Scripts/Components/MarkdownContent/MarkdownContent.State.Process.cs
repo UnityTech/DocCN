@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using DocCN.Models.Json;
 using DocCN.Utility;
+using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
+using UnityEngine;
 using Color = Unity.UIWidgets.ui.Color;
 using FontStyle = Unity.UIWidgets.ui.FontStyle;
-using Image = Unity.UIWidgets.widgets.Image;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
 namespace DocCN.Components
@@ -93,6 +94,13 @@ namespace DocCN.Components
                             fontFamily: "PingFang"
                         );
                         break;
+                    case "h5":
+                        ctx.textStyle = new TextStyle(
+                            fontSize: 18f,
+                            height: 1.26666666667f,
+                            fontFamily: "PingFang"
+                        );
+                        break;
                     default:
                         throw new FormatException();
                 }
@@ -157,7 +165,12 @@ namespace DocCN.Components
 
             private static Widget ProcessText(Token token, BuilderContext ctx)
             {
-                ctx.inline.Peek().children.Add(new TextSpan(token.content));
+                ctx.inline.Peek().children.Add(
+                    new TextSpan(
+                        token.content,
+                        recognizer: ctx.useRecognizer ? ctx.spanRecognizers.Last() : null
+                    )
+                );
                 return null;
             }
 
@@ -201,13 +214,38 @@ namespace DocCN.Components
 
             private static Widget ProcessLinkOpen(Token token, BuilderContext ctx)
             {
-                var url = token.attrs[0][1];
-                if (url.EndsWith(".html"))
+                var uriString = token.attrs[0][1];
+                ctx.spanRecognizers.Add(new TapGestureRecognizer
                 {
-                    url = url.Remove(url.IndexOf(".html"));
-                }
-
-                url = $"/Manual/{url}";
+                    onTap = () =>
+                    {
+                        var uri = new Uri(uriString);
+                        switch (uri.Scheme.ToLower())
+                        {
+                            case "manual":
+                                LocationUtil.Go($"/Manual/{uri.LocalPath}");
+                                break;
+                            case "http":
+                            case "https":
+                            case "mailto":
+                                LocationUtil.HrefTo(uriString);
+                                break;
+                            case "scripting":
+                                LocationUtil.Go($"/Scripting/{uri.LocalPath}");
+                                break;
+                            case "attachment":
+                                LocationUtil.Download(
+                                    $"{Configuration.Instance.apiHost}/api/documentation/resource/v/2018.1/t/manual_static/f/{uri.LocalPath}",
+                                    uri.LocalPath
+                                );
+                                break;
+                            
+                            default:
+                                Debug.Log($"Unrecognized scheme of uri {uriString}");
+                                break;
+                        }
+                    }
+                });
                 var span = new TextSpan(
                     children: new List<TextSpan>(),
                     style: new TextStyle(
@@ -216,6 +254,7 @@ namespace DocCN.Components
                     )
                 );
                 ctx.inline.Push(span);
+                ctx.useRecognizer = true;
                 return null;
             }
 
@@ -223,6 +262,7 @@ namespace DocCN.Components
             {
                 var span = ctx.inline.Pop();
                 ctx.inline.Peek().children.Add(span);
+                ctx.useRecognizer = false;
                 return null;
             }
 
@@ -260,7 +300,7 @@ namespace DocCN.Components
                             width: 1f,
                             color: new Color(0xffe0e0e0)
                         ),
-                        defaultColumnWidth: new IntrinsicColumnWidth(1.0f),
+                        defaultColumnWidth: new FlexColumnWidth(1.0f),
                         children: tableRows
                     )
                 );

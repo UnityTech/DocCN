@@ -9,13 +9,17 @@ namespace DocCN.Components
 {
     public partial class DropDown<T>
     {
-        private class DropDownState : State<DropDown<T>>
+        public class DropDownState : State<DropDown<T>>
         {
             private PointerRoute _pointerRoute;
 
             private WidgetBuilder _dropDownOverlayBuilder;
 
+            private OverlayEntry _overlayEntry;
+
             private Guid? _guid;
+
+            private bool _expanded;
 
             public override void initState()
             {
@@ -36,7 +40,7 @@ namespace DocCN.Components
                                 left: offset.dx,
                                 color: widget._overlayColor,
                                 border: widget._overlayBorder,
-                                children: widget._items.Select(item => widget._itemBuilder.Invoke(item)).ToList()
+                                children: widget._items.Select(item => widget._itemBuilder.Invoke(this, item)).ToList()
                             );
                         }
                         case DropDownDirection.top:
@@ -47,28 +51,55 @@ namespace DocCN.Components
                                 bottom: overlayRenderBox.size.height - offset.dy,
                                 color: widget._overlayColor,
                                 border: widget._overlayBorder,
-                                children: widget._items.Select(item => widget._itemBuilder.Invoke(item)).ToList()
+                                children: widget._items.Select(item => widget._itemBuilder.Invoke(this, item)).ToList()
                             );
                         }
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
                 };
-                _pointerRoute = evt =>
+                _overlayEntry = new OverlayEntry(_dropDownOverlayBuilder);
+                _expanded = false;
+            }
+
+            public override void dispose()
+            {
+                if (_expanded)
                 {
-                    if (evt is PointerDownEvent)
-                    {
-                        var renderBox = context.findRenderObject() as RenderBox;
-                        if (!renderBox.paintBounds.contains(evt.position))
+                    Dismiss();
+                }
+
+                base.dispose();
+            }
+
+            public void Dismiss()
+            {
+                ScreenOverlay.of(context).RemoveOnTapListener(OnScreenTap);
+                switch (widget._overlayType)
+                {
+                    case DropDownOverlayType.scrollable:
+                        if (_guid != null)
                         {
-                            GestureBinding.instance.pointerRouter.removeGlobalRoute(_pointerRoute);
-                            if (_guid != null)
-                            {
-                                ScrollableOverlay.of(context).Remove(_guid.Value);
-                            }
+                            ScrollableOverlay.of(context).Remove(_guid.Value);
                         }
-                    }
-                };
+
+                        break;
+                    case DropDownOverlayType.builtin:
+                        _overlayEntry.remove();
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+                _expanded = false;
+            }
+
+            private void OnScreenTap()
+            {
+                if (!_expanded)
+                {
+                    return;
+                }
+                Dismiss();
             }
 
             public override Widget build(BuildContext buildContext)
@@ -76,8 +107,23 @@ namespace DocCN.Components
                 return new Clickable(
                     onTap: () =>
                     {
-                        GestureBinding.instance.pointerRouter.addGlobalRoute(_pointerRoute);
-                        _guid = ScrollableOverlay.of(buildContext).Add(_dropDownOverlayBuilder);
+                        if (_expanded)
+                        {
+                            return;
+                        }
+                        _expanded = true;
+                        switch (widget._overlayType)
+                        {
+                            case DropDownOverlayType.scrollable:
+                                _guid = ScrollableOverlay.of(buildContext).Add(_dropDownOverlayBuilder);
+                                break;
+                            case DropDownOverlayType.builtin:
+                                Overlay.of(buildContext).insert(_overlayEntry);
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
+                        ScreenOverlay.of(buildContext).AddOnTapListener(OnScreenTap);
                     },
                     child: widget._selectBuilder.Invoke()
                 );

@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using DocCN.Components;
 using DocCN.Models.Json;
 using DocCN.Utility;
@@ -7,7 +9,9 @@ using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
+using UnityEngine;
 using UnityEngine.Networking;
+using Color = Unity.UIWidgets.ui.Color;
 
 namespace DocCN.Pages
 {
@@ -19,27 +23,36 @@ namespace DocCN.Pages
 
             private string _keyword;
             private int _page;
+            private bool _searching;
+            private SearchBar.FilterType _filterType;
 
             public override void initState()
             {
                 base.initState();
-                _keyword = widget._keyword;
-                _page = widget._page;
+                _searching = false;
                 DoSearch();
             }
 
             public override void didUpdateWidget(StatefulWidget oldWidget)
             {
                 base.didUpdateWidget(oldWidget);
-                _keyword = widget._keyword;
-                _page = widget._page;
                 DoSearch();
             }
 
             private void DoSearch()
             {
+                _keyword = HttpUtility.UrlDecode(widget._keyword);
+                _page = widget._page;
+                _filterType = widget._filterType;
+
+                if (_keyword == string.Empty)
+                {
+                    return;
+                }
+
+                _searching = true;
                 var url =
-                    $"{Configuration.Instance.apiHost}/api/documentation/search/v/2018.1/t/manual?query={_keyword}&page={_page}&pageSize=10";
+                    $"{Configuration.Instance.apiHost}/api/documentation/search/v/2018.1/t/{_filterType}?query={_keyword}&page={_page}&pageSize=10";
                 var request = UnityWebRequest.Get(url);
                 var asyncOperation = request.SendWebRequest();
                 asyncOperation.completed += operation =>
@@ -53,7 +66,11 @@ namespace DocCN.Pages
                     {
                         var content = DownloadHandlerBuffer.GetContent(request);
                         var results = JsonConvert.DeserializeObject<SearchResults>(content);
-                        setState(() => { _results = results; });
+                        setState(() =>
+                        {
+                            _results = results;
+                            _searching = false;
+                        });
                     }
                 };
             }
@@ -62,41 +79,66 @@ namespace DocCN.Pages
             {
                 var size = MediaQuery.of(context).size;
                 var children = new List<Widget>();
-                if (_results?.items != null)
+                var mainAxisAlignment = _searching ? MainAxisAlignment.center : MainAxisAlignment.start;
+                if (_searching)
                 {
                     children.Add(
                         new Container(
-                            height: 24f,
-                            child: new Align(
-                                alignment: Alignment.centerLeft,
-                                child: new Text(
-                                    $"您搜索的“{_keyword}”共有{_results.total}个匹配的结果",
-                                    style: new TextStyle(
-                                        fontSize: 16f,
-                                        fontWeight: FontWeight.w500
-                                    )
+                            child: new Center(
+                                child: new Loading(
+                                    size: 48f
                                 )
-                            ),
-                            margin: EdgeInsets.only(bottom: 16f)
-                        )
-                    );
-                    foreach (var searchResultItem in _results.items)
-                    {
-                        children.Add(new SearchResultCard(searchResultItem));
-                    }
-
-                    children.Add(
-                        new Container(
-                            margin: EdgeInsets.only(top: 16f),
-                            child: new Pager(
-                                pages: _results.pages,
-                                currentPage: _results.currentPage,
-                                totalPages: _results.totalPages,
-                                onPageChanged: page => LocationUtil.Go($"/Search/{_keyword}/{page}")
                             )
                         )
                     );
                 }
+                else
+                {
+                    if (_results != null)
+                    {
+                        children.Add(
+                            new Container(
+                                height: 24f,
+                                child: new Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: new Text(
+                                        _results.total == 0
+                                            ? $"您搜索的 “{_keyword}” 暂无匹配的结果"
+                                            : $"您搜索的“{_keyword}”共有{_results.total}个匹配的结果",
+                                        style: new TextStyle(
+                                            fontSize: 16f,
+                                            fontWeight: FontWeight.w500
+                                        )
+                                    )
+                                ),
+                                margin: EdgeInsets.only(bottom: 16f)
+                            )
+                        );
+                        if (_results.items != null)
+                        {
+                            children.AddRange(_results.items
+                                .Select(searchResultItem => new SearchResultCard(searchResultItem))
+                                .Cast<Widget>());
+                        }
+
+                        if (_results.pages != null)
+                        {
+                            children.Add(
+                                new Container(
+                                    margin: EdgeInsets.only(top: 16f),
+                                    child: new Pager(
+                                        pages: _results.pages,
+                                        currentPage: _results.currentPage,
+                                        totalPages: _results.totalPages,
+                                        onPageChanged: page =>
+                                            LocationUtil.Go($"/Search/{HttpUtility.UrlEncode(_keyword)}/{page}")
+                                    )
+                                )
+                            );
+                        }
+                    }
+                }
+
 
                 var pageHeight = MediaQuery.of(context).size.height;
                 const float minHeight = Header.Height + SearchBar.Height + Footer.Height;
@@ -122,6 +164,7 @@ namespace DocCN.Pages
                                         color: new Color(0xfff2f1f2),
                                         child: new Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment: mainAxisAlignment,
                                             children: children
                                         )
                                     ),

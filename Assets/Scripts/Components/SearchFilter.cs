@@ -123,7 +123,6 @@ namespace DocCN.Components
                 return new GestureDetector(
                     onTap: () =>
                     {
-                        Debug.Log($"YOU TAP HERE {this.controller.value}");
                         if (controller.value > 0.5)
                         {
                             this.controller.reverse();                            
