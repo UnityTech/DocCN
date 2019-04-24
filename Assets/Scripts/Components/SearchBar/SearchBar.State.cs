@@ -15,6 +15,7 @@ namespace DocCN.Components
             private FilterType _filterType;
             private TextEditingController _textEditingController;
             private FocusNode _focusNode;
+            private ScreenOverlay.ScreenOverlayState _screenOverlayState;
 
             public override void initState()
             {
@@ -22,12 +23,15 @@ namespace DocCN.Components
                 _filterType = FilterType.manual;
                 _textEditingController = new TextEditingController();
                 _focusNode = new FocusNode();
+                _screenOverlayState = ScreenOverlay.of(context);
+                _screenOverlayState.AddOnTapListener(LoseFocus);
             }
 
             public override void dispose()
             {
                 _focusNode.dispose();
                 _textEditingController.dispose();
+                _screenOverlayState.RemoveOnTapListener(LoseFocus);
                 base.dispose();
             }
 
@@ -38,7 +42,12 @@ namespace DocCN.Components
                 LocationUtil.Go($"/Search/{_filterType}/{encodedKeyword}");
             }
 
-            public override Widget build(BuildContext context)
+            private void LoseFocus()
+            {
+                _focusNode.unfocus();
+            }
+
+            public override Widget build(BuildContext buildContext)
             {
                 var stylePack = widget._style.StylePack();
                 var row = new Container(
@@ -94,20 +103,27 @@ namespace DocCN.Components
                                 overlayBorder: stylePack.filterItemsBorder
                             ),
                             new Expanded(
-                                child: new Container(
-                                    color: stylePack.searchInputBackgroundColor,
-                                    padding: EdgeInsets.symmetric(horizontal: 24f),
-                                    child: new Center(
-                                        child: new EditableText(
-                                            controller: _textEditingController,
-                                            focusNode: _focusNode,
-                                            style: new TextStyle(
-                                                color: stylePack.searchInputColor,
-                                                fontSize: 16f,
-                                                fontFamily: "PingFang"
-                                            ),
-                                            cursorColor: stylePack.searchInputColor,
-                                            onEditingComplete: GoToSearch
+                                child: new GestureDetector(
+                                    onTap: () => FocusScope.of(buildContext).requestFocus(_focusNode),
+                                    child: new Listener(
+                                        onPointerEnter: evt => Bridge.ChangeCursor("text"),
+                                        onPointerLeave: evt => Bridge.ChangeCursor("default"),
+                                        child: new Container(
+                                            color: stylePack.searchInputBackgroundColor,
+                                            padding: EdgeInsets.symmetric(horizontal: 24f),
+                                            child: new Center(
+                                                child: new EditableText(
+                                                    controller: _textEditingController,
+                                                    focusNode: _focusNode,
+                                                    style: new TextStyle(
+                                                        color: stylePack.searchInputColor,
+                                                        fontSize: 16f,
+                                                        fontFamily: "PingFang"
+                                                    ),
+                                                    cursorColor: stylePack.searchInputColor,
+                                                    onEditingComplete: GoToSearch
+                                                )
+                                            )
                                         )
                                     )
                                 )

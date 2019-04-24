@@ -6,7 +6,7 @@ namespace DocCN.Utility
 
         static ObservableUtil()
         {
-            currentPath = new Observable<string>($"{Configuration.Instance.pageBase}/");
+            currentPath = new Observable<string>($"{Configuration.Instance.pageBase}/Manual/ReducingFilesize");
         }
     }
 

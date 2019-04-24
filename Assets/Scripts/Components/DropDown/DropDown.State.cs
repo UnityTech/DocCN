@@ -4,6 +4,7 @@ using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
+using UnityEngine;
 
 namespace DocCN.Components
 {
@@ -20,6 +21,8 @@ namespace DocCN.Components
             private Guid? _guid;
 
             private bool _expanded;
+
+            private ScreenOverlay.ScreenOverlayState _screenOverlayState;
 
             public override void initState()
             {
@@ -74,7 +77,7 @@ namespace DocCN.Components
 
             public void Dismiss()
             {
-                ScreenOverlay.of(context).RemoveOnTapListener(OnScreenTap);
+                _screenOverlayState?.RemoveOnTapListener(OnScreenTap);
                 switch (widget._overlayType)
                 {
                     case DropDownOverlayType.scrollable:
@@ -123,7 +126,12 @@ namespace DocCN.Components
                             default:
                                 throw new ArgumentOutOfRangeException();
                         }
-                        ScreenOverlay.of(buildContext).AddOnTapListener(OnScreenTap);
+
+                        if (_screenOverlayState == null)
+                        {
+                            _screenOverlayState = ScreenOverlay.of(buildContext);
+                        }
+                        _screenOverlayState.AddOnTapListener(OnScreenTap);
                     },
                     child: widget._selectBuilder.Invoke()
                 );

@@ -33,6 +33,7 @@ namespace DocCN.Components
             private class EntranceState : State<Entrance>
             {
                 private TapGestureRecognizer _scriptingSectionRecognizer;
+
                 public override void initState()
                 {
                     base.initState();
@@ -50,7 +51,7 @@ namespace DocCN.Components
 
                 public override Widget build(BuildContext buildContext)
                 {
-                    return new Container(
+                    var container = new Container(
                         padding: EdgeInsets.only(right: 64f, top: 32, bottom: 32f),
                         child: new Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,6 +130,27 @@ namespace DocCN.Components
                                     )
                                 ),
                             }
+                        )
+                    );
+                    return new SingleChildScrollView(
+                        child: new ScrollableOverlay(
+                            child: new Container(
+                                padding: EdgeInsets.only(right: 48f),
+                                child: new Column(
+                                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                                    children: new List<Widget>
+                                    {
+                                        new Container(
+                                            constraints: new BoxConstraints(
+                                                minHeight: MediaQuery.of(context).size.height - Header.Height -
+                                                           SearchBar.Height - Footer.Height
+                                            ),
+                                            child: container
+                                        ),
+                                        new Footer(style: Footer.Light, showSocials: false)
+                                    }
+                                )
+                            )
                         )
                     );
                 }

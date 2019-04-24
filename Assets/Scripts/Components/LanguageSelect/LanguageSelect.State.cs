@@ -75,12 +75,15 @@ namespace DocCN.Components
     {
         public LanguageItem(
             Language language,
+            DropDown<Language>.DropDownState parentState,
             Key key = null) : base(key)
         {
             _language = language;
+            _parentState = parentState;
         }
 
         private readonly Language _language;
+        private readonly DropDown<Language>.DropDownState _parentState;
         public override State createState() => new LanguageItemState();
 
         private static readonly Color HoverColor = new Color(0xffd8d8d8);
@@ -110,6 +113,8 @@ namespace DocCN.Components
                 {
                     LocationUtil.HrefTo(widget._language.Link());
                 }
+
+                widget._parentState.Dismiss();
             }
 
             public override Widget build(BuildContext context)
@@ -149,11 +154,7 @@ namespace DocCN.Components
                     direction: DropDownDirection.top,
                     items: Enum.GetValues(typeof(Language)).Cast<Language>(),
                     overlayBorder: Border.all(color: new Color(0xffd8d8d8), width: 1f),
-                    itemBuilder: (state, lang) =>
-                    {
-                        state.Dismiss();
-                        return new LanguageItem(lang);
-                    },
+                    itemBuilder: (state, lang) => new LanguageItem(lang, state),
                     overlayColor: new Color(0xffd8d8d8),
                     selectBuilder: () => new Container(
                         height: 32f,

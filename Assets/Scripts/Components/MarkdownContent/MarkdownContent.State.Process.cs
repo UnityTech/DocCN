@@ -26,6 +26,8 @@ namespace DocCN.Components
 
             private static readonly Color DividerColor = new Color(0xffe0e0e0);
 
+            private static readonly HoverRecognizer HoverRecognizer;
+
             static MarkdownContentState()
             {
                 Mappings = new Dictionary<string, Func<Token, BuilderContext, Widget>>
@@ -56,6 +58,12 @@ namespace DocCN.Components
                     ["td_close"] = ProcessTDClose,
                     ["image"] = ProcessImage,
                     ["hr"] = ProcessHR,
+                };
+
+                HoverRecognizer = new HoverRecognizer
+                {
+                    OnPointerEnter = evt => Bridge.ChangeCursor("pointer"),
+                    OnPointerLeave = () => Bridge.ChangeCursor("default")
                 };
             }
 
@@ -168,7 +176,8 @@ namespace DocCN.Components
                 ctx.inline.Peek().children.Add(
                     new TextSpan(
                         token.content,
-                        recognizer: ctx.useRecognizer ? ctx.spanRecognizers.Last() : null
+                        recognizer: ctx.useRecognizer ? ctx.spanRecognizers.Last() : null,
+                        hoverRecognizer: ctx.useRecognizer ? HoverRecognizer : null
                     )
                 );
                 return null;

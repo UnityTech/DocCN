@@ -37,7 +37,8 @@ namespace DocCN.Components
 
         public override Widget build(BuildContext context)
         {
-            return new Row(
+            return new Wrap(
+                runSpacing: 8f,
                 children: _breadcrumbs?
                     .Select<Breadcrumb, Widget>(
                         breadcrumb => new ClickableText(
