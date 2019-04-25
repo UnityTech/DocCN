@@ -28,6 +28,12 @@ namespace DocCN.Components
 
             private static readonly HoverRecognizer HoverRecognizer;
 
+            private static readonly TextStyle FenceTextStyle = new TextStyle(
+                color: new Color(0xff212121),
+                fontSize: 16f,
+                height: 1.5f
+            );
+
             static MarkdownContentState()
             {
                 Mappings = new Dictionary<string, Func<Token, BuilderContext, Widget>>
@@ -58,6 +64,7 @@ namespace DocCN.Components
                     ["td_close"] = ProcessTDClose,
                     ["image"] = ProcessImage,
                     ["hr"] = ProcessHR,
+                    ["fence"] = ProcessFence,
                 };
 
                 HoverRecognizer = new HoverRecognizer
@@ -248,7 +255,7 @@ namespace DocCN.Components
                                     uri.LocalPath
                                 );
                                 break;
-                            
+
                             default:
                                 Debug.Log($"Unrecognized scheme of uri {uriString}");
                                 break;
@@ -401,6 +408,23 @@ namespace DocCN.Components
                     margin: EdgeInsets.symmetric(vertical: 16f),
                     height: 1f,
                     color: DividerColor
+                );
+            }
+
+            private static Widget ProcessFence(Token token, BuilderContext ctx)
+            {
+                return new Container(
+                    margin: EdgeInsets.only(top: 16),
+                    decoration: new BoxDecoration(
+                        border: Border.all(
+                            color: new Color(0xffe0e0e0)
+                        )
+                    ),
+                    padding: EdgeInsets.all(16f),
+                    child: new Text(
+                        token.content.Trim(),
+                        style: FenceTextStyle
+                    )
                 );
             }
 

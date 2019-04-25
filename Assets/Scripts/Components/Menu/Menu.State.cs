@@ -83,7 +83,7 @@ namespace DocCN.Components
                             child: new Align(
                                 alignment: Alignment.centerLeft,
                                 child: new Text(
-                                    "unity手册",
+                                    widget._type.ToChinese(),
                                     style: new TextStyle(
                                         fontSize: 24.0f,
                                         fontWeight: FontWeight.w500

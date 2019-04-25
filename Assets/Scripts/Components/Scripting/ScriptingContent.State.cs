@@ -34,11 +34,20 @@ namespace DocCN.Components
             color: new Color(0xff212121)
         );
 
+        private static readonly TextStyle SecondaryTitleStyle = new TextStyle(
+            fontSize: 24f,
+            height: 36 / 24,
+            color: new Color(0xff616161)
+        );
+
         private static readonly TextStyle NamespaceStyle = new TextStyle(
             fontSize: 16f,
             height: 1.5f,
             color: new Color(0xff979797)
         );
+
+        private static readonly EdgeInsets TitleMargin = EdgeInsets.only(top: 40f, bottom: 16f);
+        private static readonly EdgeInsets SecondaryTitleMargin = EdgeInsets.only(top: 24f, bottom: 16f);
 
         private class ScriptingContentState : State<ScriptingContent>
         {
@@ -48,10 +57,19 @@ namespace DocCN.Components
 
             private Dictionary<string, ImageMeta> _imageMetas;
 
+            private ScrollController _scrollController;
+
             public override void initState()
             {
                 base.initState();
+                _scrollController = new ScrollController();
                 Load();
+            }
+
+            public override void dispose()
+            {
+                _scrollController.dispose();
+                base.dispose();
             }
 
             private void Load()
@@ -97,8 +115,10 @@ namespace DocCN.Components
 
             private void BuildSegment(
                 BuildContext context,
-                ICollection<Widget> columnItems, string name,
-                IReadOnlyCollection<Member> members)
+                ICollection<Widget> columnItems,
+                string name,
+                IReadOnlyCollection<Member> members,
+                bool primary = true)
             {
                 if (members == null || members.Count == 0)
                 {
@@ -111,13 +131,10 @@ namespace DocCN.Components
                         children: new List<Widget>
                         {
                             new Container(
-                                margin: EdgeInsets.only(
-                                    top: 40f,
-                                    bottom: 16f
-                                ),
+                                margin: primary ? TitleMargin : SecondaryTitleMargin,
                                 child: new Text(
                                     name,
-                                    style: TitleStyle
+                                    style: primary ? TitleStyle : SecondaryTitleStyle
                                 )
                             ),
                             new Table(
@@ -302,31 +319,62 @@ namespace DocCN.Components
                 BuildSegment(context, children, "Messages", _scripting.model.messages);
                 BuildSegment(context, children, "Events", _scripting.model.events);
                 BuildSegment(context, children, "Delegates", _scripting.model.delegates);
-                var padding = new Container(height: 48f);
-                children.Add(padding);
-                return new SingleChildScrollView(
-                    child: new ScrollableOverlay(
-                        child: new Container(
-                            padding: EdgeInsets.only(right: 48f),
-                            child: new Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: new List<Widget>
-                                {
-                                    new Container(
-                                        constraints: new BoxConstraints(
-                                            minHeight: MediaQuery.of(context).size.height - Header.Height -
-                                                       SearchBar.Height - Footer.Height
-                                        ),
-                                        child: new Column(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: children)
-                                    ),
-                                    new Footer(style: Footer.Light, showSocials: false)
-                                }
+                if (_scripting.model.baseType != null)
+                {
+                    children.Add(
+                        new Container(
+                            margin: TitleMargin,
+                            child: new Text(
+                                "Inherited Members",
+                                style: TitleStyle
                             )
                         )
-                    )
+                    );
+                    BuildSegment(context, children, "Static Properties", _scripting.model.baseType.staticVars, false);
+                    BuildSegment(context, children, "Properties", _scripting.model.baseType.vars, false);
+                    BuildSegment(context, children, "Constructors", _scripting.model.baseType.constructors, false);
+                    BuildSegment(context, children, "Public Methods", _scripting.model.baseType.memberFunctions, false);
+                    BuildSegment(context, children, "Protected Methods", _scripting.model.baseType.protectedFunctions,
+                        false);
+                    BuildSegment(context, children, "Static Methods", _scripting.model.baseType.staticFunctions, false);
+                    BuildSegment(context, children, "Operators", _scripting.model.baseType.operators, false);
+                    BuildSegment(context, children, "Messages", _scripting.model.baseType.messages, false);
+                    BuildSegment(context, children, "Events", _scripting.model.baseType.events, false);
+                    BuildSegment(context, children, "Delegates", _scripting.model.baseType.delegates, false);
+                }
+
+                var padding = new Container(height: 48f);
+                children.Add(padding);
+                return new Stack(
+                    children: new List<Widget>
+                    {
+                        new SingleChildScrollView(
+                            controller: _scrollController,
+                            child: new ScrollableOverlay(
+                                child: new Container(
+                                    padding: EdgeInsets.only(right: 48f),
+                                    child: new Column(
+                                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                                        children: new List<Widget>
+                                        {
+                                            new Container(
+                                                constraints: new BoxConstraints(
+                                                    minHeight: MediaQuery.of(context).size.height - Header.Height -
+                                                               SearchBar.Height - Footer.Height
+                                                ),
+                                                child: new Column(
+                                                    mainAxisAlignment: MainAxisAlignment.start,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: children)
+                                            ),
+                                            new Footer(style: Footer.Light, showSocials: false)
+                                        }
+                                    )
+                                )
+                            )
+                        ),
+                        new ToTop(_scrollController, 128f)
+                    }
                 );
             }
         }

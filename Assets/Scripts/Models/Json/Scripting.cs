@@ -26,7 +26,7 @@ namespace DocCN.Models.Json
 
         [JsonProperty("section")] public Section[][] section { get; set; }
 
-        [JsonProperty("inherits_from")] public string inheritsFrom { get; set; }
+        [JsonProperty("base_type")] public Model baseType { get; set; }
     }
 
     public class Member

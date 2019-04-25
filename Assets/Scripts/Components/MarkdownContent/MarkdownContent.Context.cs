@@ -50,12 +50,12 @@ namespace DocCN.Components
 
             public void ClearColumn()
             {
-                rows = new List<List<Container>>();
+                rows.Clear();
             }
 
             public void ClearCells()
             {
-                cells = new List<Container>();
+                cells.Clear();
             }
         }
     }

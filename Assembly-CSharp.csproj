@@ -120,6 +120,8 @@
     <Compile Include="Assets\Scripts\Components\SearchResultCard\StringExtension.cs" />
     <Compile Include="Assets\Scripts\Components\SocialBrand\SocialBrand.cs" />
     <Compile Include="Assets\Scripts\Components\SocialBrand\SocialBrand.State.cs" />
+    <Compile Include="Assets\Scripts\Components\ToTop\ToTop.cs" />
+    <Compile Include="Assets\Scripts\Components\ToTop\ToTop.State.cs" />
     <Compile Include="Assets\Scripts\Components\WealthyText.cs" />
     <Compile Include="Assets\Scripts\Components\WechatOfficialAccount\WechatOfficialAccount.cs" />
     <Compile Include="Assets\Scripts\Models\Json\Breadcrumb.cs" />

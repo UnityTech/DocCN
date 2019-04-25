@@ -35,5 +35,18 @@ namespace DocCN.Components
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
         }
+
+        public static string ToChinese(this MenuType @this)
+        {
+            switch (@this)
+            {
+                case MenuType.scripting:
+                    return "脚本API";
+                case MenuType.manual:
+                    return "手册";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(@this), @this, null);
+            }
+        }
     }
 }
