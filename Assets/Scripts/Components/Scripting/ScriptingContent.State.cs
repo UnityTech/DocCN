@@ -139,7 +139,7 @@ namespace DocCN.Components
                                 )
                             ),
                             new Table(
-                                defaultColumnWidth: new IntrinsicColumnWidth(1.0f),
+                                defaultColumnWidth: new FlexColumnWidth(1.0f),
                                 children: members.Select((member, idx) =>
                                     {
                                         var even = idx % 2 == 0;
