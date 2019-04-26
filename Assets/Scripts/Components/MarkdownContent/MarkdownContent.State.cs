@@ -8,7 +8,9 @@ using Newtonsoft.Json;
 using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
+using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
+using UnityEngine;
 using UnityEngine.Networking;
 using Color = Unity.UIWidgets.ui.Color;
 
@@ -126,43 +128,73 @@ namespace DocCN.Components
                         ),
                         child: new Align(
                             alignment: Alignment.bottomLeft,
-                            child: new Breadcrumbs(_breadcrumbs)
+                            child: new Breadcrumbs(
+                                _breadcrumbs,
+                                normalBreadcrumbStyle: new TextStyle(
+                                    fontSize: 16f,
+                                    color: new Color(0xff979797)
+                                ),
+                                hoverBreadCrumbStyle: new TextStyle(
+                                    fontSize: 16f,
+                                    color: new Color(0xff979797),
+                                    decoration: TextDecoration.underline
+                                ),
+                                splitterStyle: new TextStyle(
+                                    fontSize: 16f,
+                                    color: new Color(0xff979797)
+                                )
+                            )
                         )
                     )
                 );
+
+                var linkButtons = new List<Widget>();
+                if (_prevLink != null)
+                {
+                    linkButtons.Add(
+                        new Button(
+                            text: _prevLink.content ?? "",
+                            onTap: () =>
+                            {
+                                if (!string.IsNullOrEmpty(_prevLink?.link))
+                                {
+                                    LocationUtil.Go(
+                                        $"/Manual/{_prevLink?.link}");
+                                }
+                            },
+                            prefix: Icons.MaterialArrowBack
+                        )
+                    );
+                }
+                else
+                {
+                    linkButtons.Add(new Container()); // placeholder to use spaceBetween
+                }
+
+                if (_nextLink != null)
+                {
+                    linkButtons.Add(
+                        new Button(
+                            text: _nextLink.content ?? "",
+                            onTap: () =>
+                            {
+                                if (!string.IsNullOrEmpty(_nextLink.link))
+                                {
+                                    LocationUtil.Go(
+                                        $"/Manual/{_nextLink.link}");
+                                }
+                            },
+                            suffix: Icons.MaterialArrowForward
+                        )
+                    );
+                }
 
                 widgets.Add(
                     new Container(
                         margin: EdgeInsets.only(top: 32, bottom: 64),
                         child: new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: new List<Widget>
-                            {
-                                new Button(
-                                    text: _prevLink?.link ?? "",
-                                    onTap: () =>
-                                    {
-                                        if (!string.IsNullOrEmpty(_prevLink?.link))
-                                        {
-                                            LocationUtil.Go(
-                                                $"/Manual/{_prevLink?.link}");
-                                        }
-                                    },
-                                    prefix: Icons.MaterialArrowBack
-                                ),
-                                new Button(
-                                    text: _nextLink?.link ?? "",
-                                    onTap: () =>
-                                    {
-                                        if (!string.IsNullOrEmpty(_nextLink?.link))
-                                        {
-                                            LocationUtil.Go(
-                                                $"/Manual/{_nextLink?.link}");
-                                        }
-                                    },
-                                    suffix: Icons.MaterialArrowForward
-                                ),
-                            }
+                            children: linkButtons
                         )
                     )
                 );
@@ -185,7 +217,8 @@ namespace DocCN.Components
                                                         constraints: new BoxConstraints(
                                                             minHeight: MediaQuery.of(context).size.height -
                                                                        Header.Height -
-                                                                       SearchBar.Height - Footer.Height
+                                                                       SearchBar.Height -
+                                                                       Footer.Height
                                                         ),
                                                         child: new Column(
                                                             mainAxisAlignment: MainAxisAlignment.start,
@@ -201,7 +234,11 @@ namespace DocCN.Components
                                 }
                             )
                         ),
-                        new MetaFields(markdownBuildCtx.positionRecords, _scrollController)
+                        new MetaFields(
+                            markdownBuildCtx.positionRecords,
+                            _scrollController,
+                            $"https://github.com/UnityTech/documentation-cn/blob/2018.1/Manual/md/{widget._title}.md"
+                        )
                     }
                 );
             }

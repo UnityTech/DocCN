@@ -4,6 +4,7 @@ using System.Linq;
 using Unity.UIWidgets.animation;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
+using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
 using Color = Unity.UIWidgets.ui.Color;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
@@ -16,10 +17,12 @@ namespace DocCN.Components
         {
             public MetaFields(
                 List<PositionRecord> items,
-                ScrollController controller)
+                ScrollController controller,
+                string githubLink)
             {
                 _items = items;
                 _controller = controller;
+                _githubLink = githubLink;
             }
 
             private static readonly TextStyle ItemStyle = new TextStyle(
@@ -34,8 +37,43 @@ namespace DocCN.Components
 
             private readonly ScrollController _controller;
 
+            private readonly string _githubLink;
+
             public override Widget build(BuildContext context)
             {
+                var children = new List<Widget>
+                {
+                    new Container(
+                        margin: EdgeInsets.only(bottom: 16.0f),
+                        child: new Text(
+                            "文章导览",
+                            style: ItemStyle.merge(
+                                new TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: new Color(0xff212121)
+                                )
+                            )
+                        )
+                    )
+                };
+                children.AddRange(
+                    _items.Select<PositionRecord, Widget>(
+                        Item => new Clickable(
+                            onTap: () => _controller.animateTo(
+                                _controller.position.pixels - Item.getPosition.Invoke() - 96,
+                                new TimeSpan(0, 0, 0, 0, 240),
+                                curve: Curves.easeInOut)
+                            ,
+                            child: new Container(
+                                margin: EdgeInsets.only(bottom: 16.0f),
+                                child: new Text(
+                                    Item.title,
+                                    style: ItemStyle
+                                )
+                            )
+                        )
+                    )
+                );
                 return new Container(
                     padding: EdgeInsets.only(
                         left: 48.0f,
@@ -51,12 +89,14 @@ namespace DocCN.Components
                                 padding: EdgeInsets.only(bottom: 8.0f),
                                 child: new Align(
                                     alignment: Alignment.bottomLeft,
-                                    child: new Text(
-                                        "文章导览",
+                                    child: new HyperLink(
+                                        text: "在Github上编辑本文",
                                         style: new TextStyle(
-                                            fontSize: 16f,
-                                            color: new Color(0xff212121)
-                                        )
+                                            fontSize: 16,
+                                            decoration: TextDecoration.underline,
+                                            color: new Color(0xff2196f3)
+                                        ),
+                                        link: _githubLink
                                     )
                                 )
                             ),
@@ -66,22 +106,7 @@ namespace DocCN.Components
                             ),
                             new Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: _items.Select<PositionRecord, Widget>(
-                                    Item => new Clickable(
-                                        onTap: () => _controller.animateTo(
-                                            _controller.position.pixels - Item.getPosition.Invoke() - 96,
-                                            new TimeSpan(0, 0, 0, 0, 240),
-                                            curve: Curves.easeInOut)
-                                        ,
-                                        child: new Container(
-                                            margin: EdgeInsets.only(bottom: 16.0f),
-                                            child: new Text(
-                                                Item.title,
-                                                style: ItemStyle
-                                            )
-                                        )
-                                    )
-                                ).ToList()
+                                children: children
                             )
                         }
                     )

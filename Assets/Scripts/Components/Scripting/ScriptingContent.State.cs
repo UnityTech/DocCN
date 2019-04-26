@@ -7,6 +7,7 @@ using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
+using UnityEngine;
 using UnityEngine.Networking;
 using Color = Unity.UIWidgets.ui.Color;
 using FontStyle = Unity.UIWidgets.ui.FontStyle;
@@ -256,12 +257,28 @@ namespace DocCN.Components
                 {
                     new Container(
                         margin: EdgeInsets.only(top: 24, bottom: 8f),
-                        child: new Text(
-                            widget._title.Split('.').Last().Replace("-", "."),
-                            style: new TextStyle(
-                                fontSize: 36f,
-                                fontWeight: FontWeight.w500
-                            )
+                        child: new Row(
+                            children: new List<Widget>
+                            {
+                                new Expanded(
+                                    child: new Text(
+                                        widget._title.Split('.').Last().Replace("-", "."),
+                                        style: new TextStyle(
+                                            fontSize: 36f,
+                                            fontWeight: FontWeight.w500
+                                        )
+                                    )
+                                ),
+                                new HyperLink(
+                                    text: "在Github上编辑本文",
+                                    style: new TextStyle(
+                                        fontSize: 16,
+                                        decoration: TextDecoration.underline,
+                                        color: new Color(0xff2196f3)
+                                    ),
+                                    link: $"https://github.com/UnityTech/documentation-cn/blob/2018.1/ScriptingAPI/xml/{widget._title}.xml"
+                                )
+                            }
                         )
                     ),
                 };
