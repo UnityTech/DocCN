@@ -131,7 +131,7 @@ namespace DocCN.Pages
                                         currentPage: _results.currentPage,
                                         totalPages: _results.totalPages,
                                         onPageChanged: page =>
-                                            LocationUtil.Go($"/Search/{HttpUtility.UrlEncode(_keyword)}/{page}")
+                                            LocationUtil.Go($"/Search/{_filterType}/{HttpUtility.UrlEncode(_keyword)}/{page}")
                                     )
                                 )
                             );

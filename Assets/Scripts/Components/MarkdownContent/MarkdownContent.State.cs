@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using DocCN.Models.Json;
@@ -10,7 +9,6 @@ using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
-using UnityEngine;
 using UnityEngine.Networking;
 using Color = Unity.UIWidgets.ui.Color;
 

@@ -26,7 +26,7 @@ namespace DocCN.Components
 
             parameterNames = parameterNameList.ToArray();
 
-            return new Regex($"^{routerRegexSz}$");
+            return new Regex($"^{routerRegexSz}/?$");
         }
     }
 }

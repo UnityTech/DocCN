@@ -24,13 +24,12 @@ namespace DocCN.Components
                 new Dictionary<string, Func<Dictionary<string, string>, Widget>>
                 {
                     [$"{pageBase}"] = @params => new LandingPage(),
-                    [$"{pageBase}/"] = @params => new LandingPage(),
+                    [$"{pageBase}/Manual"] = @params => new ManualPage("UnityManual"),
                     [$"{pageBase}/Manual/:name"] = @params => new ManualPage(@params["name"]),
                     [$"{pageBase}/Scripting"] = @params => new ScriptingPage(""),
-                    [$"{pageBase}/Scripting/"] = @params => new ScriptingPage(""),
                     [$"{pageBase}/Scripting/:name"] = @params => new ScriptingPage(@params["name"]),
                     [$"{pageBase}/Search"] = @params => new SearchPage(),
-                    [$"{pageBase}/Search/"] = @params => new SearchPage(),
+                    [$"{pageBase}/Search/:type"] = @params => new SearchPage(),
                     [$"{pageBase}/Search/:type/:keyword"] = @params => new SearchPage(filterType: @params["type"].ToFilterType(), keyword: @params["keyword"]),
                     [$"{pageBase}/Search/:type/:keyword/:page"] = @params => new SearchPage(filterType: @params["type"].ToFilterType(), keyword: @params["keyword"], page: int.Parse(@params["page"])),
                 };
