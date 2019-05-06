@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
+using UnityEngine;
 using UnityEngine.Networking;
 using Color = Unity.UIWidgets.ui.Color;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
@@ -21,7 +22,8 @@ namespace DocCN.Components
             public override void initState()
             {
                 base.initState();
-                var request = UnityWebRequest.Get($"{Configuration.Instance.apiHost}/api/documentation/resource/v/0000.0/t/{widget._type.RequestUrlPrefix()}/f/toc.json");
+                var version = DocApp.of(context).version;
+                var request = UnityWebRequest.Get($"{Configuration.Instance.cdnPrefix}/{version.unityVersion}/{version.parsedVersion}/{widget._type.TocFileName()}");
                 var asyncOperation = request.SendWebRequest();
                 asyncOperation.completed += operation =>
                 {

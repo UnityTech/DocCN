@@ -521,7 +521,8 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   scriptingDefineSymbols:
-    13: DOC_BUILD_TEST
+    1: 
+    13: DOC_BUILD_PRD
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}

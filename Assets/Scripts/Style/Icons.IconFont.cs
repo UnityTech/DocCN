@@ -17,6 +17,8 @@ namespace DocCN.Style
         }
         
         
+        public static readonly IconData IconFontCopy = new IconData(0xf102, fontFamily: "IconFont");
+        
         public static readonly IconData IconFontLoading = new IconData(0xf101, fontFamily: "IconFont");
         
     }

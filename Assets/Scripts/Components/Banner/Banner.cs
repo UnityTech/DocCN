@@ -25,7 +25,7 @@ namespace DocCN.Components
                     image: new DecorationImage(
                         fit: BoxFit.cover,
                         image: new AssetImage(
-                            "Images/hero@3x"
+                            "Images/hero@2x"
                         )
                     )
                 ),

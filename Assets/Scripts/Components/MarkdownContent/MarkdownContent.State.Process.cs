@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DocCN.Models.Json;
+using DocCN.Style;
 using DocCN.Utility;
 using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.painting;
@@ -125,7 +126,7 @@ namespace DocCN.Components
 
             private static Widget ProcessHeadingClose(Token token, BuilderContext ctx)
             {
-                var richText = new RichText(text: ctx.inline.Pop());
+                var richText = new SelectableText(textSpan: ctx.inline.Pop());
                 Widget container = null;
                 if (ctx.useNotifyContainer)
                 {
@@ -337,8 +338,8 @@ namespace DocCN.Components
                     new Container(
                         padding: TableCellPadding,
                         color: new Color(0xffe0e0e0),
-                        child: new RichText(
-                            text: ctx.inline.Pop()
+                        child: new SelectableText(
+                            textSpan: ctx.inline.Pop()
                         )
                     )
                 );
@@ -350,8 +351,8 @@ namespace DocCN.Components
                 ctx.cells.Add(
                     new Container(
                         padding: TableCellPadding,
-                        child: new RichText(
-                            text: ctx.inline.Pop()
+                        child: new SelectableText(
+                            textSpan: ctx.inline.Pop()
                         )
                     )
                 );
@@ -362,8 +363,9 @@ namespace DocCN.Components
             private static Widget ProcessImage(Token token, BuilderContext ctx)
             {
                 var imageName = token.attrs.Single(attr => attr[0] == "src")[1];
+                var version = DocApp.of(ctx.context).version;
                 var url =
-                    $"{Configuration.Instance.apiHost}/api/documentation/resource/v/2018.1/t/manual_static/f/{imageName}";
+                    $"{Configuration.Instance.cdnPrefix}/{version.unityVersion}/{version.parsedVersion}/manual/static/{imageName.Replace('-', '_')}";
 
                 var widgets = new List<Widget>
                 {
@@ -380,7 +382,7 @@ namespace DocCN.Components
                     widgets.Add(
                         new Container(
                             margin: EdgeInsets.only(top: 8.0f),
-                            child: new Text(
+                            child: new SelectableText(
                                 token.children[0].content,
                                 style: new TextStyle(
                                     color: new Color(0xff9b9b9b),
@@ -421,9 +423,18 @@ namespace DocCN.Components
                         )
                     ),
                     padding: EdgeInsets.all(16f),
-                    child: new Text(
-                        token.content.Trim(),
-                        style: FenceTextStyle
+                    child: new Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: new List<Widget>
+                        {
+                            new Expanded(
+                                child: new SelectableText(
+                                    token.content.Trim(),
+                                    style: FenceTextStyle
+                                )
+                            ),
+                            new CopyIcon(token.content.Trim())
+                        }
                     )
                 );
             }
@@ -447,7 +458,9 @@ namespace DocCN.Components
                     return node;
                 }
 
-                var richText = new RichText(text: ctx.inline.Pop());
+                var richText = new SelectableText(
+                    textSpan: ctx.inline.Pop()
+                );
                 var container = new Container(
                     margin: EdgeInsets.only(top: 24f),
                     child: richText

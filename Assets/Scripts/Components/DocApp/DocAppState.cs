@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using DocCN.Pages;
 using DocCN.Utility;
+using Newtonsoft.Json;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.widgets;
-using UnityEngine;
+using UnityEngine.Networking;
+using Version = DocCN.Models.Json.Version;
 
 namespace DocCN.Components
 {
@@ -16,6 +18,9 @@ namespace DocCN.Components
         private string _currentPath = "/";
         private ScrollController _controller;
         private bool _overwriteUnknown;
+        private Version _version;
+
+        public Version version => _version;
 
         static DocAppState()
         {
@@ -30,8 +35,11 @@ namespace DocCN.Components
                     [$"{pageBase}/Scripting/:name"] = @params => new ScriptingPage(@params["name"]),
                     [$"{pageBase}/Search"] = @params => new SearchPage(),
                     [$"{pageBase}/Search/:type"] = @params => new SearchPage(),
-                    [$"{pageBase}/Search/:type/:keyword"] = @params => new SearchPage(filterType: @params["type"].ToFilterType(), keyword: @params["keyword"]),
-                    [$"{pageBase}/Search/:type/:keyword/:page"] = @params => new SearchPage(filterType: @params["type"].ToFilterType(), keyword: @params["keyword"], page: int.Parse(@params["page"])),
+                    [$"{pageBase}/Search/:type/:keyword"] = @params =>
+                        new SearchPage(filterType: @params["type"].ToFilterType(), keyword: @params["keyword"]),
+                    [$"{pageBase}/Search/:type/:keyword/:page"] = @params =>
+                        new SearchPage(filterType: @params["type"].ToFilterType(), keyword: @params["keyword"],
+                            page: int.Parse(@params["page"])),
                 };
             Router = new Dictionary<Regex, Tuple<Func<Dictionary<string, string>, Widget>, string[]>>();
             foreach (var entry in rawRouter)
@@ -57,6 +65,25 @@ namespace DocCN.Components
             _currentPath = ObservableUtil.currentPath.value;
             _controller = new ScrollController();
             _overwriteUnknown = false;
+            _version = null;
+            var url =
+                $"{Configuration.Instance.apiHost}/api/documentation/parse_version/v/2018.1";
+            var request = UnityWebRequest.Get(url);
+            var asyncOperation = request.SendWebRequest();
+            asyncOperation.completed += operation =>
+            {
+                if (!mounted)
+                {
+                    return;
+                }
+
+                using (WindowProvider.of(context).getScope())
+                {
+                    var content = DownloadHandlerBuffer.GetContent(request);
+                    var model = JsonConvert.DeserializeObject<Version>(content);
+                    setState(() => _version = model);
+                }
+            };
         }
 
         private void OnPathChanged(string path)
@@ -65,6 +92,7 @@ namespace DocCN.Components
             {
                 return;
             }
+
             using (WindowProvider.of(context).getScope())
             {
                 setState(() =>
@@ -85,6 +113,10 @@ namespace DocCN.Components
         public override Widget build(BuildContext buildContext)
         {
             Widget page = null;
+            if (_version == null)
+            {
+                return new Container();
+            }
             if (_overwriteUnknown)
             {
                 page = OnUnknownPath();
@@ -97,6 +129,7 @@ namespace DocCN.Components
                     {
                         continue;
                     }
+
                     var match = entry.Key.Match(_currentPath);
                     var arguments = new Dictionary<string, string>();
                     foreach (var parameterName in entry.Value.Item2)
@@ -109,7 +142,7 @@ namespace DocCN.Components
                     break;
                 }
             }
-            
+
             var screenOverlay = new ScreenOverlay(
                 child: page ?? OnUnknownPath()
             );

@@ -11,6 +11,7 @@ namespace DocCN.Components
     {
         private class BuilderContext
         {
+            public BuildContext context { get; }
             public TextStyle textStyle { get; set; }
             public Stack<TextSpan> inline { get; }
             public Container imageNode { get; set; }
@@ -23,7 +24,9 @@ namespace DocCN.Components
             public List<TapGestureRecognizer> spanRecognizers { get; }
             public bool useRecognizer { get; set; }
 
-            public BuilderContext(IEnumerable<ImageMeta> imageMetas)
+            public BuilderContext(
+                IEnumerable<ImageMeta> imageMetas,
+                BuildContext context)
             {
                 inline = new Stack<TextSpan>();
                 rows = new List<List<Container>>();
@@ -38,6 +41,7 @@ namespace DocCN.Components
                     meta => meta);
                 spanRecognizers = new List<TapGestureRecognizer>();
                 useRecognizer = false;
+                this.context = context;
             }
 
             public void Clear()
@@ -50,12 +54,12 @@ namespace DocCN.Components
 
             public void ClearColumn()
             {
-                rows.Clear();
+                rows = new List<List<Container>>();
             }
 
             public void ClearCells()
             {
-                cells.Clear();
+                cells = new List<Container>();
             }
         }
     }

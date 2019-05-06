@@ -6,7 +6,7 @@ namespace DocCN.Utility
 
         static ObservableUtil()
         {
-            currentPath = new Observable<string>($"{Configuration.Instance.pageBase}/Manual/2Dor3D");
+            currentPath = new Observable<string>($"{Configuration.Instance.pageBase}/");
         }
     }
 

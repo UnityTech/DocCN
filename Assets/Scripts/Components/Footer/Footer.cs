@@ -112,15 +112,68 @@ namespace DocCN.Components
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: new List<Widget>
                         {
-                            new Container(
-                                height: 48.0f,
-                                width: 132.0f,
-                                decoration: new BoxDecoration(
-                                    image: new DecorationImage(
-                                        image: _style.unityBrand,
-                                        fit: BoxFit.fill
+                            new Row(
+                                children: new List<Widget>
+                                {
+                                    new Container(
+                                        height: 48.0f,
+                                        width: 132.0f,
+                                        decoration: new BoxDecoration(
+                                            image: new DecorationImage(
+                                                image: _style.unityBrand,
+                                                fit: BoxFit.fill
+                                            )
+                                        )
+                                    ),
+                                    new Clickable(
+                                        onTap: () => LocationUtil.HrefTo("https://connect.unity.com"),
+                                        child: new Container(
+                                            margin: EdgeInsets.only(left: 40),
+                                            color: new Color(0x00000000),
+                                            child: new Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: new List<Widget>
+                                                {
+                                                    new Text(
+                                                        "Hosts By",
+                                                        style: _style.copyrightLabelStyle
+                                                    ),
+                                                    new Container(
+                                                        margin: EdgeInsets.only(top: 4),
+                                                        child: new Text(
+                                                            "Unity Connect",
+                                                            style: _style.copyrightTextStyle
+                                                        )
+                                                    )
+                                                }
+                                            )
+                                        )
+                                    ),
+                                    new Clickable(
+                                        onTap: () => LocationUtil.HrefTo("https://github.com/UnityTech/UIWidgets"),
+                                        child: new Container(
+                                            margin: EdgeInsets.only(left: 40),
+                                            color: new Color(0x00000000),
+                                            child: new Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: new List<Widget>
+                                                {
+                                                    new Text(
+                                                        "Powered By",
+                                                        style: _style.copyrightLabelStyle
+                                                    ),
+                                                    new Container(
+                                                        margin: EdgeInsets.only(top: 4),
+                                                        child: new Text(
+                                                            "UIWidgets",
+                                                            style: _style.copyrightTextStyle
+                                                        )
+                                                    )
+                                                }
+                                            )
+                                        )
                                     )
-                                )
+                                }
                             ),
                             new Row(
                                 children: new List<Widget>

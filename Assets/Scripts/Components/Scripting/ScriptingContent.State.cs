@@ -77,8 +77,9 @@ namespace DocCN.Components
             {
                 _loading = true;
                 _imageMetas = new Dictionary<string, ImageMeta>();
+                var version = DocApp.of(context).version;
                 var url =
-                    $"{Configuration.Instance.apiHost}/api/documentation/resource/v/2018.1/t/scripting_json/f/{widget._title}.json";
+                    $"{Configuration.Instance.cdnPrefix}/{version.unityVersion}/{version.parsedVersion}/scripting/json/{widget._title.Replace('-', '_')}.json";
                 var request = UnityWebRequest.Get(url);
                 var asyncOperation = request.SendWebRequest();
                 asyncOperation.completed += operation =>
@@ -193,6 +194,8 @@ namespace DocCN.Components
                     return new Container();
                 }
 
+                var version = DocApp.of(context).version;
+
                 return new WealthyText(
                     textSpanList: summary.Select(item =>
                     {
@@ -217,7 +220,7 @@ namespace DocCN.Components
                             case DocumentTagImage image:
                                 var networkImage =
                                     new NetworkImage(
-                                        $"{Configuration.Instance.apiHost}/api/documentation/resource/v/2018.1/t/scripting_static/f/{image.name}");
+                                        $"{Configuration.Instance.cdnPrefix}/{version.unityVersion}/{version.parsedVersion}/scripting/static/{image.name.Replace('-', '_')}");
                                 networkImage.resolve(new ImageConfiguration());
                                 return new ImageSpan(
                                     networkImage,
@@ -276,7 +279,8 @@ namespace DocCN.Components
                                         decoration: TextDecoration.underline,
                                         color: new Color(0xff2196f3)
                                     ),
-                                    link: $"https://github.com/UnityTech/documentation-cn/blob/2018.1/ScriptingAPI/xml/{widget._title}.xml"
+                                    link:
+                                    $"https://github.com/UnityTech/documentation-cn/blob/2018.1/ScriptingAPI/xml/{widget._title}.xml"
                                 )
                             }
                         )
@@ -318,7 +322,16 @@ namespace DocCN.Components
                                         ),
                                         padding: EdgeInsets.all(24f),
                                         margin: EdgeInsets.only(top: 16, bottom: 24),
-                                        child: BuildTextUsingMixedContent(context, example.cSharp)
+                                        child: new Row(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: new List<Widget>
+                                            {
+                                                new Expanded(
+                                                    child: BuildTextUsingMixedContent(context, example.cSharp)
+                                                ),
+                                                new CopyIcon(string.Join(string.Empty, example.cSharp.Select(c => c.ToString())))
+                                            }
+                                        )
                                     )
                                 );
                                 break;

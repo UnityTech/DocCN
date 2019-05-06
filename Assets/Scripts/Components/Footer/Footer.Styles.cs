@@ -19,6 +19,8 @@ namespace DocCN.Components
             public Color langUnderlineColor { get; set; }
             public Color langExpandIconColor { get; set; }
             public bool horizontalPadding { get; set; }
+            public TextStyle copyrightLabelStyle { get; set; }
+            public TextStyle copyrightTextStyle { get; set; }
         }
 
         public static readonly Style Dark = new Style
@@ -47,6 +49,15 @@ namespace DocCN.Components
             langUnderlineColor = new Color(0xffffffff),
             langExpandIconColor = new Color(0xffffffff),
             horizontalPadding = true,
+            copyrightLabelStyle = new TextStyle(
+                color: new Color(0xffffffff),
+                fontSize: 12
+            ),
+            copyrightTextStyle = new TextStyle(
+                color: new Color(0xffffffff),
+                fontSize: 16,
+                fontWeight: FontWeight.w500
+            ),
         };
 
         public static readonly Style Light = new Style
@@ -75,6 +86,15 @@ namespace DocCN.Components
             langUnderlineColor = new Color(0xffd8d8d8),
             langExpandIconColor = new Color(0xffd8d8d8),
             horizontalPadding = false,
+            copyrightLabelStyle = new TextStyle(
+                color: new Color(0xff000000),
+                fontSize: 12
+            ),
+            copyrightTextStyle = new TextStyle(
+                color: new Color(0xff000000),
+                fontSize: 16,
+                fontWeight: FontWeight.w500
+            ),
         };
     }
 }

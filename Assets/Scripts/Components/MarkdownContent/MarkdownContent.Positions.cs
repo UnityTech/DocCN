@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DocCN.Style;
+using DocCN.Utility;
 using Unity.UIWidgets.animation;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
@@ -89,14 +91,29 @@ namespace DocCN.Components
                                 padding: EdgeInsets.only(bottom: 8.0f),
                                 child: new Align(
                                     alignment: Alignment.bottomLeft,
-                                    child: new HyperLink(
-                                        text: "在Github上编辑本文",
-                                        style: new TextStyle(
-                                            fontSize: 16,
-                                            decoration: TextDecoration.underline,
-                                            color: new Color(0xff2196f3)
-                                        ),
-                                        link: _githubLink
+                                    child: new Clickable(
+                                        onTap: () => LocationUtil.HrefTo(_githubLink),
+                                        child: new Row(
+                                            children: new List<Widget>
+                                            {
+                                                new Container(
+                                                    margin: EdgeInsets.only(right: 8),
+                                                    child: new Icon(
+                                                        Icons.BrandsGithub,
+                                                        color: new Color(0xff000000),
+                                                        size: 24f
+                                                    )
+                                                ),
+                                                new Text(
+                                                    "在Github上编辑本文",
+                                                    style: new TextStyle(
+                                                        fontSize: 16,
+                                                        decoration: TextDecoration.underline,
+                                                        color: new Color(0xff2196f3)
+                                                    )
+                                                )
+                                            }
+                                        )
                                     )
                                 )
                             ),

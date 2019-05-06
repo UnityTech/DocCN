@@ -25,6 +25,9 @@ namespace DocCN.Utility
         
         [DllImport("__Internal")]
         public static extern void Download(string url, string filename);
+        
+        [DllImport("__Internal")]
+        public static extern void CopyText(string text);
 #else
         public static void Initialize()
         {
@@ -51,6 +54,10 @@ namespace DocCN.Utility
         }
 
         public static void Download(string url, string filename)
+        {
+        }
+
+        public static void CopyText(string text)
         {
         }
 #endif

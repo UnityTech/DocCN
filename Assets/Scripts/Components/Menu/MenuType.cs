@@ -10,14 +10,14 @@ namespace DocCN.Components
 
     internal static class MenuTypeExtension
     {
-        public static string RequestUrlPrefix(this MenuType type)
+        public static string TocFileName(this MenuType type)
         {
             switch (type)
             {
                 case MenuType.scripting:
-                    return "scripting_json";
+                    return "scripting/json/ScriptingAPI_toc_toc.json";
                 case MenuType.manual:
-                    return "manual_json";
+                    return "manual/json/Manual_toc_toc.json";
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }

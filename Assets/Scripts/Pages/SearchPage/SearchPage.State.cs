@@ -79,8 +79,44 @@ namespace DocCN.Pages
             {
                 var size = MediaQuery.of(context).size;
                 var children = new List<Widget>();
-                var mainAxisAlignment = _searching ? MainAxisAlignment.center : MainAxisAlignment.start;
-                if (_searching)
+                var emptyKeyword = string.IsNullOrEmpty(_keyword);
+                var mainAxisAlignment = _searching || emptyKeyword ? MainAxisAlignment.center : MainAxisAlignment.start;
+                var crossAxisAlignment = emptyKeyword ? CrossAxisAlignment.center : CrossAxisAlignment.start;
+
+                if (emptyKeyword)
+                {
+                    children.Add(
+                        new Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: new List<Widget>
+                            {
+                                new Container(
+                                    width: 253,
+                                    height: 334,
+                                    margin: EdgeInsets.only(bottom: 24f),
+                                    decoration: new BoxDecoration(
+                                        image: new DecorationImage(
+                                            image: new AssetImage(
+                                                "Images/search@3x"
+                                            ),
+                                            fit: BoxFit.cover
+                                        )
+                                    )
+                                ),
+                                new Text(
+                                    "请输入关键词搜索",
+                                    style: new TextStyle(
+                                        fontSize: 24f,
+                                        fontWeight: FontWeight.w500,
+                                        color: new Color(0xff979797),
+                                        height: 1.33333333f
+                                    )
+                                )
+                            }
+                        )
+                    );
+                }
+                else if (_searching)
                 {
                     children.Add(
                         new Container(
@@ -131,7 +167,8 @@ namespace DocCN.Pages
                                         currentPage: _results.currentPage,
                                         totalPages: _results.totalPages,
                                         onPageChanged: page =>
-                                            LocationUtil.Go($"/Search/{_filterType}/{HttpUtility.UrlEncode(_keyword)}/{page}")
+                                            LocationUtil.Go(
+                                                $"/Search/{_filterType}/{HttpUtility.UrlEncode(_keyword)}/{page}")
                                     )
                                 )
                             );
@@ -163,7 +200,7 @@ namespace DocCN.Pages
                                         padding: EdgeInsets.only(top: 16f, right: 48f, bottom: 48f, left: 48f),
                                         color: new Color(0xfff2f1f2),
                                         child: new Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            crossAxisAlignment: crossAxisAlignment,
                                             mainAxisAlignment: mainAxisAlignment,
                                             children: children
                                         )

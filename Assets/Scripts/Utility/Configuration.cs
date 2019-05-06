@@ -7,6 +7,8 @@ namespace DocCN.Utility
         public string apiHost { get; private set; }
         public string pageBase { get; private set; }
         
+        public string cdnPrefix { get; private set; }
+        
 
         public static readonly Configuration Instance = new Configuration();
 
@@ -20,18 +22,21 @@ namespace DocCN.Utility
             Instance.domain = "doc.unity.cn";
             Instance.schema = "http";
             Instance.pageBase = "";
+            Instance.cdnPrefix = "https://unity-connect-dev.storage.googleapis.com/doc_cn/resources";
 #endif
 
 #if DOC_BUILD_TEST || UNITY_EDITOR
             Instance.domain = "connect-test.unity.com";
             Instance.schema = "https";
             Instance.pageBase = "/doc";
+            Instance.cdnPrefix = "https://unity-connect-dev.storage.googleapis.com/doc_cn/resources";
 #endif
 
-#if DOC_BUILD_PRD
+#if DOC_BUILD_PRD || UNITY_EDITOR
             Instance.domain = "connect.unity.com";
             Instance.schema = "https";
             Instance.pageBase = "/doc";
+            Instance.cdnPrefix = "https://connect-prd-cdn.unity.com/doc_cn/resources";
 #endif
             Instance.apiHost = $"{Instance.schema}://{Instance.domain}";
         }

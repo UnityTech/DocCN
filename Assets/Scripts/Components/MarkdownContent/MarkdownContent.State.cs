@@ -9,6 +9,7 @@ using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
+using UnityEngine;
 using UnityEngine.Networking;
 using Color = Unity.UIWidgets.ui.Color;
 
@@ -44,8 +45,9 @@ namespace DocCN.Components
             private void Load()
             {
                 _loading = true;
+                var version = DocApp.of(context).version;
                 var url =
-                    $"{Configuration.Instance.apiHost}/api/documentation/resource/v/2018.1/t/manual_json/f/{widget._title}.json";
+                    $"{Configuration.Instance.cdnPrefix}/{version.unityVersion}/{version.parsedVersion}/manual/json/{widget._title.Replace('-', '_')}.json";
                 var request = UnityWebRequest.Get(url);
                 var asyncOperation = request.SendWebRequest();
                 asyncOperation.completed += operation =>
@@ -102,14 +104,15 @@ namespace DocCN.Components
                     );
                 }
 
-                var markdownBuildCtx = new BuilderContext(_imageMetas);
+                var markdownBuildCtx = new BuilderContext(_imageMetas, buildContext);
                 _spanRecognizers?.ForEach(recognizer => recognizer.dispose());
 
                 var widgets = new List<Widget>();
                 widgets.AddRange(_tokens
                     .Where(token => Mappings.ContainsKey(token.type))
                     .Select(token => Mappings[token.type].Invoke(token, markdownBuildCtx))
-                    .Where(w => !(w is null)));
+                    .Where(w => !(w is null))
+                    .Select(w => new RepaintBoundary(child: w)));
                 _spanRecognizers = markdownBuildCtx.spanRecognizers;
 
                 widgets.Insert(0,
@@ -197,6 +200,8 @@ namespace DocCN.Components
                     )
                 );
 
+                var version = DocApp.of(buildContext).version;
+
                 return new Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: new List<Widget>
@@ -213,7 +218,7 @@ namespace DocCN.Components
                                                 {
                                                     new Container(
                                                         constraints: new BoxConstraints(
-                                                            minHeight: MediaQuery.of(context).size.height -
+                                                            minHeight: MediaQuery.of(buildContext).size.height -
                                                                        Header.Height -
                                                                        SearchBar.Height -
                                                                        Footer.Height
@@ -235,7 +240,7 @@ namespace DocCN.Components
                         new MetaFields(
                             markdownBuildCtx.positionRecords,
                             _scrollController,
-                            $"https://github.com/UnityTech/documentation-cn/blob/2018.1/Manual/md/{widget._title}.md"
+                            $"https://github.com/UnityTech/documentation-cn/blob/{version.unityVersion}/Manual/md/{widget._title}.md"
                         )
                     }
                 );

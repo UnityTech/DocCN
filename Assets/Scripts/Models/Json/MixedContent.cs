@@ -62,56 +62,71 @@ namespace DocCN.Models.Json
     public class DocumentCharData : MixedContent
     {
         public string content { get; set; }
+
+        public override string ToString() => content;
     }
 
     public class DocumentTagLink : MixedContent
     {
         [JsonProperty("ref")] public string @ref { get; set; }
         [JsonProperty("content")] public string content { get; set; }
+        
+        public override string ToString() => content;        
     }
 
     public class DocumentTagA : MixedContent
     {
         public string @ref { get; set; }
         public string content { get; set; }
+        public override string ToString() => content;
+
     }
 
     public class DocumentTagImage : MixedContent
     {
         public string name { get; set; }
+        public override string ToString() => string.Empty;
     }
 
     public class DocumentTagTeletype : MixedContent
     {
         public string content { get; set; }
+        public override string ToString() => content;
     }
 
     public class DocumentTagItalic : MixedContent
     {
         public string content { get; set; }
+        public override string ToString() => content;
+
     }
 
     public class DocumentTagBold : MixedContent
     {
         [JsonProperty("content")] public string content { get; set; }
+        public override string ToString() => content;
     }
 
     public class DocumentTagVarName : MixedContent
     {
         public string content { get; set; }
+        public override string ToString() => content;
     }
 
     public class DocumentTagMonoType : MixedContent
     {
         public string content { get; set; }
+        public override string ToString() => content;
     }
 
     public class DocumentTagNote : MixedContent
     {
         public string content { get; set; }
+        public override string ToString() => content;
     }
 
     public class DocumentTagBreak : MixedContent
     {
+        public override string ToString() => "\n";
     }
 }
