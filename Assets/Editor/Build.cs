@@ -14,7 +14,7 @@ public class Build
         {
             var buildPlayerOptions = new BuildPlayerOptions
             {
-                scenes = new[] {"Assets/Scenes/SampleScene.unity"},
+                scenes = new[] {"Assets/Scenes/MainScene.unity"},
                 locationPathName = $"Builds/snapshot-{environment}",
                 target = BuildTarget.WebGL,
                 options = BuildOptions.None
