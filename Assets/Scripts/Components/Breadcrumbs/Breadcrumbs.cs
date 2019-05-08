@@ -1,10 +1,8 @@
-using System.Collections.Generic;
 using System.Linq;
 using DocCN.Models.Json;
 using DocCN.Utility;
 using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.painting;
-using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
@@ -33,13 +31,14 @@ namespace DocCN.Components
 
         private readonly TextStyle _splitterStyle;
 
-        private const string Splitter = "/";
+        private const string _splitter = "/";
 
         public override Widget build(BuildContext context)
         {
             return new Wrap(
                 runSpacing: 8f,
                 children: _breadcrumbs?
+                    .Skip(1) // Maybe the first one is not so reasonable to display on the page?
                     .Select<Breadcrumb, Widget>(
                         breadcrumb => new ClickableText(
                             text: breadcrumb.content,
@@ -59,7 +58,7 @@ namespace DocCN.Components
                             new Container(
                                 margin: EdgeInsets.symmetric(horizontal: 8f),
                                 child: new Text(
-                                    Splitter,
+                                    _splitter,
                                     style: _splitterStyle
                                 )
                             ),

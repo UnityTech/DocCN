@@ -12,6 +12,7 @@ namespace DocCN.Components
                 Key key,
                 Models.Json.Menu bind,
                 MenuState parent,
+                bool active,
                 bool hasChildren,
                 int level = 0
             ) : base(key)
@@ -20,6 +21,7 @@ namespace DocCN.Components
                 _parent = parent;
                 _level = level;
                 _hasChildren = hasChildren;
+                _active = active;
             }
 
             private readonly Models.Json.Menu _bind;
@@ -33,6 +35,8 @@ namespace DocCN.Components
             private readonly MenuState _parent;
 
             private readonly bool _hasChildren;
+
+            private readonly bool _active;
 
             public override State createState() => new MenuItemState();
         }

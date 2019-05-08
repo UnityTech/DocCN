@@ -19,6 +19,7 @@ namespace DocCN.Components
             {
                 private static readonly Color NormalColor = new Color(0x00000000);
                 private static readonly Color HoverColor = new Color(0xfff5f5f5);
+                private static readonly Color ActiveColor = new Color(0xffebf2fa);
                 private static readonly Color IconColor = new Color(0xffd8d8d8);
 
                 private bool _hover;
@@ -122,13 +123,27 @@ namespace DocCN.Components
                         );
                     }
 
+                    Color color;
+                    if (widget._active)
+                    {
+                        color = ActiveColor;
+                    }
+                    else if (_hover)
+                    {
+                        color = HoverColor;
+                    }
+                    else
+                    {
+                        color = NormalColor;
+                    }
+
                     var self = new Listener(
                         onPointerEnter: OnPointerEnter,
                         onPointerLeave: OnPointerLeave,
                         child: new GestureDetector(
                             onTap: OnTap,
                             child: new Container(
-                                color: _hover ? HoverColor : NormalColor,
+                                color: color,
                                 padding: EdgeInsets.only(right: 16f),
                                 child: new Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

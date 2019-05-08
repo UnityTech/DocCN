@@ -32,7 +32,7 @@ namespace DocCN.Utility
             Instance.cdnPrefix = "https://unity-connect-dev.storage.googleapis.com/doc_cn/resources";
 #endif
 
-#if DOC_BUILD_PRD
+#if DOC_BUILD_PRD || UNITY_EDITOR
             Instance.domain = "connect.unity.com";
             Instance.schema = "https";
             Instance.pageBase = "/doc";

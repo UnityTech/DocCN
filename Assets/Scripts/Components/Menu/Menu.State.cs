@@ -9,7 +9,6 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Color = Unity.UIWidgets.ui.Color;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
-using Json = DocCN.Models.Json;
 
 namespace DocCN.Components
 {
@@ -18,10 +17,15 @@ namespace DocCN.Components
         private class MenuState : State<Menu>
         {
             private Models.Json.Menu _menu;
+            private string _currentLastSegment;
 
             public override void initState()
             {
                 base.initState();
+                
+                _currentLastSegment = LastSegment(ObservableUtil.currentPath.value);
+                ObservableUtil.currentPath.OnChanged += OnPathChanged;
+
                 var version = DocApp.of(context).version;
                 var request = UnityWebRequest.Get($"{Configuration.Instance.cdnPrefix}/{version.unityVersion}/{version.parsedVersion}/{widget._type.TocFileName()}");
                 var asyncOperation = request.SendWebRequest();
@@ -39,21 +43,54 @@ namespace DocCN.Components
                 };
             }
 
+            public override void dispose()
+            {
+                ObservableUtil.currentPath.OnChanged -= OnPathChanged;
+                base.dispose();
+            }
+
+            private static string LastSegment(string path)
+            {
+                var name = path;
+                var idx = name.LastIndexOf('/');
+                if (!string.IsNullOrEmpty(name) && idx == name.Length - 1)
+                {
+                    name = name.Substring(0, name.Length - 1);
+                    idx = name.LastIndexOf('/');
+                }
+
+                return name.Substring(idx + 1);
+            }
+            
+            private void OnPathChanged(string path)
+            {
+                if (!mounted)
+                {
+                    return;
+                }
+
+                using (WindowProvider.of(context).getScope())
+                {
+                    setState(() => _currentLastSegment = LastSegment(path));
+                }
+            }
+
             public void UpdateMenu(Action action)
             {
                 setState(action.Invoke);
             }
 
-            private List<MenuItem> BuildMenuItems(IReadOnlyList<Models.Json.Menu> toParse, int level = 0)
+            private List<MenuItem> BuildMenuItems(IEnumerable<Models.Json.Menu> toParse, int level = 0)
             {
                 var items = new List<MenuItem>();
                 foreach (var child in toParse)
                 {
                     items.Add(
                         new MenuItem(
-                            new UniqueKey(),
+                            new ObjectKey(child.link), 
                             child,
                             this,
+                            _currentLastSegment == child.link,
                             level: level,
                             hasChildren: child.children != null
                         )
