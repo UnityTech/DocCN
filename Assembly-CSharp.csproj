@@ -14,7 +14,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{646A0A61-55FB-A4B4-C256-8DDD1201E70D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -64,10 +65,7 @@
     <Compile Include="Assets\Scripts\Components\Breadcrumbs\Breadcrumbs.cs" />
     <Compile Include="Assets\Scripts\Components\Button\Button.cs" />
     <Compile Include="Assets\Scripts\Components\Button\Button.State.cs" />
-    <Compile Include="Assets\Scripts\Components\CheckBox.cs" />
-    <Compile Include="Assets\Scripts\Components\CheckBox.State.cs" />
     <Compile Include="Assets\Scripts\Components\Clickable\Clickable.cs" />
-    <Compile Include="Assets\Scripts\Components\Content.cs" />
     <Compile Include="Assets\Scripts\Components\CopyIcon\CopyIcon.cs" />
     <Compile Include="Assets\Scripts\Components\CopyIcon\CopyIcon.State.cs" />
     <Compile Include="Assets\Scripts\Components\DocApp\DocApp.cs" />
@@ -76,7 +74,6 @@
     <Compile Include="Assets\Scripts\Components\DropDown\DropDown.cs" />
     <Compile Include="Assets\Scripts\Components\DropDown\DropDown.Overlay.cs" />
     <Compile Include="Assets\Scripts\Components\DropDown\DropDown.State.cs" />
-    <Compile Include="Assets\Scripts\Components\EditButton.cs" />
     <Compile Include="Assets\Scripts\Components\Footer\Footer.cs" />
     <Compile Include="Assets\Scripts\Components\Footer\Footer.Styles.cs" />
     <Compile Include="Assets\Scripts\Components\Header\Header.cs" />
@@ -86,7 +83,6 @@
     <Compile Include="Assets\Scripts\Components\ImageWithPlaceholder\ImageWithPlaceholder.State.cs" />
     <Compile Include="Assets\Scripts\Components\LanguageSelect\LanguageSelect.cs" />
     <Compile Include="Assets\Scripts\Components\LanguageSelect\LanguageSelect.State.cs" />
-    <Compile Include="Assets\Scripts\Components\LanguageSelection.cs" />
     <Compile Include="Assets\Scripts\Components\Loading\Loading.cs" />
     <Compile Include="Assets\Scripts\Components\Loading\Loading.State.cs" />
     <Compile Include="Assets\Scripts\Components\MarkdownContent\MarkdownContent.Context.cs" />
@@ -96,16 +92,13 @@
     <Compile Include="Assets\Scripts\Components\MarkdownContent\MarkdownContent.Positions.cs" />
     <Compile Include="Assets\Scripts\Components\MarkdownContent\MarkdownContent.State.cs" />
     <Compile Include="Assets\Scripts\Components\MarkdownContent\MarkdownContent.State.Process.cs" />
-    <Compile Include="Assets\Scripts\Components\MarkdownTitleRow.cs" />
     <Compile Include="Assets\Scripts\Components\Menu\Menu.cs" />
     <Compile Include="Assets\Scripts\Components\Menu\Menu.Item.cs" />
     <Compile Include="Assets\Scripts\Components\Menu\Menu.Item.State.cs" />
     <Compile Include="Assets\Scripts\Components\Menu\Menu.State.cs" />
     <Compile Include="Assets\Scripts\Components\Menu\MenuType.cs" />
-    <Compile Include="Assets\Scripts\Components\ModifiedInfo.cs" />
     <Compile Include="Assets\Scripts\Components\Pager\Pager.cs" />
     <Compile Include="Assets\Scripts\Components\Pager\Pager.Item.cs" />
-    <Compile Include="Assets\Scripts\Components\RelatedArticles.cs" />
     <Compile Include="Assets\Scripts\Components\ScreenOverlay\ScreenOverlay.cs" />
     <Compile Include="Assets\Scripts\Components\ScreenOverlay\ScreenOverlay.State.cs" />
     <Compile Include="Assets\Scripts\Components\Scripting\ScriptingContent.cs" />
@@ -119,7 +112,6 @@
     <Compile Include="Assets\Scripts\Components\SearchBar\SearchBar.State.cs" />
     <Compile Include="Assets\Scripts\Components\SearchBar\SearchBarStyle.cs" />
     <Compile Include="Assets\Scripts\Components\SearchBar\StringExtension.cs" />
-    <Compile Include="Assets\Scripts\Components\SearchFilter.cs" />
     <Compile Include="Assets\Scripts\Components\SearchResultCard\SearchResultCard.cs" />
     <Compile Include="Assets\Scripts\Components\SearchResultCard\StringExtension.cs" />
     <Compile Include="Assets\Scripts\Components\SocialBrand\SocialBrand.cs" />
