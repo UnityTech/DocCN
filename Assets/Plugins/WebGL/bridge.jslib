@@ -41,7 +41,7 @@ mergeInto(LibraryManager.library, {
 
     CopyText: function (text) {
         var el = document.createElement('textarea');
-        el.value = text;
+        el.value = Pointer_stringify(text);
         el.setAttribute('readonly', '');
         el.style = {
             position: 'fixed', 
