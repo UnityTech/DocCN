@@ -25,14 +25,14 @@ namespace DocCN.Utility
             Instance.cdnPrefix = "https://unity-connect-dev.storage.googleapis.com/doc_cn/resources";
 #endif
 
-#if DOC_BUILD_TEST || UNITY_EDITOR
+#if DOC_BUILD_TEST
             Instance.domain = "connect-test.unity.com";
             Instance.schema = "https";
             Instance.pageBase = "/doc";
             Instance.cdnPrefix = "https://unity-connect-dev.storage.googleapis.com/doc_cn/resources";
 #endif
 
-#if DOC_BUILD_PRD || UNITY_EDITOR
+#if DOC_BUILD_PRD
             Instance.domain = "connect.unity.com";
             Instance.schema = "https";
             Instance.pageBase = "/doc";
