@@ -44,6 +44,8 @@ namespace DocCN.Components
         internal BoxDecoration filterDecoration { get; private set; }
         internal Color searchInputBackgroundColor { get; private set; }
         internal Color searchInputColor { get; private set; }
+        
+        internal Color searchInputSelectionColor { get; private set; }
         internal Color searchIconBackgroundColor { get; private set; }
         internal Color filterStrongColor { get; private set; }
         internal Color filterTextColor { get; private set; }
@@ -63,6 +65,7 @@ namespace DocCN.Components
             ),
             searchInputBackgroundColor = new Color(0xff424242),
             searchInputColor = new Color(0xffffffff),
+            searchInputSelectionColor = new Color(0xffaad1ff),
             searchIconBackgroundColor = new Color(0xff565656),
             filterStrongColor = new Color(0xffd8d8d8),
             filterTextColor = new Color(0xffffffff),
@@ -82,6 +85,7 @@ namespace DocCN.Components
             ),
             searchInputBackgroundColor = new Color(0xffffffff),
             searchInputColor = new Color(0xff212121),
+            searchInputSelectionColor = new Color(0xffaad1ff),
             searchIconBackgroundColor = new Color(0xffefefef),
             filterStrongColor = new Color(0xff212121),
             filterTextColor = new Color(0xff212121),

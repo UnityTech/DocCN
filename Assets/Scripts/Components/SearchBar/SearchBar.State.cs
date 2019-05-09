@@ -115,6 +115,7 @@ namespace DocCN.Components
                                                 child: new EditableText(
                                                     controller: _textEditingController,
                                                     focusNode: _focusNode,
+                                                    selectionColor: stylePack.searchInputSelectionColor,
                                                     style: new TextStyle(
                                                         color: stylePack.searchInputColor,
                                                         fontSize: 16f,

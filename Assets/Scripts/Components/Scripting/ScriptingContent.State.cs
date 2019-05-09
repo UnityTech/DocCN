@@ -3,6 +3,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using DocCN.Models.Json;
 using DocCN.Utility;
+using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
@@ -134,7 +135,7 @@ namespace DocCN.Components
                         {
                             new Container(
                                 margin: primary ? TitleMargin : SecondaryTitleMargin,
-                                child: new Text(
+                                child: new SelectableText(
                                     name,
                                     style: primary ? TitleStyle : SecondaryTitleStyle
                                 )
@@ -157,11 +158,14 @@ namespace DocCN.Components
                                                         left: 24f,
                                                         right: 24f
                                                     ),
-                                                    child: new Clickable(
-                                                        onTap: () => LocationUtil.Go($"/Scripting/{member.id}"),
-                                                        child: new Text(
-                                                            member.name,
-                                                            style: HyperLinkStyle
+                                                    child: new SelectableText(
+                                                        textSpan: new TextSpan(
+                                                            text: member.name,
+                                                            style: HyperLinkStyle,
+                                                            recognizer: new TapGestureRecognizer
+                                                            {
+                                                                onTap = () => LocationUtil.Go($"/Scripting/{member.id}")
+                                                            }
                                                         )
                                                     )
                                                 ),
@@ -196,7 +200,7 @@ namespace DocCN.Components
 
                 var version = DocApp.of(context).version;
 
-                return new WealthyText(
+                return new SelectableWealthyText(
                     textSpanList: summary.Select(item =>
                     {
                         switch (item)
@@ -206,7 +210,11 @@ namespace DocCN.Components
                             case DocumentTagLink link:
                                 return new TextSpan(
                                     link.content,
-                                    style: HyperLinkStyle
+                                    style: HyperLinkStyle,
+                                    recognizer: new TapGestureRecognizer
+                                    {
+                                        onTap = () => LocationUtil.Go(link.@ref),
+                                    }
                                 );
                             case DocumentTagBreak br:
                                 return new TextSpan("\n");
@@ -264,7 +272,7 @@ namespace DocCN.Components
                             children: new List<Widget>
                             {
                                 new Expanded(
-                                    child: new Text(
+                                    child: new SelectableText(
                                         widget._title.Split('.').Last().Replace("-", "."),
                                         style: new TextStyle(
                                             fontSize: 36f,
@@ -290,7 +298,7 @@ namespace DocCN.Components
                 if (!string.IsNullOrEmpty(_scripting.model.@namespace))
                 {
                     children.Add(new Container(
-                            child: new Text(
+                            child: new SelectableText(
                                 $"class in {_scripting.model.@namespace}",
                                 style: NamespaceStyle
                             ),
@@ -329,7 +337,8 @@ namespace DocCN.Components
                                                 new Expanded(
                                                     child: BuildTextUsingMixedContent(context, example.cSharp)
                                                 ),
-                                                new CopyIcon(string.Join(string.Empty, example.cSharp.Select(c => c.ToString())))
+                                                new CopyIcon(string.Join(string.Empty,
+                                                    example.cSharp.Select(c => c.ToString())))
                                             }
                                         )
                                     )

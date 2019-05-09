@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.material;
@@ -8,7 +7,6 @@ using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
-using UnityEngine;
 using Color = Unity.UIWidgets.ui.Color;
 using Icons = DocCN.Style.Icons;
 using ImageUtils = Unity.UIWidgets.painting.ImageUtils;
@@ -17,10 +15,9 @@ using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
 namespace DocCN.Components
 {
+    // RichText is not so rich
     public class WealthyText : Text
     {
-        private readonly List<TextSpan> textSpanList;
-
         public WealthyText(
             List<TextSpan> textSpanList,
             Key key = null,
@@ -29,7 +26,9 @@ namespace DocCN.Components
             bool? softWrap = true,
             TextOverflow? overflow = TextOverflow.clip,
             float? textScaleFactor = 1.0f,
-            int? maxLines = null) :
+            int? maxLines = null,
+            Action onSelectionChanged = null,
+            Color selectionColor = null) :
             base(string.Empty,
                 key,
                 style,
@@ -39,8 +38,14 @@ namespace DocCN.Components
                 textScaleFactor,
                 maxLines)
         {
-            this.textSpanList = textSpanList;
+            _textSpanList = textSpanList;
+            _onSelectionChanged = onSelectionChanged;
+            _selectionColor = selectionColor;
         }
+
+        private readonly List<TextSpan> _textSpanList;
+        private Action _onSelectionChanged;
+        private Color _selectionColor;
 
         public override Widget build(BuildContext context)
         {
@@ -59,7 +64,7 @@ namespace DocCN.Components
             var textSpan = new TextSpan(
                 "",
                 style: effectiveTextStyle,
-                children: textSpanList
+                children: _textSpanList
             );
 
             textSpan.children.ForEach(child =>
@@ -76,7 +81,9 @@ namespace DocCN.Components
                 overflow: overflow ?? defaultTextStyle.overflow,
                 textScaleFactor: textScaleFactor ?? MediaQuery.textScaleFactorOf(context),
                 maxLines: maxLines ?? defaultTextStyle.maxLines,
-                text: textSpan
+                text: textSpan,
+                onSelectionChanged: _onSelectionChanged,
+                selectionColor: _selectionColor
             );
 
             return result;
@@ -190,7 +197,9 @@ namespace DocCN.Components
             bool softWrap = true,
             TextOverflow overflow = TextOverflow.clip,
             float textScaleFactor = 1F,
-            int? maxLines = null
+            int? maxLines = null,
+            Action onSelectionChanged = null,
+            Color selectionColor = null
         ) : base(
             key: key,
             text: text,
@@ -198,7 +207,9 @@ namespace DocCN.Components
             softWrap: softWrap,
             overflow: overflow,
             textScaleFactor: textScaleFactor,
-            maxLines: maxLines
+            maxLines: maxLines,
+            onSelectionChanged: onSelectionChanged,
+            selectionColor: selectionColor
         )
         {
         }
@@ -211,7 +222,9 @@ namespace DocCN.Components
                 softWrap: softWrap,
                 overflow: overflow,
                 textScaleFactor: textScaleFactor,
-                maxLines: maxLines
+                maxLines: maxLines,
+                onSelectionChanged: onSelectionChanged,
+                selectionColor: selectionColor
             );
         }
     }
@@ -225,14 +238,18 @@ namespace DocCN.Components
             bool softWrap = true,
             TextOverflow overflow = TextOverflow.clip,
             float textScaleFactor = 1,
-            int? maxLines = null) : base(
-            text,
-            textAlign,
-            textDirection,
-            softWrap,
-            overflow,
-            textScaleFactor,
-            maxLines)
+            int? maxLines = null,
+            Action onSelectionChanged = null,
+            Color selectionColor = null) : base(
+            text: text,
+            textAlign: textAlign,
+            textDirection: textDirection,
+            softWrap: softWrap,
+            overflow: overflow,
+            textScaleFactor: textScaleFactor,
+            maxLines: maxLines,
+            onSelectionChanged: onSelectionChanged,
+            selectionColor: selectionColor)
         {
         }
 
