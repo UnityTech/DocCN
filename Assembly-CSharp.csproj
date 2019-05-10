@@ -117,7 +117,8 @@
     <Compile Include="Assets\Scripts\Components\SocialBrand\SocialBrand.State.cs" />
     <Compile Include="Assets\Scripts\Components\ToTop\ToTop.cs" />
     <Compile Include="Assets\Scripts\Components\ToTop\ToTop.State.cs" />
-    <Compile Include="Assets\Scripts\Components\WealthyText.cs" />
+    <Compile Include="Assets\Scripts\Components\WealthyText\SelectableWealthyText.cs" />
+    <Compile Include="Assets\Scripts\Components\WealthyText\WealthyText.cs" />
     <Compile Include="Assets\Scripts\Components\WechatOfficialAccount\WechatOfficialAccount.cs" />
     <Compile Include="Assets\Scripts\Models\Json\Breadcrumb.cs" />
     <Compile Include="Assets\Scripts\Models\Json\ManualModel.cs" />
@@ -703,6 +704,10 @@
     <ProjectReference Include="UIWidgetsSample.csproj">
       <Project>{DF5F0DD4-B25A-7DD9-F5BB-A55C208045B4}</Project>
       <Name>UIWidgetsSample</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.InternalAPIEngineBridge.024.csproj">
+      <Project>{EF43ED45-6558-FC8D-8456-2E4DC65F73A0}</Project>
+      <Name>Unity.InternalAPIEngineBridge.024</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -18,7 +18,7 @@ namespace DocCN.Utility
 
         static Configuration()
         {
-#if DOC_BUILD_LOCAL || UNITY_EDITOR
+#if DOC_BUILD_LOCAL
             Instance.domain = "doc.unity.cn";
             Instance.schema = "http";
             Instance.pageBase = "";

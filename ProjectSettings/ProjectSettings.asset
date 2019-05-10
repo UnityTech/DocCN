@@ -543,7 +543,7 @@ PlayerSettings:
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
     1: 
-    13: 
+    13: DOC_BUILD_PRD
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}

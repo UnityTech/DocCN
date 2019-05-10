@@ -131,6 +131,7 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\gestures\multitap.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\gestures\pointer_router.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\gestures\recognizer.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\gestures\scale.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\gestures\tap.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\gestures\team.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\gestures\velocity_tracker.cs" />
@@ -211,6 +212,7 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\tab_indicator.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\tabs.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\text_field.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\text_form_field.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\text_selection.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\text_theme.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\material\theme.cs" />
@@ -288,6 +290,7 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\performance_overlay.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\proxy_box.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\proxy_box.mixin.gen.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\rotated_box.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\shifted_box.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\sliver.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\rendering\sliver_fill.cs" />
@@ -319,6 +322,7 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\ui\compositing.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\ui\geometry.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\ui\matrix.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Runtime\ui\painting\ArrayRef.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\ui\painting\canvas.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\ui\painting\canvas_clip.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\ui\painting\canvas_impl.cs" />
@@ -351,8 +355,6 @@
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\ui\txt\word_separate.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\ui\txt\wordbreaker.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\ui\window.cs" />
-    <Compile Include="Packages\com.unity.uiwidgets\Runtime\utils\axis_direction.cs" />
-    <Compile Include="Packages\com.unity.uiwidgets\Runtime\utils\drag_utils.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\animated_cross_fade.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\animated_size.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Runtime\widgets\animated_switcher.cs" />
@@ -986,6 +988,12 @@
     <Reference Include="mscorlib">
       <HintPath>/home/haog/Unity-2019.1.0f2/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/mscorlib.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Unity.InternalAPIEngineBridge.024.csproj">
+      <Project>{EF43ED45-6558-FC8D-8456-2E4DC65F73A0}</Project>
+      <Name>Unity.InternalAPIEngineBridge.024</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

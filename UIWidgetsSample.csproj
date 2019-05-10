@@ -77,6 +77,7 @@
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetSample\NavigationSample.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetSample\PageViewSample.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetSample\SampleExample.cs" />
+    <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetSample\ScaleGestureSample.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetSample\ScrollbarSample.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetSample\SelectOnStart.cs" />
     <Compile Include="Packages\com.unity.uiwidgets\Samples\UIWidgetSample\TextInputSample.cs" />
