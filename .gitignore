@@ -10,4 +10,9 @@ Builds
 Assets/Plugins/Editor
 Assets/Plugins/Editor.meta
 
-Packages/com.unity.uiwidgets
+*.csproj
+!Assembly-CSharp-Editor.csproj
+!Assembly-CSharp-firstpass.csproj
+!Assembly-CSharp.csproj
+
+DocCN.sln.DotSettings.user
