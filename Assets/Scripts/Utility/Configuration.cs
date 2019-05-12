@@ -36,7 +36,7 @@ namespace DocCN.Utility
             Instance.domain = "connect.unity.com";
             Instance.schema = "https";
             Instance.pageBase = "/doc";
-            Instance.cdnPrefix = "https://connect-prd-cdn.unity.com/doc_cn/resources";
+            Instance.cdnPrefix = "https://connect-cdn-china.unitychina.cn/doc_cn/resources";
 #endif
             Instance.apiHost = $"{Instance.schema}://{Instance.domain}";
         }
