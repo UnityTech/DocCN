@@ -34,20 +34,20 @@ namespace DocCN.Components
         private static readonly TextStyle TitleTextStyle = new TextStyle(
             color: new Color(0xff2196f3),
             fontSize: 24f,
-            height: 1.333333333333333f
+            height: 1.333333333333333f.LineHeight()
         );
 
         private static readonly TextStyle HighlightTextStyle = new TextStyle(
             color: new Color(0xff212121),
             fontSize: 16f,
-            height: 1.5f,
+            height: 1.5f.LineHeight(),
             fontFamily: "PingFang"
         );
 
         private static readonly TextStyle HighlightEmTextStyle = new TextStyle(
             color: new Color(0xff212121),
             fontSize: 16f,
-            height: 1.5f,
+            height: 1.5f.LineHeight(),
             fontWeight: FontWeight.w500,
             fontFamily: "PingFang"
         );

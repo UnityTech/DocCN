@@ -139,7 +139,7 @@ namespace DocCN.Pages
                                                         style: new TextStyle(
                                                             fontSize: 14.0f,
                                                             fontWeight: FontWeight.w500,
-                                                            height: 1.42857142857f,
+                                                            height: 1.42857142857f.LineHeight(),
                                                             color: new Color(0xffffffff)
                                                         )
                                                     )
@@ -150,7 +150,7 @@ namespace DocCN.Pages
                                                         _description,
                                                         style: new TextStyle(
                                                             fontSize: 24.0f,
-                                                            height: 1.33333333333f,
+                                                            height: 1.33333333333f.LineHeight(),
                                                             fontWeight: FontWeight.w500,
                                                             color: new Color(0xffffffff)
                                                         )
@@ -162,7 +162,7 @@ namespace DocCN.Pages
                                                         _description,
                                                         style: new TextStyle(
                                                             fontSize: 16.0f,
-                                                            height: 1.5f,
+                                                            height: 1.5f.LineHeight(),
                                                             fontWeight: FontWeight.w400,
                                                             color: new Color(0xffffffff)
                                                         )

@@ -90,8 +90,8 @@ namespace DocCN.Components
                                     left: 32f + 16f * widget._level
                                 ),
                                 padding: EdgeInsets.only(
-                                    top: 4f,
-                                    bottom: 12f
+                                    top: 8f,
+                                    bottom: 8f
                                 ),
                                 child: new Container(
                                     margin: EdgeInsets.only(left: 14f),
@@ -99,7 +99,7 @@ namespace DocCN.Components
                                         widget._bind.title,
                                         style: new TextStyle(
                                             fontSize: 16f,
-                                            height: 1.5f,
+                                            height: 1.5f.LineHeight(),
                                             color: new Color(0xff616161)
                                         )
                                     )
@@ -112,7 +112,6 @@ namespace DocCN.Components
                         children.Add(new GestureDetector(
                                 onTap: OnExpandTap,
                                 child: new Container(
-                                    padding: EdgeInsets.only(top: 4f),
                                     child: new Icon(
                                         Icons.MaterialExpandMore,
                                         color: IconColor,

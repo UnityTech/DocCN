@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DocCN.Utility;
 using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.material;
@@ -107,7 +108,7 @@ namespace DocCN.Components
             style: new TextStyle(
                 color: Colors.transparent,
                 // letterSpacing: imageWidth + (margin == null ? 0 : margin.horizontal),
-                height: 1f,
+                height: 1f.LineHeight(),
                 fontSize: imageHeight + (margin == null ? 0 : margin.vertical)
             ),
             text: "X",

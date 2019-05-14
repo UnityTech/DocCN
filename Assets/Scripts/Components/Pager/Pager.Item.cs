@@ -1,3 +1,4 @@
+using DocCN.Utility;
 using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.painting;
@@ -35,8 +36,7 @@ namespace DocCN.Components
                 private static readonly TextStyle TextStyle = new TextStyle(
                     color: new Color(0xffffffff),
                     fontSize: 16f,
-                    fontWeight: FontWeight.w500,
-                    height: 1f
+                    fontWeight: FontWeight.w500
                 );
                 
                 private static readonly Color ActiveColor = new Color(0xff2196f3);

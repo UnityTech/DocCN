@@ -18,7 +18,7 @@ namespace DocCN.Components
                 fontSize: 16,
                 color: new Color(0xff212121),
                 fontFamily: "PingFang",
-                height: 1.5f
+                height: 1.5f.LineHeight()
             );
 
             private static readonly TextStyle EntranceBoldTextStyle = new TextStyle(
@@ -61,7 +61,7 @@ namespace DocCN.Components
                                     "欢迎使用 Unity Scripting Reference（脚本引用）！",
                                     style: new TextStyle(
                                         fontSize: 36,
-                                        height: 1.16666666667f,
+                                        height: 1.16666666667f.LineHeight(),
                                         color: new Color(0xff212121)
                                     )
                                 ),

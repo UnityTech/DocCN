@@ -139,7 +139,6 @@ namespace DocCN.Components
                                                         style: _style.copyrightLabelStyle
                                                     ),
                                                     new Container(
-                                                        margin: EdgeInsets.only(top: 4),
                                                         child: new Text(
                                                             "Unity Connect",
                                                             style: _style.copyrightTextStyle
@@ -163,7 +162,6 @@ namespace DocCN.Components
                                                         style: _style.copyrightLabelStyle
                                                     ),
                                                     new Container(
-                                                        margin: EdgeInsets.only(top: 4),
                                                         child: new Text(
                                                             "UIWidgets",
                                                             style: _style.copyrightTextStyle

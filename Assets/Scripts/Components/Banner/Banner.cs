@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DocCN.Utility;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
@@ -43,7 +44,7 @@ namespace DocCN.Components
                                     style: new TextStyle(
                                         color: new Color(0xffffffff),
                                         fontSize: 64.0f,
-                                        fontWeight: FontWeight.w700 // actually w600
+                                        fontWeight: FontWeight.w500 // actually w600
                                     )
                                 )
                             )
@@ -59,7 +60,7 @@ namespace DocCN.Components
                                         color: new Color(0xffffffff),
                                         fontSize: 18.0f,
                                         fontWeight: FontWeight.w400,
-                                        height: 1.77777777778f
+                                        height: 1.77777777778f.LineHeight()
                                     )
                                 )
                             )

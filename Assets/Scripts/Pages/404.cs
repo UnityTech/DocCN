@@ -62,7 +62,7 @@ namespace DocCN.Pages
                                                         style: new TextStyle(
                                                             fontSize: 24f,
                                                             color: new Color(0xffd8d8d8),
-                                                            height: 1.33333333333f,
+                                                            height: 1.33333333333f.LineHeight(),
                                                             fontWeight: FontWeight.w500
                                                         )
                                                     )

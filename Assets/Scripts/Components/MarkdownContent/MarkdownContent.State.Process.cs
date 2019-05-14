@@ -32,7 +32,7 @@ namespace DocCN.Components
             private static readonly TextStyle FenceTextStyle = new TextStyle(
                 color: new Color(0xff212121),
                 fontSize: 16f,
-                height: 1.5f
+                height: 1.5f.LineHeight()
             );
 
             static MarkdownContentState()
@@ -84,7 +84,7 @@ namespace DocCN.Components
                     case "h1":
                         ctx.textStyle = new TextStyle(
                             fontSize: 36.0f,
-                            height: 1.16666666667f,
+                            height: 1.16666666667f.LineHeight(),
                             fontFamily: "PingFang"
                         );
                         break;
@@ -92,28 +92,28 @@ namespace DocCN.Components
                         ctx.textStyle = new TextStyle(
                             fontSize: 30.0f,
                             fontFamily: "PingFang",
-                            height: 1.26666666667f
+                            height: 1.26666666667f.LineHeight()
                         );
                         ctx.useNotifyContainer = true;
                         break;
                     case "h3":
                         ctx.textStyle = new TextStyle(
                             fontSize: 24.0f,
-                            height: 1.26666666667f,
+                            height: 1.26666666667f.LineHeight(),
                             fontFamily: "PingFang"
                         );
                         break;
                     case "h4":
                         ctx.textStyle = new TextStyle(
                             fontSize: 20.0f,
-                            height: 1.26666666667f,
+                            height: 1.26666666667f.LineHeight(),
                             fontFamily: "PingFang"
                         );
                         break;
                     case "h5":
                         ctx.textStyle = new TextStyle(
                             fontSize: 18f,
-                            height: 1.26666666667f,
+                            height: 1.26666666667f.LineHeight(),
                             fontFamily: "PingFang"
                         );
                         break;
@@ -287,7 +287,7 @@ namespace DocCN.Components
             {
                 ctx.textStyle = new TextStyle(
                     fontSize: 16.0f,
-                    height: 1.5f,
+                    height: 1.5f.LineHeight(),
                     fontFamily: "PingFang"
                 );
                 return null;
@@ -443,7 +443,7 @@ namespace DocCN.Components
             {
                 ctx.textStyle = new TextStyle(
                     fontSize: 16.0f,
-                    height: 1.5f,
+                    height: 1.5f.LineHeight(),
                     fontFamily: "PingFang"
                 );
                 return null;

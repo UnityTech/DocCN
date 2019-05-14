@@ -12,8 +12,6 @@ namespace DocCN.Utility
         protected override void OnEnable()
         {
             base.OnEnable();
-            //FontManager.instance.addFont(Resources.Load<Font>("Fonts/PingFang-Regular"), "PingFang");
-            //FontManager.instance.addFont(Resources.Load<Font>("Fonts/PingFang-W500"), "PingFang", FontWeight.w500);
             FontManager.instance.addFont(Resources.Load<Font>("Fonts/Brands"), "Brands");
             FontManager.instance.addFont(Resources.Load<Font>("Fonts/MaterialIcons-Regular"), "MaterialIcons");
             FontManager.instance.addFont(Resources.Load<Font>("Fonts/NotoSans"), "NotoSans");

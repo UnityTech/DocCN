@@ -28,7 +28,7 @@ namespace DocCN.Components
             }
 
             private static readonly TextStyle ItemStyle = new TextStyle(
-                height: 1.5f,
+                height: 1.5f.LineHeight(),
                 color: new Color(0xff616161),
                 fontSize: 16.0f
             );
@@ -46,7 +46,7 @@ namespace DocCN.Components
                 var children = new List<Widget>
                 {
                     new Container(
-                        margin: EdgeInsets.only(bottom: 16.0f),
+                        margin: EdgeInsets.only(top: 24f, bottom: 16.0f),
                         child: new Text(
                             "文章导览",
                             style: ItemStyle.merge(

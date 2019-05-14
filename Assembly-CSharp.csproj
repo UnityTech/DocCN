@@ -144,6 +144,7 @@
     <Compile Include="Assets\Scripts\Style\Icons.IconFont.cs" />
     <Compile Include="Assets\Scripts\Utility\Bridge.cs" />
     <Compile Include="Assets\Scripts\Utility\Configuration.cs" />
+    <Compile Include="Assets\Scripts\Utility\FloatExtension.cs" />
     <Compile Include="Assets\Scripts\Utility\LocationUtil.cs" />
     <Compile Include="Assets\Scripts\Utility\ObservableUtil.cs" />
     <Compile Include="Assets\Scripts\Utility\SearchResultHighlightParser.cs" />

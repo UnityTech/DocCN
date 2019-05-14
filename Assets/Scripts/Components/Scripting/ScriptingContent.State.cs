@@ -20,31 +20,31 @@ namespace DocCN.Components
     {
         private static readonly TextStyle NormalTextStyle = new TextStyle(
             fontSize: 16f,
-            height: 1.5f
+            height: 1.5f.LineHeight()
         );
 
         private static readonly TextStyle HyperLinkStyle = new TextStyle(
             fontSize: 16f,
-            height: 1.5f,
+            height: 1.5f.LineHeight(),
             color: new Color(0xffe91e63),
             decoration: TextDecoration.underline
         );
 
         private static readonly TextStyle TitleStyle = new TextStyle(
             fontSize: 30f,
-            height: 38 / 30,
+            height: 1.26666666667f.LineHeight(),
             color: new Color(0xff212121)
         );
 
         private static readonly TextStyle SecondaryTitleStyle = new TextStyle(
             fontSize: 24f,
-            height: 36 / 24,
+            height: 1.5f.LineHeight(),
             color: new Color(0xff616161)
         );
 
         private static readonly TextStyle NamespaceStyle = new TextStyle(
             fontSize: 16f,
-            height: 1.5f,
+            height: 1.5f.LineHeight(),
             color: new Color(0xff979797)
         );
 
@@ -153,8 +153,8 @@ namespace DocCN.Components
                                             {
                                                 new Container(
                                                     padding: EdgeInsets.only(
-                                                        top: 4f,
-                                                        bottom: 12f,
+                                                        top: 8f,
+                                                        bottom: 8f,
                                                         left: 24f,
                                                         right: 24f
                                                     ),
@@ -171,8 +171,8 @@ namespace DocCN.Components
                                                 ),
                                                 new Container(
                                                     padding: EdgeInsets.only(
-                                                        top: 4f,
-                                                        bottom: 12f,
+                                                        top: 8f,
+                                                        bottom: 8f,
                                                         left: 24f,
                                                         right: 24f
                                                     ),
