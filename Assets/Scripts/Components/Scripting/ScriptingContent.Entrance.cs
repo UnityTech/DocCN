@@ -58,7 +58,7 @@ namespace DocCN.Components
                             children: new List<Widget>
                             {
                                 new Text(
-                                    "欢迎使用 Unity Scripting Reference（脚本引用）！",
+                                    "欢迎使用 Unity Scripting Reference（脚本手册）！",
                                     style: new TextStyle(
                                         fontSize: 36,
                                         height: 1.16666666667f.LineHeight(),
@@ -132,23 +132,24 @@ namespace DocCN.Components
                             }
                         )
                     );
-                    return new SingleChildScrollView(
-                        child: new ScrollableOverlay(
-                            child: new Container(
-                                padding: EdgeInsets.only(right: 48f),
-                                child: new Column(
-                                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                                    children: new List<Widget>
-                                    {
-                                        new Container(
-                                            constraints: new BoxConstraints(
-                                                minHeight: MediaQuery.of(context).size.height - Header.Height -
-                                                           SearchBar.Height - Footer.Height
+                    return new Scroller(
+                        child: new SingleChildScrollView(
+                            child: new ScrollableOverlay(
+                                child: new Container(
+                                    padding: EdgeInsets.only(right: 48f),
+                                    child: new Column(
+                                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                                        children: new List<Widget>
+                                        {
+                                            new Container(
+                                                constraints: new BoxConstraints(
+                                                    minHeight: MediaQuery.of(context).size.height - Header.Height -
+                                                               SearchBar.Height - Footer.Height),
+                                                child: container
                                             ),
-                                            child: container
-                                        ),
-                                        new Footer(style: Footer.Light, showSocials: false)
-                                    }
+                                            new Footer(style: Footer.Light, showSocials: false)
+                                        }
+                                    )
                                 )
                             )
                         )

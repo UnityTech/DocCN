@@ -185,28 +185,30 @@ namespace DocCN.Pages
                         minHeight: size.height
                     ),
                     width: size.width,
-                    child: new SingleChildScrollView(
-                        child: new ScrollableOverlay(
-                            child: new Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: new List<Widget>
-                                {
-                                    new Header(),
-                                    new SearchBar(),
-                                    new Container(
-                                        constraints: new BoxConstraints(
-                                            minHeight: minHeight < pageHeight ? pageHeight - minHeight : 0
+                    child: new Scroller(
+                        child: new SingleChildScrollView(
+                            child: new ScrollableOverlay(
+                                child: new Column(
+                                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                                    children: new List<Widget>
+                                    {
+                                        new Header(),
+                                        new SearchBar(),
+                                        new Container(
+                                            constraints: new BoxConstraints(
+                                                minHeight: minHeight < pageHeight ? pageHeight - minHeight : 0
+                                            ),
+                                            padding: EdgeInsets.only(top: 16f, right: 48f, bottom: 48f, left: 48f),
+                                            color: new Color(0xfff2f1f2),
+                                            child: new Column(
+                                                crossAxisAlignment: crossAxisAlignment,
+                                                mainAxisAlignment: mainAxisAlignment,
+                                                children: children
+                                            )
                                         ),
-                                        padding: EdgeInsets.only(top: 16f, right: 48f, bottom: 48f, left: 48f),
-                                        color: new Color(0xfff2f1f2),
-                                        child: new Column(
-                                            crossAxisAlignment: crossAxisAlignment,
-                                            mainAxisAlignment: mainAxisAlignment,
-                                            children: children
-                                        )
-                                    ),
-                                    new Footer(),
-                                }
+                                        new Footer(),
+                                    }
+                                )
                             )
                         )
                     )

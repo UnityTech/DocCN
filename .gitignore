@@ -6,6 +6,7 @@ Temp
 Logs
 Builds
 .idea
+.vs
 
 Assets/Plugins/Editor
 Assets/Plugins/Editor.meta

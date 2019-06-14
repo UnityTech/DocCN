@@ -149,17 +149,19 @@ namespace DocCN.Components
                 return new Container(
                     width: 336.0f,
                     padding: EdgeInsets.only(right: 48f),
-                    child: ListView.builder(
-                        itemCount: items.Count + 1,
-                        itemBuilder: (ctx, idx) =>
-                        {
-                            if (idx == 0)
+                    child: new Scroller(
+                        child: ListView.builder(
+                            itemCount: items.Count + 1,
+                            itemBuilder: (ctx, idx) =>
                             {
-                                return children;
+                                if (idx == 0)
+                                {
+                                    return children;
+                                }
+                                    
+                                return items[idx - 1];
                             }
-
-                            return items[idx - 1];
-                        }
+                        )
                     )
                 );
             }

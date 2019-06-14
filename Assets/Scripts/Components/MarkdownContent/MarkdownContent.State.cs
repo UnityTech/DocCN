@@ -210,26 +210,28 @@ namespace DocCN.Components
                             child: new Stack(
                                 children: new List<Widget>
                                 {
-                                    new SingleChildScrollView(
-                                        controller: _scrollController,
-                                        child: new ScrollableOverlay(
-                                            child: new Column(
-                                                children: new List<Widget>
-                                                {
-                                                    new Container(
-                                                        constraints: new BoxConstraints(
-                                                            minHeight: MediaQuery.of(buildContext).size.height -
-                                                                       Header.Height -
-                                                                       SearchBar.Height -
-                                                                       Footer.Height
+                                    new Scroller(
+                                        child: new SingleChildScrollView(
+                                            controller: _scrollController,
+                                            child: new ScrollableOverlay(
+                                                child: new Column(
+                                                    children: new List<Widget>
+                                                    {
+                                                        new Container(
+                                                            constraints: new BoxConstraints(
+                                                                minHeight: MediaQuery.of(buildContext).size.height -
+                                                                           Header.Height -
+                                                                           SearchBar.Height -
+                                                                           Footer.Height
+                                                            ),
+                                                            child: new Column(
+                                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                children: widgets)
                                                         ),
-                                                        child: new Column(
-                                                            mainAxisAlignment: MainAxisAlignment.start,
-                                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                                            children: widgets)
-                                                    ),
-                                                    new Footer(style: Footer.Light, showSocials: false)
-                                                }
+                                                        new Footer(style: Footer.Light, showSocials: false)
+                                                    }
+                                                )
                                             )
                                         )
                                     ),

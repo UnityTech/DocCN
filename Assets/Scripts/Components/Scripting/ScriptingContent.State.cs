@@ -387,27 +387,29 @@ namespace DocCN.Components
                 return new Stack(
                     children: new List<Widget>
                     {
-                        new SingleChildScrollView(
-                            controller: _scrollController,
-                            child: new ScrollableOverlay(
-                                child: new Container(
-                                    padding: EdgeInsets.only(right: 48f),
-                                    child: new Column(
-                                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                                        children: new List<Widget>
-                                        {
-                                            new Container(
-                                                constraints: new BoxConstraints(
-                                                    minHeight: MediaQuery.of(context).size.height - Header.Height -
-                                                               SearchBar.Height - Footer.Height
-                                                ),
-                                                child: new Column(
-                                                    mainAxisAlignment: MainAxisAlignment.start,
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                    children: children)
-                                            ),
-                                            new Footer(style: Footer.Light, showSocials: false)
-                                        }
+                        new Scroller(
+                            child: new SingleChildScrollView(
+                                controller: _scrollController,
+                                child: new ScrollableOverlay(
+                                    child: new Container(
+                                        padding: EdgeInsets.only(right: 48f),
+                                        child: new Column(
+                                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                                            children: new List<Widget>
+                                            {
+                                                new Container(
+                                                    constraints: new BoxConstraints(
+                                                        minHeight: MediaQuery.of(context).size.height - Header.Height -
+                                                                   SearchBar.Height - Footer.Height
+                                                    ),
+                                                    child: new Column(
+                                                        mainAxisAlignment: MainAxisAlignment.start,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: children)
+                                                    ),
+                                                new Footer(style: Footer.Light, showSocials: false)
+                                            }
+                                        )
                                     )
                                 )
                             )
