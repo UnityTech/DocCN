@@ -11,55 +11,57 @@ namespace DocCN.Components
     {
         private class BuilderContext
         {
-            public BuildContext context { get; }
-            public TextStyle textStyle { get; set; }
-            public Stack<TextSpan> inline { get; }
-            public Container imageNode { get; set; }
-            public List<List<Container>> rows { get; private set; }
-            public List<Container> cells { get; private set; }
-            public string title { get; set; }
-            public List<PositionRecord> positionRecords { get; }
-            public bool useNotifyContainer { get; set; }
-            public Dictionary<string, ImageMeta> imageMetas { get; }
-            public List<TapGestureRecognizer> spanRecognizers { get; }
-            public bool useRecognizer { get; set; }
+            public BuildContext Context { get; }
+            public TextStyle TextStyle { get; set; }
+            public Stack<TextSpan> Inline { get; }
+            public Container ImageNode { get; set; }
+            public List<List<Container>> Rows { get; private set; }
+            public List<Container> Cells { get; private set; }
+            public string Title { get; set; }
+            public List<PositionRecord> PositionRecords { get; }
+            public bool UseNotifyContainer { get; set; }
+            public Dictionary<string, ImageMeta> ImageMetas { get; }
+            public List<TapGestureRecognizer> SpanRecognizers { get; }
+            public bool UseRecognizer { get; set; }
+            public bool ListItem { get; set; }
 
             public BuilderContext(
                 IEnumerable<ImageMeta> imageMetas,
                 BuildContext context)
             {
-                inline = new Stack<TextSpan>();
-                rows = new List<List<Container>>();
-                cells = new List<Container>();
-                positionRecords = new List<PositionRecord>();
-                useNotifyContainer = false;
-                this.imageMetas = imageMetas?
+                Inline = new Stack<TextSpan>();
+                Rows = new List<List<Container>>();
+                Cells = new List<Container>();
+                PositionRecords = new List<PositionRecord>();
+                UseNotifyContainer = false;
+                this.ImageMetas = imageMetas?
                     .GroupBy(item => item.name)
                     .Select(group => group.ToArray().First())
                     .ToDictionary(
                     meta => meta.name,
                     meta => meta);
-                spanRecognizers = new List<TapGestureRecognizer>();
-                useRecognizer = false;
-                this.context = context;
+                SpanRecognizers = new List<TapGestureRecognizer>();
+                UseRecognizer = false;
+                ListItem = false;
+                this.Context = context;
             }
 
             public void Clear()
             {
-                textStyle = null;
-                inline.Clear();
-                imageNode = null;
-                useNotifyContainer = false;
+                TextStyle = null;
+                Inline.Clear();
+                ImageNode = null;
+                UseNotifyContainer = false;
             }
 
             public void ClearColumn()
             {
-                rows = new List<List<Container>>();
+                Rows = new List<List<Container>>();
             }
 
             public void ClearCells()
             {
-                cells = new List<Container>();
+                Cells = new List<Container>();
             }
         }
     }

@@ -35,6 +35,13 @@ namespace DocCN.Components
                 height: 1.5f.LineHeight()
             );
 
+            private static readonly Paint CodeInlineBackgroundPaint = new Paint
+            {
+                color = new Color(0xfff0f0f0)
+            };
+
+            private static readonly TextStyle CodeInlineTextStyle = new TextStyle(background: CodeInlineBackgroundPaint);
+
             static MarkdownContentState()
             {
                 Mappings = new Dictionary<string, Func<Token, BuilderContext, Widget>>
@@ -66,6 +73,9 @@ namespace DocCN.Components
                     ["image"] = ProcessImage,
                     ["hr"] = ProcessHR,
                     ["fence"] = ProcessFence,
+                    ["code_inline"] = ProcessCodeInline,
+                    ["list_item_open"] = ProcessListItemOpen,
+                    ["list_item_close"] = ProcessListItemClose,
                 };
 
                 HoverRecognizer = new HoverRecognizer
@@ -82,36 +92,36 @@ namespace DocCN.Components
                 switch (token.tag)
                 {
                     case "h1":
-                        ctx.textStyle = new TextStyle(
+                        ctx.TextStyle = new TextStyle(
                             fontSize: 36.0f,
                             height: 1.16666666667f.LineHeight(),
                             fontFamily: "PingFang"
                         );
                         break;
                     case "h2":
-                        ctx.textStyle = new TextStyle(
+                        ctx.TextStyle = new TextStyle(
                             fontSize: 30.0f,
                             fontFamily: "PingFang",
                             height: 1.26666666667f.LineHeight()
                         );
-                        ctx.useNotifyContainer = true;
+                        ctx.UseNotifyContainer = true;
                         break;
                     case "h3":
-                        ctx.textStyle = new TextStyle(
+                        ctx.TextStyle = new TextStyle(
                             fontSize: 24.0f,
                             height: 1.26666666667f.LineHeight(),
                             fontFamily: "PingFang"
                         );
                         break;
                     case "h4":
-                        ctx.textStyle = new TextStyle(
+                        ctx.TextStyle = new TextStyle(
                             fontSize: 20.0f,
                             height: 1.26666666667f.LineHeight(),
                             fontFamily: "PingFang"
                         );
                         break;
                     case "h5":
-                        ctx.textStyle = new TextStyle(
+                        ctx.TextStyle = new TextStyle(
                             fontSize: 18f,
                             height: 1.26666666667f.LineHeight(),
                             fontFamily: "PingFang"
@@ -126,17 +136,17 @@ namespace DocCN.Components
 
             private static Widget ProcessHeadingClose(Token token, BuilderContext ctx)
             {
-                var richText = new SelectableText(textSpan: ctx.inline.Pop());
+                var richText = new SelectableText(textSpan: ctx.Inline.Pop());
                 Widget container = null;
-                if (ctx.useNotifyContainer)
+                if (ctx.UseNotifyContainer)
                 {
-                    var positionRecord = new PositionRecord {title = ctx.title};
+                    var positionRecord = new PositionRecord {title = ctx.Title};
                     container = new NotifyContainer(
                         margin: EdgeInsets.only(top: 40f),
                         child: richText,
                         notifyFn: fn => positionRecord.getPosition = fn
                     );
-                    ctx.positionRecords.Add(positionRecord);
+                    ctx.PositionRecords.Add(positionRecord);
                 }
                 else
                 {
@@ -152,16 +162,16 @@ namespace DocCN.Components
 
             private static Widget ProcessInline(Token token, BuilderContext ctx)
             {
-                if (ctx.useNotifyContainer)
+                if (ctx.UseNotifyContainer)
                 {
-                    ctx.title = token.content;
+                    ctx.Title = token.content;
                 }
 
-                if (ctx.textStyle == null) return null;
-                ctx.inline.Push(
+                if (ctx.TextStyle == null) return null;
+                ctx.Inline.Push(
                     new TextSpan(
                         children: new List<TextSpan>(),
-                        style: ctx.textStyle
+                        style: ctx.TextStyle
                     )
                 );
 
@@ -181,11 +191,11 @@ namespace DocCN.Components
 
             private static Widget ProcessText(Token token, BuilderContext ctx)
             {
-                ctx.inline.Peek().children.Add(
+                ctx.Inline.Peek().children.Add(
                     new TextSpan(
                         token.content,
-                        recognizer: ctx.useRecognizer ? ctx.spanRecognizers.Last() : null,
-                        hoverRecognizer: ctx.useRecognizer ? HoverRecognizer : null
+                        recognizer: ctx.UseRecognizer ? ctx.SpanRecognizers.Last() : null,
+                        hoverRecognizer: ctx.UseRecognizer ? HoverRecognizer : null
                     )
                 );
                 return null;
@@ -193,7 +203,7 @@ namespace DocCN.Components
 
             private static Widget ProcessStrongOpen(Token token, BuilderContext ctx)
             {
-                ctx.inline.Push(new TextSpan(
+                ctx.Inline.Push(new TextSpan(
                         children: new List<TextSpan>(),
                         style: new TextStyle(
                             fontWeight: FontWeight.w500
@@ -205,14 +215,14 @@ namespace DocCN.Components
 
             private static Widget ProcessStrongClose(Token token, BuilderContext ctx)
             {
-                var span = ctx.inline.Pop();
-                ctx.inline.Peek().children.Add(span);
+                var span = ctx.Inline.Pop();
+                ctx.Inline.Peek().children.Add(span);
                 return null;
             }
 
             private static Widget ProcessEmOpen(Token token, BuilderContext ctx)
             {
-                ctx.inline.Push(new TextSpan(
+                ctx.Inline.Push(new TextSpan(
                         children: new List<TextSpan>(),
                         style: new TextStyle(
                             fontStyle: FontStyle.italic
@@ -224,15 +234,15 @@ namespace DocCN.Components
 
             private static Widget ProcessEmClose(Token token, BuilderContext ctx)
             {
-                var span = ctx.inline.Pop();
-                ctx.inline.Peek().children.Add(span);
+                var span = ctx.Inline.Pop();
+                ctx.Inline.Peek().children.Add(span);
                 return null;
             }
 
             private static Widget ProcessLinkOpen(Token token, BuilderContext ctx)
             {
                 var uriString = token.attrs[0][1];
-                ctx.spanRecognizers.Add(new TapGestureRecognizer
+                ctx.SpanRecognizers.Add(new TapGestureRecognizer
                 {
                     onTap = () =>
                     {
@@ -270,22 +280,22 @@ namespace DocCN.Components
                         decoration: TextDecoration.underline
                     )
                 );
-                ctx.inline.Push(span);
-                ctx.useRecognizer = true;
+                ctx.Inline.Push(span);
+                ctx.UseRecognizer = true;
                 return null;
             }
 
             private static Widget ProcessLinkClose(Token token, BuilderContext ctx)
             {
-                var span = ctx.inline.Pop();
-                ctx.inline.Peek().children.Add(span);
-                ctx.useRecognizer = false;
+                var span = ctx.Inline.Pop();
+                ctx.Inline.Peek().children.Add(span);
+                ctx.UseRecognizer = false;
                 return null;
             }
 
             private static Widget ProcessTableOpen(Token token, BuilderContext ctx)
             {
-                ctx.textStyle = new TextStyle(
+                ctx.TextStyle = new TextStyle(
                     fontSize: 16.0f,
                     height: 1.5f.LineHeight(),
                     fontFamily: "PingFang"
@@ -295,8 +305,8 @@ namespace DocCN.Components
 
             private static Widget ProcessTableClose(Token token, BuilderContext ctx)
             {
-                var maxColumnCount = ctx.rows.Max(row => row.Count);
-                ctx.rows.ForEach(row =>
+                var maxColumnCount = ctx.Rows.Max(row => row.Count);
+                ctx.Rows.ForEach(row =>
                 {
                     while (row.Count < maxColumnCount)
                     {
@@ -309,7 +319,7 @@ namespace DocCN.Components
                         );
                     }
                 });
-                var tableRows = ctx.rows.Select(row => new TableRow(children: row.Cast<Widget>().ToList())).ToList();
+                var tableRows = ctx.Rows.Select(row => new TableRow(children: row.Cast<Widget>().ToList())).ToList();
                 var table = new Container(
                     margin: EdgeInsets.only(top: 16f, bottom: 24f),
                     child: new Table(
@@ -327,19 +337,19 @@ namespace DocCN.Components
 
             private static Widget ProcessTRClose(Token token, BuilderContext ctx)
             {
-                ctx.rows.Add(ctx.cells);
+                ctx.Rows.Add(ctx.Cells);
                 ctx.ClearCells();
                 return null;
             }
 
             private static Widget ProcessTHClose(Token token, BuilderContext ctx)
             {
-                ctx.cells.Add(
+                ctx.Cells.Add(
                     new Container(
                         padding: TableCellPadding,
                         color: new Color(0xffe0e0e0),
                         child: new SelectableText(
-                            textSpan: ctx.inline.Pop()
+                            textSpan: ctx.Inline.Pop()
                         )
                     )
                 );
@@ -348,11 +358,11 @@ namespace DocCN.Components
 
             private static Widget ProcessTDClose(Token token, BuilderContext ctx)
             {
-                ctx.cells.Add(
+                ctx.Cells.Add(
                     new Container(
                         padding: TableCellPadding,
                         child: new SelectableText(
-                            textSpan: ctx.inline.Pop()
+                            textSpan: ctx.Inline.Pop()
                         )
                     )
                 );
@@ -363,15 +373,15 @@ namespace DocCN.Components
             private static Widget ProcessImage(Token token, BuilderContext ctx)
             {
                 var imageName = token.attrs.Single(attr => attr[0] == "src")[1];
-                var version = DocApp.of(ctx.context).version;
+                var version = DocApp.of(ctx.Context).version;
                 var url =
                     $"{Configuration.Instance.cdnPrefix}/{version.unityVersion}/{version.parsedVersion}/manual/static/{imageName.Replace('-', '_')}";
 
                 var widgets = new List<Widget>
                 {
                     new ImageWithPlaceholder(
-                        ctx.imageMetas[imageName].width,
-                        ctx.imageMetas[imageName].height,
+                        ctx.ImageMetas[imageName].width,
+                        ctx.ImageMetas[imageName].height,
                         new NetworkImage(url)
                     ),
                 };
@@ -393,7 +403,7 @@ namespace DocCN.Components
                     );
                 }
 
-                ctx.imageNode = new Container(
+                ctx.ImageNode = new Container(
                     margin: EdgeInsets.only(top: 16.0f),
                     child: new Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -439,9 +449,34 @@ namespace DocCN.Components
                 );
             }
 
+            private static Widget ProcessCodeInline(Token token, BuilderContext ctx)
+            {
+                ctx.Inline.Peek().children.Add(
+                    new TextSpan(
+                        token.content,
+                        recognizer: ctx.UseRecognizer ? ctx.SpanRecognizers.Last() : null,
+                        hoverRecognizer: ctx.UseRecognizer ? HoverRecognizer : null,
+                        style: CodeInlineTextStyle
+                    )
+                );
+                return null;
+            }
+
+            private static Widget ProcessListItemOpen(Token token, BuilderContext ctx)
+            {
+                ctx.ListItem = true;
+                return null;
+            }
+
+            private static Widget ProcessListItemClose(Token token, BuilderContext ctx)
+            {
+                ctx.ListItem = false;
+                return null;
+            }
+
             private static Widget ProcessParagraphOpen(Token token, BuilderContext ctx)
             {
-                ctx.textStyle = new TextStyle(
+                ctx.TextStyle = new TextStyle(
                     fontSize: 16.0f,
                     height: 1.5f.LineHeight(),
                     fontFamily: "PingFang"
@@ -451,21 +486,37 @@ namespace DocCN.Components
 
             private static Widget ProcessParagraphClose(Token token, BuilderContext ctx)
             {
-                if (ctx.imageNode != null)
+                if (ctx.ImageNode != null)
                 {
-                    var node = ctx.imageNode;
+                    var node = ctx.ImageNode;
                     ctx.Clear();
                     return node;
                 }
 
                 var richText = new SelectableText(
-                    textSpan: ctx.inline.Pop()
+                    textSpan: ctx.Inline.Pop()
                 );
                 var container = new Container(
                     margin: EdgeInsets.only(top: 24f),
                     child: richText
                 );
                 ctx.Clear();
+                if (ctx.ListItem)
+                {
+                    return new Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: new List<Widget>
+                        {
+                            new Container(
+                                margin: EdgeInsets.only(top: 26f, right: 8f),
+                                child: new Text("\u2022")
+                            ),
+                            new Expanded(
+                                child: container
+                            ),
+                        }
+                    );
+                }
                 return container;
             }
         }

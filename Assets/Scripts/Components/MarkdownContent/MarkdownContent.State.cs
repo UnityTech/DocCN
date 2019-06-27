@@ -113,7 +113,7 @@ namespace DocCN.Components
                     .Select(token => Mappings[token.type].Invoke(token, markdownBuildCtx))
                     .Where(w => !(w is null))
                     .Select(w => new RepaintBoundary(child: w)));
-                _spanRecognizers = markdownBuildCtx.spanRecognizers;
+                _spanRecognizers = markdownBuildCtx.SpanRecognizers;
 
                 widgets.Insert(0,
                     new Container(
@@ -240,7 +240,7 @@ namespace DocCN.Components
                             )
                         ),
                         new MetaFields(
-                            markdownBuildCtx.positionRecords,
+                            markdownBuildCtx.PositionRecords,
                             _scrollController,
                             $"https://github.com/UnityTech/documentation-cn/blob/{version.unityVersion}/Manual/md/{widget._title}.md"
                         )
