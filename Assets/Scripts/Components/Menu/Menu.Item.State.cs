@@ -42,7 +42,7 @@ namespace DocCN.Components
                     }
                 }
 
-                private void OnPointerLeave(PointerLeaveEvent evt)
+                private void OnPointerExit(PointerExitEvent evt)
                 {
                     if (mounted)
                     {
@@ -138,7 +138,7 @@ namespace DocCN.Components
 
                     var self = new Listener(
                         onPointerEnter: OnPointerEnter,
-                        onPointerLeave: OnPointerLeave,
+                        onPointerExit: OnPointerExit,
                         child: new GestureDetector(
                             onTap: OnTap,
                             child: new Container(

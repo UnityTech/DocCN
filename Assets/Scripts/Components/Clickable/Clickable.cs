@@ -27,7 +27,7 @@ namespace DocCN.Components
             clickable._hoverChanged?.Invoke(true);
         }
 
-        private static void OnPointerLeave(PointerLeaveEvent @event, Clickable clickable)
+        private static void OnPointerExit(PointerExitEvent @event, Clickable clickable)
         {
             Bridge.ChangeCursor("default");
             clickable._hoverChanged?.Invoke(false);
@@ -37,7 +37,7 @@ namespace DocCN.Components
         {
             return new Listener(
                 onPointerEnter: evt => OnPointerEnter(evt, this),
-                onPointerLeave: evt => OnPointerLeave(evt, this),
+                onPointerExit: evt => OnPointerExit(evt, this),
                 child: new GestureDetector(
                     onTap: _onTap,
                     child: _child

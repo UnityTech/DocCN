@@ -33,11 +33,11 @@ namespace DocCN.Components
             base(string.Empty,
                 key,
                 style,
-                textAlign,
-                softWrap,
-                overflow,
-                textScaleFactor,
-                maxLines)
+                textAlign: textAlign,
+                softWrap: softWrap,
+                overflow: overflow,
+                textScaleFactor: textScaleFactor,
+                maxLines: maxLines)
         {
             _textSpanList = textSpanList;
             _onSelectionChanged = onSelectionChanged;
@@ -330,7 +330,7 @@ namespace DocCN.Components
                             offset: 0,
                             size: text.Length);
                         var rect = topLeftOffset & new Size(imageSpan.innerWidth, imageSpan.innerHeight);
-                        textBlobBuilder.setBounds(rect);
+                        textBlobBuilder.setBounds(rect.toRect());
                         canvas.drawTextBlob(
                             textBlobBuilder.make(),
                             new Offset(

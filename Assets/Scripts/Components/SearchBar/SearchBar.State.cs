@@ -107,7 +107,7 @@ namespace DocCN.Components
                                     onTap: () => FocusScope.of(buildContext).requestFocus(_focusNode),
                                     child: new Listener(
                                         onPointerEnter: evt => Bridge.ChangeCursor("text"),
-                                        onPointerLeave: evt => Bridge.ChangeCursor("default"),
+                                        onPointerExit: evt => Bridge.ChangeCursor("default"),
                                         child: new Container(
                                             color: stylePack.searchInputBackgroundColor,
                                             padding: EdgeInsets.symmetric(horizontal: 24f),

@@ -72,7 +72,7 @@ namespace DocCN.Models.Json
                     return new Signature
                     {
                         declaration = serializer.Deserialize<Declaration>(jObject["value"]["declaration"].CreateReader()),
-                        returnType = serializer.Deserialize<ReturnType>(jObject["value"]["return_type"].CreateReader())
+                        returnType = jObject["value"]["result_type"] == null ? null : serializer.Deserialize<ReturnType>(jObject["value"]["return_type"].CreateReader())
                     };
                 case "Summary":
                     return new Summary
