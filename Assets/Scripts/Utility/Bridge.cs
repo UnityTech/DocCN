@@ -51,6 +51,7 @@ namespace DocCN.Utility
 
         public static void HrefTo(string url)
         {
+            UnityEngine.Application.OpenURL(url);
         }
 
         public static void Download(string url, string filename)

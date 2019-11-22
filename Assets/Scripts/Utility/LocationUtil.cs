@@ -7,9 +7,6 @@ namespace DocCN.Utility
     {
         public static void Go(string path)
         {
-#if UNITY_EDITOR
-            Debug.Log($"Location to {path}");
-#endif
             var appendedPrefix = $"{Configuration.Instance.pageBase}{path}";
             ObservableUtil.currentPath.value = appendedPrefix;
             Bridge.LocationPush(appendedPrefix);
