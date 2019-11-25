@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-namespace DocCN.Models.Json
+namespace Unity.DocZh.Models.Json
 {
     [JsonConverter(typeof(SectionConverter))]
     public interface Section

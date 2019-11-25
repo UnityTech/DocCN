@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using DocCN.Utility;
 using Newtonsoft.Json;
+using Unity.DocZh.Utility;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
@@ -10,7 +10,7 @@ using UnityEngine.Networking;
 using Color = Unity.UIWidgets.ui.Color;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
-namespace DocCN.Components
+namespace Unity.DocZh.Components
 {
     public partial class Menu
     {

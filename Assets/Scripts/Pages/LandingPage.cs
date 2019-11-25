@@ -1,15 +1,15 @@
 using System.Collections.Generic;
-using DocCN.Components;
-using DocCN.Utility;
+using Unity.DocZh.Components;
+using Unity.DocZh.Utility;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
-using Banner = DocCN.Components.Banner;
+using Banner = Unity.DocZh.Components.Banner;
 using Color = Unity.UIWidgets.ui.Color;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
-namespace DocCN.Pages
+namespace Unity.DocZh.Pages
 {
     public class LandingPage : StatelessWidget
     {

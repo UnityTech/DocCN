@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using DocCN.Utility;
+using Unity.DocZh.Utility;
 using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.material;
@@ -9,12 +9,12 @@ using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
 using Color = Unity.UIWidgets.ui.Color;
-using Icons = DocCN.Style.Icons;
+using Icons = Unity.DocZh.Style.Icons;
 using ImageUtils = Unity.UIWidgets.painting.ImageUtils;
 using Rect = Unity.UIWidgets.ui.Rect;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
-namespace DocCN.Components
+namespace Unity.DocZh.Components
 {
     // RichText is not so rich
     public class WealthyText : Text
@@ -317,13 +317,13 @@ namespace DocCN.Components
                             ),
                             paint: ImagePlaceholderBackgroundPaint);
                         var textBlobBuilder = new TextBlobBuilder();
-                        var text = $"{(char) Icons.MaterialImage.codePoint}";
+                        var text = $"{(char) Style.Icons.MaterialImage.codePoint}";
                         var iconSize = imageSpan.innerWidth > imageSpan.innerHeight * 3
                             ? imageSpan.innerHeight * 3 / 4
                             : imageSpan.innerWidth / 4;
                         textBlobBuilder.allocRunPos(
                             style: new TextStyle(
-                                fontFamily: Icons.MaterialImage.fontFamily,
+                                fontFamily: Style.Icons.MaterialImage.fontFamily,
                                 fontSize: iconSize
                             ),
                             text: text,

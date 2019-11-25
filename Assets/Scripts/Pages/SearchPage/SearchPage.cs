@@ -1,8 +1,8 @@
-using DocCN.Components;
+using Unity.DocZh.Components;
 using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Pages
+namespace Unity.DocZh.Pages
 {
     public partial class SearchPage : StatefulWidget
     {

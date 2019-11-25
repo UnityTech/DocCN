@@ -1,5 +1,5 @@
 using System;
-using DocCN.Style;
+using Unity.DocZh.Style;
 using Unity.UIWidgets.animation;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.widgets;
@@ -7,7 +7,7 @@ using UnityEngine;
 using Transform = Unity.UIWidgets.widgets.Transform;
 using Color = Unity.UIWidgets.ui.Color;
 
-namespace DocCN.Components
+namespace Unity.DocZh.Components
 {
     public partial class Loading
     {

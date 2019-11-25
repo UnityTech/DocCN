@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace DocCN.Utility
+namespace Unity.DocZh.Utility
 {
     public static class Bridge
     {

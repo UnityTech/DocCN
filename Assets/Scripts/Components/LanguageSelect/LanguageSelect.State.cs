@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DocCN.Style;
-using DocCN.Utility;
+using Unity.DocZh.Style;
+using Unity.DocZh.Utility;
 using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Components
+namespace Unity.DocZh.Components
 {
     public enum Language
     {

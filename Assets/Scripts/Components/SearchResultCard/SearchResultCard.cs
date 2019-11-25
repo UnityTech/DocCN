@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using DocCN.Models.Json;
-using DocCN.Utility;
+using Unity.DocZh.Models.Json;
+using Unity.DocZh.Utility;
 using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
@@ -8,7 +8,7 @@ using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
 using Color = Unity.UIWidgets.ui.Color;
 
-namespace DocCN.Components
+namespace Unity.DocZh.Components
 {
     public class SearchResultCard : StatelessWidget
     {

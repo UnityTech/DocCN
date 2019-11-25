@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using DocCN.Style;
+using Unity.DocZh.Style;
 using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
@@ -8,7 +8,7 @@ using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
 using Image = Unity.UIWidgets.widgets.Image;
 
-namespace DocCN.Components
+namespace Unity.DocZh.Components
 {
     public class WechatOfficialAccount : StatelessWidget
     {

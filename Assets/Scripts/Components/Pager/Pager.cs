@@ -3,7 +3,7 @@ using System.Linq;
 using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Components
+namespace Unity.DocZh.Components
 {
     public partial class Pager : StatelessWidget
     {

@@ -1,12 +1,13 @@
-using DocCN.Components;
-using DocCN.Style;
+using Unity.DocZh.Components;
+using Unity.DocZh.Style;
 using Unity.UIWidgets.editor;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
+using Unity.DocZh.Utility;
 using UnityEditor;
 using UnityEngine;
 
-namespace DocCN.Utility
+namespace Unity.DocZh
 {
     public class PageWindow : UIWidgetsEditorWindow
     {
@@ -15,10 +16,14 @@ namespace DocCN.Utility
         {
             EditorWindow.GetWindow<PageWindow>(typeof(SceneView));
         }
-        
+
         protected override void OnEnable()
         {
             base.OnEnable();
+            var icon = Resources.Load<Texture2D>(EditorGUIUtility.isProSkin
+                ? "Images/icon_white"
+                : "Images/icon_black");
+            this.titleContent = new GUIContent("Documentation", icon);
             FontManager.instance.addFont(Resources.Load<Font>("Fonts/Brands"), "Brands");
             FontManager.instance.addFont(Resources.Load<Font>("Fonts/MaterialIcons-Regular"), "MaterialIcons");
             FontManager.instance.addFont(Resources.Load<Font>("Fonts/NotoSans"), "NotoSans");

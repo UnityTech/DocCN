@@ -2,7 +2,7 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace DocCN.Models.Json
+namespace Unity.DocZh.Models.Json
 {
     public class MixedContentConverter : JsonConverter
     {

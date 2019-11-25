@@ -1,6 +1,6 @@
 using System;
 
-namespace DocCN.Components
+namespace Unity.DocZh.Components
 {
     public partial class SearchBar
     {

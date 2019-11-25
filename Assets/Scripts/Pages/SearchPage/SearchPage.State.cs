@@ -1,19 +1,18 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using DocCN.Components;
-using DocCN.Models.Json;
-using DocCN.Utility;
 using Newtonsoft.Json;
+using Unity.DocZh.Components;
+using Unity.DocZh.Models.Json;
+using Unity.DocZh.Utility;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
-using UnityEngine;
 using UnityEngine.Networking;
 using Color = Unity.UIWidgets.ui.Color;
 
-namespace DocCN.Pages
+namespace Unity.DocZh.Pages
 {
     public partial class SearchPage
     {
@@ -41,7 +40,7 @@ namespace DocCN.Pages
 
             private void DoSearch()
             {
-                _keyword = HttpUtility.UrlDecode(widget._keyword);
+                _keyword = Uri.UnescapeDataString(widget._keyword);
                 _page = widget._page;
                 _filterType = widget._filterType;
 
@@ -168,7 +167,7 @@ namespace DocCN.Pages
                                         totalPages: _results.totalPages,
                                         onPageChanged: page =>
                                             LocationUtil.Go(
-                                                $"/Search/{_filterType}/{HttpUtility.UrlEncode(_keyword)}/{page}")
+                                                $"/Search/{_filterType}/{Uri.EscapeDataString(_keyword)}/{page}")
                                     )
                                 )
                             );

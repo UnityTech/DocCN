@@ -4,7 +4,7 @@ using Unity.UIWidgets.animation;
 using Unity.UIWidgets.async;
 using System;
 
-namespace DocCN.Components
+namespace Unity.DocZh.Components
 {
     public partial class Scroller
     {

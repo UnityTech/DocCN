@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using DocCN.Pages;
-using DocCN.Utility;
 using Newtonsoft.Json;
+using Unity.DocZh.Pages;
+using Unity.DocZh.Utility;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.widgets;
 using UnityEngine.Networking;
-using Version = DocCN.Models.Json.Version;
+using Version = Unity.DocZh.Models.Json.Version;
 
-namespace DocCN.Components
+namespace Unity.DocZh.Components
 {
     public class DocAppState : State<DocApp>
     {
@@ -18,9 +18,9 @@ namespace DocCN.Components
         private string _currentPath = "/";
         private ScrollController _controller;
         private bool _overwriteUnknown;
-        private Version _version;
+        private Models.Json.Version _version;
 
-        public Version version => _version;
+        public Models.Json.Version version => _version;
 
         static DocAppState()
         {
@@ -80,7 +80,7 @@ namespace DocCN.Components
                 using (WindowProvider.of(context).getScope())
                 {
                     var content = DownloadHandlerBuffer.GetContent(request);
-                    var model = JsonConvert.DeserializeObject<Version>(content);
+                    var model = JsonConvert.DeserializeObject<Models.Json.Version>(content);
                     setState(() => _version = model);
                 }
             };

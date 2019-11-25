@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using Unity.UIWidgets.painting;
 using UnityEngine;
 
-namespace DocCN.Utility
+namespace Unity.DocZh.Utility
 {
     public static class SearchResultHighlightParser
     {

@@ -1,7 +1,7 @@
 using Unity.UIWidgets.widgets;
 using UnityEngine;
 
-namespace DocCN.Components
+namespace Unity.DocZh.Components
 {
     public partial class ScreenOverlay : StatefulWidget
     {

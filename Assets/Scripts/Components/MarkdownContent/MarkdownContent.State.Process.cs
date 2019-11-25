@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DocCN.Models.Json;
-using DocCN.Style;
-using DocCN.Utility;
+using Unity.DocZh.Style;
+using Unity.DocZh.Models.Json;
+using Unity.DocZh.Utility;
 using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
@@ -14,7 +14,7 @@ using Color = Unity.UIWidgets.ui.Color;
 using FontStyle = Unity.UIWidgets.ui.FontStyle;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
-namespace DocCN.Components
+namespace Unity.DocZh.Components
 {
     public partial class MarkdownContent
     {

@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using DocCN.Components;
+using Unity.DocZh.Components;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.widgets;
 using Color = Unity.UIWidgets.ui.Color;
 
-namespace DocCN.Pages
+namespace Unity.DocZh.Pages
 {
     public partial class ScriptingPage
     {

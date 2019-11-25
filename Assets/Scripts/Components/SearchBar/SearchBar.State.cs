@@ -1,12 +1,12 @@
+using System;
 using System.Collections.Generic;
-using System.Web;
-using DocCN.Utility;
+using Unity.DocZh.Utility;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.widgets;
 using Color = Unity.UIWidgets.ui.Color;
 
-namespace DocCN.Components
+namespace Unity.DocZh.Components
 {
     public partial class SearchBar : StatefulWidget
     {
@@ -38,7 +38,7 @@ namespace DocCN.Components
             private void GoToSearch()
             {
                 _focusNode.unfocus();
-                var encodedKeyword = HttpUtility.UrlEncode(_textEditingController.value.text);
+                var encodedKeyword = Uri.EscapeDataString(_textEditingController.value.text);
                 LocationUtil.Go($"/Search/{_filterType}/{encodedKeyword}");
             }
 

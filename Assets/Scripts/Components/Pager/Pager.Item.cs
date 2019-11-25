@@ -1,4 +1,4 @@
-using DocCN.Utility;
+using Unity.DocZh.Utility;
 using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.painting;
@@ -6,7 +6,7 @@ using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
 using Color = Unity.UIWidgets.ui.Color;
 
-namespace DocCN.Components
+namespace Unity.DocZh.Components
 {
     public partial class Pager
     {

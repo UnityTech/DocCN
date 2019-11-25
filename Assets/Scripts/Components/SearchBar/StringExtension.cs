@@ -1,6 +1,6 @@
 using System;
 
-namespace DocCN.Components
+namespace Unity.DocZh.Components
 {
     internal partial class StringExtension
     {

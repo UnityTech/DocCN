@@ -7,7 +7,7 @@ using Unity.UIWidgets.widgets;
  * Call LoadIconFont only when initialize if you want to using IconFont Prefix Icon Data 
  */
 
-namespace DocCN.Style
+namespace Unity.DocZh.Style
 {
     public static partial class Icons
     {

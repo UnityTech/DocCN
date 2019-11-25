@@ -1,4 +1,4 @@
-namespace DocCN.Utility
+namespace Unity.DocZh.Utility
 {
     public static class FloatExtension
     {

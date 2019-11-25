@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using DocCN.Style;
+using Unity.DocZh.Style;
 using Unity.UIWidgets.animation;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.ui;
@@ -10,7 +10,7 @@ using UnityEngine.Experimental.PlayerLoop;
 using Color = Unity.UIWidgets.ui.Color;
 using Transform = Unity.UIWidgets.widgets.Transform;
 
-namespace DocCN.Components
+namespace Unity.DocZh.Components
 {
     public partial class ToTop
     {

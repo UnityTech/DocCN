@@ -1,11 +1,12 @@
-﻿using DocCN.Components;
-using DocCN.Style;
+﻿using Unity.DocZh.Components;
+using Unity.DocZh.Style;
 using Unity.UIWidgets.engine;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
+using Unity.DocZh.Utility;
 using UnityEngine;
 
-namespace DocCN.Utility
+namespace Unity.DocZh
 {
     public class PageCanvas : UIWidgetsPanel
     {

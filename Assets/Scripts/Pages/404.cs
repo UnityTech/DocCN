@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using DocCN.Components;
-using DocCN.Utility;
+using Unity.DocZh.Components;
+using Unity.DocZh.Utility;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
@@ -8,7 +8,7 @@ using Unity.UIWidgets.widgets;
 using Image = Unity.UIWidgets.widgets.Image;
 using TextStyle = Unity.UIWidgets.painting.TextStyle;
 
-namespace DocCN.Pages
+namespace Unity.DocZh.Pages
 {
     public class NotFoundPage : StatelessWidget
     {

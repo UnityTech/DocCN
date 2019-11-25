@@ -2,7 +2,7 @@ using System;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.ui;
 
-namespace DocCN.Components
+namespace Unity.DocZh.Components
 {
     public enum SearchBarStyle
     {

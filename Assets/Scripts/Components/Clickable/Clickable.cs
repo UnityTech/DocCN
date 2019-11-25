@@ -1,9 +1,9 @@
 using System;
-using DocCN.Utility;
+using Unity.DocZh.Utility;
 using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Components
+namespace Unity.DocZh.Components
 {
     public class Clickable : StatelessWidget
     {

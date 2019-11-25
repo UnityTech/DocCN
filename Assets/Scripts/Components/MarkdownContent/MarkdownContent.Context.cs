@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
-using DocCN.Models.Json;
+using Unity.DocZh.Models.Json;
 using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Components
+namespace Unity.DocZh.Components
 {
     public partial class MarkdownContent
     {

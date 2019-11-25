@@ -1,6 +1,6 @@
 using System.Xml.Serialization;
 
-namespace DocCN.Models.Xml
+namespace Unity.DocZh.Models.Xml
 {
     [XmlRoot("xml")]
     public class Highlight

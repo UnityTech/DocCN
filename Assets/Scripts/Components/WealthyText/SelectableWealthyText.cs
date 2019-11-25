@@ -10,7 +10,7 @@ using Unity.UIWidgets.widgets;
 using UnityEngine;
 using Color = Unity.UIWidgets.ui.Color;
 
-namespace DocCN.Components
+namespace Unity.DocZh.Components
 {
     public class SelectableWealthyText : StatefulWidget
     {

@@ -1,7 +1,7 @@
 using System.Web;
 using UnityEngine;
 
-namespace DocCN.Utility
+namespace Unity.DocZh.Utility
 {
     public static class LocationUtil
     {

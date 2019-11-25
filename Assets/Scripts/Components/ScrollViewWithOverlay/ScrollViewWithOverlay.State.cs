@@ -4,7 +4,7 @@ using System.Linq;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.widgets;
 
-namespace DocCN.Components
+namespace Unity.DocZh.Components
 {
     public partial class ScrollableOverlay
     {
