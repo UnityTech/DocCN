@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 using Unity.DocZh.Models.Json;
 using Unity.DocZh.Style;
 using Unity.DocZh.Utility;
@@ -66,7 +65,7 @@ namespace Unity.DocZh.Components
                         else
                         {
                             var content = DownloadHandlerBuffer.GetContent(request);
-                            var model = JsonConvert.DeserializeObject<ManualModel>(content);
+                            var model = JsonUtility.FromJson<ManualModel>(content);
                             setState(() =>
                             {
                                 _tokens = model.tokens;

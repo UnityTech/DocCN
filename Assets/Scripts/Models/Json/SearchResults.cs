@@ -1,23 +1,26 @@
-using Newtonsoft.Json;
+using System;
+using UnityEngine;
 
 namespace Unity.DocZh.Models.Json
 {
+    [Serializable]
     public class SearchResults
     {
-        [JsonProperty("currentPage")] public int currentPage { get; set; }
-        [JsonProperty("items")] public SearchResultItem[] items { get; set; }
-        [JsonProperty("pages")] public int[] pages { get; set; }
-        [JsonProperty("total")] public int total { get; set; }
-        [JsonProperty("totalPages")] public int totalPages { get; set; }
+        [SerializeField] public int currentPage;
+        [SerializeField] public SearchResultItem[] items;
+        [SerializeField] public int[] pages;
+        [SerializeField] public int total;
+        [SerializeField] public int totalPages;
     }
 
+    [Serializable]
     public class SearchResultItem
     {
-        [JsonProperty("name")] public string name { get; set; }
-        [JsonProperty("id")] public string id { get; set; }
-        [JsonProperty("type")] public string type { get; set; }
-        [JsonProperty("version")] public string version { get; set; }
-        [JsonProperty("highlight")] public string highlight { get; set; }
-        [JsonProperty("bread_crumb")] public Breadcrumb[] breadcrumbs { get; set; }
+        [SerializeField] public string name;
+        [SerializeField] public string id;
+        [SerializeField] public string type;
+        [SerializeField] public string version;
+        [SerializeField] public string highlight;
+        [SerializeField] public Breadcrumb[] breadcrumbs;
     }
 }

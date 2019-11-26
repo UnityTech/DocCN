@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
 using Unity.DocZh.Pages;
 using Unity.DocZh.Utility;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.widgets;
+using UnityEngine;
 using UnityEngine.Networking;
 using Version = Unity.DocZh.Models.Json.Version;
 
@@ -80,7 +80,7 @@ namespace Unity.DocZh.Components
                 using (WindowProvider.of(context).getScope())
                 {
                     var content = DownloadHandlerBuffer.GetContent(request);
-                    var model = JsonConvert.DeserializeObject<Models.Json.Version>(content);
+                    var model = JsonUtility.FromJson<Version>(content);
                     setState(() => _version = model);
                 }
             };

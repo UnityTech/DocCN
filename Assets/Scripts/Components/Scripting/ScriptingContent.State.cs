@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 using Unity.DocZh.Models.Json;
 using Unity.DocZh.Utility;
 using Unity.UIWidgets.gestures;
@@ -93,7 +92,7 @@ namespace Unity.DocZh.Components
                     using (WindowProvider.of(context).getScope())
                     {
                         var content = DownloadHandlerBuffer.GetContent(request);
-                        var scripting = JsonConvert.DeserializeObject<Models.Json.Scripting>(content);
+                        var scripting = JsonUtility.FromJson<Scripting>(content);
                         setState(() =>
                         {
                             _scripting = scripting;

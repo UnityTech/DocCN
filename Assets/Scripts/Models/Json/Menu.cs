@@ -1,19 +1,14 @@
-using Newtonsoft.Json;
+using System;
+using UnityEngine;
 
 namespace Unity.DocZh.Models.Json
 {
+    [Serializable]
     public class Menu
     {
-        [JsonProperty("title")]
-        public string title { get; set; }
-        
-        [JsonProperty("link")]
-        public string link { get; set; }
-        
-        [JsonProperty("children")]
-        public Menu[] children { get; set; }
-        
-        [JsonIgnore]
-        public bool expanded { get; set; }
+        [SerializeField] public string title;
+        [SerializeField] public string link;
+        [SerializeField] public Menu[] children;
+        public bool expanded;
     }
 }

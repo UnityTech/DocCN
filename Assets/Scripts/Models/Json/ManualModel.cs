@@ -1,27 +1,31 @@
-using Newtonsoft.Json;
+using System;
+using UnityEngine;
 
 namespace Unity.DocZh.Models.Json
 {
+    [Serializable]
     public class ManualModel
     {
-        [JsonProperty("name")] public string name { get; set; }
-        [JsonProperty("prev")] public Link prev { get; set; }
-        [JsonProperty("next")] public Link next { get; set; }
-        [JsonProperty("bread_crumb")] public Breadcrumb[] breadcrumbs { get; set; }
-        [JsonProperty("tokens")] public Token[] tokens { get; set; }
-        [JsonProperty("image_meta")] public ImageMeta[] imageMetas { get; set; }
+        [SerializeField] public string name;
+        [SerializeField] public Link prev;
+        [SerializeField] public Link next;
+        [SerializeField] public Breadcrumb[] breadcrumbs;
+        [SerializeField] public Token[] tokens;
+        [SerializeField] public ImageMeta[] imageMetas;
     }
 
+    [Serializable]
     public class Link
     {
-        [JsonProperty("content")] public string content { get; set; }
-        [JsonProperty("link")] public string link { get; set; }
+        [SerializeField] public string content;
+        [SerializeField] public string link;
     }
 
+    [Serializable]
     public class ImageMeta
     {
-        [JsonProperty("name")] public string name { get; set; }
-        [JsonProperty("width")] public float width { get; set; }
-        [JsonProperty("height")] public float height { get; set; }
+        [SerializeField] public string name;
+        [SerializeField] public float width;
+        [SerializeField] public float height;
     }
 }

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 using Unity.DocZh.Components;
 using Unity.DocZh.Models.Json;
 using Unity.DocZh.Utility;
@@ -9,6 +8,7 @@ using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
+using UnityEngine;
 using UnityEngine.Networking;
 using Color = Unity.UIWidgets.ui.Color;
 
@@ -64,7 +64,7 @@ namespace Unity.DocZh.Pages
                     using (WindowProvider.of(context).getScope())
                     {
                         var content = DownloadHandlerBuffer.GetContent(request);
-                        var results = JsonConvert.DeserializeObject<SearchResults>(content);
+                        var results = JsonUtility.FromJson<SearchResults>(content);
                         setState(() =>
                         {
                             _results = results;

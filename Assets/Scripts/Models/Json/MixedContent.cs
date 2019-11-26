@@ -1,9 +1,6 @@
-using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-
 namespace Unity.DocZh.Models.Json
 {
+    /*
     public class MixedContentConverter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
@@ -53,8 +50,9 @@ namespace Unity.DocZh.Models.Json
 
         public override bool CanConvert(Type objectType) => objectType.IsSubclassOf(typeof(MixedContent));
     }
+    */
 
-    [JsonConverter(typeof(MixedContentConverter))]
+    // [JsonConverter(typeof(MixedContentConverter))]
     public interface MixedContent
     {
     }
@@ -68,8 +66,8 @@ namespace Unity.DocZh.Models.Json
 
     public class DocumentTagLink : MixedContent
     {
-        [JsonProperty("ref")] public string @ref { get; set; }
-        [JsonProperty("content")] public string content { get; set; }
+        public string @ref { get; set; }
+        public string content { get; set; }
         
         public override string ToString() => content;        
     }
@@ -103,7 +101,7 @@ namespace Unity.DocZh.Models.Json
 
     public class DocumentTagBold : MixedContent
     {
-        [JsonProperty("content")] public string content { get; set; }
+        public string content { get; set; }
         public override string ToString() => content;
     }
 

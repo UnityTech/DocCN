@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using Unity.DocZh.Utility;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.ui;
@@ -38,7 +37,7 @@ namespace Unity.DocZh.Components
                     var content = DownloadHandlerBuffer.GetContent(request);
                     using (WindowProvider.of(context).getScope())
                     {
-                        setState(() => _menu = JsonConvert.DeserializeObject<Models.Json.Menu>(content));
+                        setState(() => _menu = JsonUtility.FromJson<Models.Json.Menu>(content));
                     }
                 };
             }

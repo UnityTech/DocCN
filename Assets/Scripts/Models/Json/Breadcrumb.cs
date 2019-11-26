@@ -1,10 +1,12 @@
-using Newtonsoft.Json;
+using System;
+using UnityEngine;
 
 namespace Unity.DocZh.Models.Json
 {
+    [Serializable]
     public class Breadcrumb
     {
-        [JsonProperty("content")] public string content { get; set; }
-        [JsonProperty("link")] public string link { get; set; }
+        [SerializeField] public string content;
+        [SerializeField] public string link;
     }
 }

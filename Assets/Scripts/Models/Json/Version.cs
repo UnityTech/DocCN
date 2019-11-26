@@ -1,13 +1,12 @@
-using Newtonsoft.Json;
+using System;
+using UnityEngine;
 
 namespace Unity.DocZh.Models.Json
 {
+    [Serializable]
     public class Version
     {
-        [JsonProperty("unity_version")]
-        public string unityVersion { get; set; }
-        
-        [JsonProperty("parse_version")]
-        public int parsedVersion { get; set; }
+        [SerializeField] public string unityVersion;
+        [SerializeField] public int parsedVersion;
     }
 }

@@ -1,11 +1,6 @@
-using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using UnityEngine;
-
 namespace Unity.DocZh.Models.Json
 {
-    [JsonConverter(typeof(SectionConverter))]
+    //[JsonConverter(typeof(SectionConverter))]
     public interface Section
     {
     }
@@ -17,24 +12,24 @@ namespace Unity.DocZh.Models.Json
 
     public class Signature : Section
     {
-        [JsonProperty("declaration")] public Declaration declaration { get; set; }
-        [JsonProperty("return_type")] public ReturnType returnType { get; set; }
+        public Declaration declaration { get; set; }
+        public ReturnType returnType { get; set; }
     }
 
     public class Declaration
     {
-        [JsonProperty("name")] public string name { get; set; }
-        [JsonProperty("type")] public string type { get; set; }
-        [JsonProperty("namespace")] public string @namespace { get; set; }
-        [JsonProperty("modifiers")] public string modifiers { get; set; }
-        [JsonProperty("obsolete")] public string obsolete { get; set; }
+        public string name { get; set; }
+        public string type { get; set; }
+        public string @namespace { get; set; }
+        public string modifiers { get; set; }
+        public string obsolete { get; set; }
     }
 
     public class ReturnType
     {
-        [JsonProperty("return_type")] public string returnType { get; set; }
-        [JsonProperty("display_name")] public string displayName { get; set; }
-        [JsonProperty("has_link")] public string hasLink { get; set; }
+        public string returnType { get; set; }
+        public string displayName { get; set; }
+        public string hasLink { get; set; }
     }
 
     public class Summary : Section
@@ -50,6 +45,7 @@ namespace Unity.DocZh.Models.Json
         public MixedContent[] cSharp { get; set; }
     }
 
+    /*
     public class SectionConverter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
@@ -97,4 +93,5 @@ namespace Unity.DocZh.Models.Json
             return objectType.IsSubclassOf(typeof(Section));
         }
     }
+    */
 }
