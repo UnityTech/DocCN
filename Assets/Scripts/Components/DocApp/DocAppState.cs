@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Unity.DocZh.Pages;
 using Unity.DocZh.Utility;
+using Unity.DocZh.Utility.Json;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.widgets;
 using UnityEngine;
@@ -80,7 +81,7 @@ namespace Unity.DocZh.Components
                 using (WindowProvider.of(context).getScope())
                 {
                     var content = DownloadHandlerBuffer.GetContent(request);
-                    var model = JsonUtility.FromJson<Version>(content);
+                    var model = Version.FromJson(JsonValue.Parse(content));
                     setState(() => _version = model);
                 }
             };

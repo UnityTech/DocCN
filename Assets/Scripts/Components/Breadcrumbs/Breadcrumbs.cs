@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Unity.DocZh.Models.Json;
 using Unity.DocZh.Utility;
@@ -11,7 +12,7 @@ namespace Unity.DocZh.Components
     public partial class Breadcrumbs : StatelessWidget
     {
         public Breadcrumbs(
-            Breadcrumb[] breadcrumbs,
+            List<Breadcrumb> breadcrumbs,
             TextStyle normalBreadcrumbStyle = null,
             TextStyle hoverBreadCrumbStyle = null,
             TextStyle splitterStyle = null,
@@ -23,7 +24,7 @@ namespace Unity.DocZh.Components
             _splitterStyle = splitterStyle;
         }
 
-        private readonly Breadcrumb[] _breadcrumbs;
+        private readonly List<Breadcrumb> _breadcrumbs;
 
         private readonly TextStyle _normalBreadcrumbStyle;
 

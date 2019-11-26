@@ -3,6 +3,7 @@ using System.Linq;
 using Unity.DocZh.Models.Json;
 using Unity.DocZh.Style;
 using Unity.DocZh.Utility;
+using Unity.DocZh.Utility.Json;
 using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
@@ -18,17 +19,17 @@ namespace Unity.DocZh.Components
     {
         private partial class MarkdownContentState : State<MarkdownContent>
         {
-            private Token[] _tokens;
+            private List<Token> _tokens;
 
             private Link _prevLink;
 
             private Link _nextLink;
 
-            private Breadcrumb[] _breadcrumbs;
+            private List<Breadcrumb> _breadcrumbs;
 
             private ScrollController _scrollController;
 
-            private ImageMeta[] _imageMetas;
+            private List<ImageMeta> _imageMetas;
 
             private bool _loading;
 
@@ -46,7 +47,7 @@ namespace Unity.DocZh.Components
                 _loading = true;
                 var version = DocApp.of(context).version;
                 var url =
-                    $"{Configuration.Instance.cdnPrefix}/{version.unityVersion}/{version.parsedVersion}/manual/json/{widget._title.Replace('-', '_')}.json";
+                    $"{Configuration.Instance.cdnPrefix}/{version.unity_version}/{version.parse_version}/manual/json/{widget._title.Replace('-', '_')}.json";
                 var request = UnityWebRequest.Get(url);
                 var asyncOperation = request.SendWebRequest();
                 asyncOperation.completed += operation =>
@@ -65,14 +66,14 @@ namespace Unity.DocZh.Components
                         else
                         {
                             var content = DownloadHandlerBuffer.GetContent(request);
-                            var model = JsonUtility.FromJson<ManualModel>(content);
+                            var model = ManualModel.FromJson(JsonValue.Parse(content));
                             setState(() =>
                             {
                                 _tokens = model.tokens;
                                 _prevLink = model.prev;
                                 _nextLink = model.next;
-                                _breadcrumbs = model.breadcrumbs;
-                                _imageMetas = model.imageMetas;
+                                _breadcrumbs = model.bread_crumb;
+                                _imageMetas = model.image_meta;
                                 _loading = false;
                             });
                         }
@@ -241,7 +242,7 @@ namespace Unity.DocZh.Components
                         new MetaFields(
                             markdownBuildCtx.PositionRecords,
                             _scrollController,
-                            $"https://github.com/UnityTech/documentation-cn/blob/{version.unityVersion}/Manual/md/{widget._title}.md"
+                            $"https://github.com/UnityTech/documentation-cn/blob/{version.unity_version}/Manual/md/{widget._title}.md"
                         )
                     }
                 );

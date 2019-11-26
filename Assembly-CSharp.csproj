@@ -148,6 +148,16 @@
     <Compile Include="Assets\Scripts\Utility\Bridge.cs" />
     <Compile Include="Assets\Scripts\Utility\Configuration.cs" />
     <Compile Include="Assets\Scripts\Utility\FloatExtension.cs" />
+    <Compile Include="Assets\Scripts\Utility\Json\JsonArray.cs" />
+    <Compile Include="Assets\Scripts\Utility\Json\JsonObject.cs" />
+    <Compile Include="Assets\Scripts\Utility\Json\JsonValue.cs" />
+    <Compile Include="Assets\Scripts\Utility\Json\JsonValueType.cs" />
+    <Compile Include="Assets\Scripts\Utility\Json\Serialization\JsonParseException.cs" />
+    <Compile Include="Assets\Scripts\Utility\Json\Serialization\JsonReader.cs" />
+    <Compile Include="Assets\Scripts\Utility\Json\Serialization\JsonSerializationException.cs" />
+    <Compile Include="Assets\Scripts\Utility\Json\Serialization\JsonWriter.cs" />
+    <Compile Include="Assets\Scripts\Utility\Json\Serialization\TextPosition.cs" />
+    <Compile Include="Assets\Scripts\Utility\Json\Serialization\TextScanner.cs" />
     <Compile Include="Assets\Scripts\Utility\LocationUtil.cs" />
     <Compile Include="Assets\Scripts\Utility\ObservableUtil.cs" />
     <Compile Include="Assets\Scripts\Utility\SearchResultHighlightParser.cs" />

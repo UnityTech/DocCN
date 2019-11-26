@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.DocZh.Models.Json;
 using Unity.DocZh.Utility;
+using Unity.DocZh.Utility.Json;
 using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
@@ -79,7 +80,7 @@ namespace Unity.DocZh.Components
                 _imageMetas = new Dictionary<string, ImageMeta>();
                 var version = DocApp.of(context).version;
                 var url =
-                    $"{Configuration.Instance.cdnPrefix}/{version.unityVersion}/{version.parsedVersion}/scripting/json/{widget._title.Replace('-', '_')}.json";
+                    $"{Configuration.Instance.cdnPrefix}/{version.unity_version}/{version.parse_version}/scripting/json/{widget._title.Replace('-', '_')}.json";
                 var request = UnityWebRequest.Get(url);
                 var asyncOperation = request.SendWebRequest();
                 asyncOperation.completed += operation =>
@@ -92,7 +93,7 @@ namespace Unity.DocZh.Components
                     using (WindowProvider.of(context).getScope())
                     {
                         var content = DownloadHandlerBuffer.GetContent(request);
-                        var scripting = JsonUtility.FromJson<Scripting>(content);
+                        var scripting = Scripting.FromJson(JsonValue.Parse(content));
                         setState(() =>
                         {
                             _scripting = scripting;
@@ -227,7 +228,7 @@ namespace Unity.DocZh.Components
                             case DocumentTagImage image:
                                 var networkImage =
                                     new NetworkImage(
-                                        $"{Configuration.Instance.cdnPrefix}/{version.unityVersion}/{version.parsedVersion}/scripting/static/{image.name.Replace('-', '_')}");
+                                        $"{Configuration.Instance.cdnPrefix}/{version.unity_version}/{version.parse_version}/scripting/static/{image.name.Replace('-', '_')}");
                                 networkImage.resolve(new ImageConfiguration());
                                 return new ImageSpan(
                                     networkImage,

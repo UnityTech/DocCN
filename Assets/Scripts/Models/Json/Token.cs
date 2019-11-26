@@ -1,27 +1,47 @@
+using System.Collections.Generic;
+using System.Linq;
+using Unity.DocZh.Utility.Json;
+
 namespace Unity.DocZh.Models.Json
 {
     public class Token
     {
-        public string type { get; set; }
+        public string type;
+        public string tag;
+        public int nesting;
+        public int level;
+        public List<Token> children;
+        public string content;
+        public string markup;
+        public string info;
+        public bool block;
+        public bool hidden;
+        public List<List<string>> attrs;
 
-        public string tag { get; set; }
+        public static Token FromJson(JsonValue obj)
+        {
+            var children = obj["children"].AsJsonArray
+                ?.Select(FromJson)
+                .ToList();
 
-        public int nesting { get; set; }
+            var attrs = obj["attrs"].AsJsonArray
+                ?.Select(jsonValue => jsonValue.AsJsonArray.Select(value => (string) value).ToList())
+                .ToList();
 
-        public int level { get; set; }
-
-        public Token[] children { get; set; }
-
-        public string content { get; set; }
-
-        public string markup { get; set; }
-
-        public string info { get; set; }
-
-        public bool block { get; set; }
-
-        public bool hidden { get; set; }
-
-        public string[][] attrs { get; set; }
+            return new Token
+            {
+                type = obj["type"],
+                tag = obj["tag"],
+                nesting = obj["nesting"],
+                level = obj["level"],
+                children = children,
+                content = obj["content"],
+                markup = obj["markup"],
+                info = obj["info"],
+                block = obj["block"],
+                hidden = obj["hidden"],
+                attrs = attrs,
+            };
+        }
     }
 }

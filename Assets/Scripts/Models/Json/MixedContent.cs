@@ -1,125 +1,116 @@
+using Unity.DocZh.Utility.Json;
+
 namespace Unity.DocZh.Models.Json
 {
-    /*
-    public class MixedContentConverter : JsonConverter
+    public abstract class MixedContent
     {
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        public static MixedContent FromJson(JsonValue obj)
         {
-            // ONLY SUPPORT READ.
-            throw new NotImplementedException();
-        }
+            if (obj.IsNull)
+            {
+                return null;
+            }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
-            JsonSerializer serializer)
-        {
-            var jObject = JObject.Load(reader);
-            var type = jObject["type"].ToString();
-            var valueReader = jObject["value"].CreateReader();
+            var type = obj["type"].AsString;
             switch (type)
             {
                 case "cdata":
                     return new DocumentCharData
-                        {content = serializer.Deserialize<string>(valueReader)};
+                    {
+                        content = obj["value"],
+                    };
                 case "link":
                     return new DocumentTagLink
                     {
-                        content = serializer.Deserialize<string>(jObject["value"]["content"].CreateReader()),
-                        @ref = serializer.Deserialize<string>(jObject["value"]["ref"].CreateReader())
+                        content = obj["value"]["content"],
+                        @ref = obj["value"]["ref"],
                     };
                 case "b":
                     return new DocumentTagBold
                     {
-                        content = serializer.Deserialize<string>(jObject["value"]["content"].CreateReader())
+                        content = obj["value"]["content"],
                     };
                 case "br":
                     return new DocumentTagBreak();
                 case "image":
                     return new DocumentTagImage
                     {
-                        name = serializer.Deserialize<string>(jObject["value"]["url"].CreateReader())
+                        name = obj["value"]["url"],
                     };
                 case "i":
                     return new DocumentTagItalic
                     {
-                        content = serializer.Deserialize<string>(jObject["value"]["content"].CreateReader())
+                        content = obj["value"]["content"]
                     };            
                 default:
                     return null;
             }
         }
-
-        public override bool CanConvert(Type objectType) => objectType.IsSubclassOf(typeof(MixedContent));
-    }
-    */
-
-    // [JsonConverter(typeof(MixedContentConverter))]
-    public interface MixedContent
-    {
     }
     
     public class DocumentCharData : MixedContent
     {
-        public string content { get; set; }
+        public string content;
 
         public override string ToString() => content;
     }
 
     public class DocumentTagLink : MixedContent
     {
-        public string @ref { get; set; }
-        public string content { get; set; }
+        public string @ref;
+        public string content;
         
         public override string ToString() => content;        
     }
 
     public class DocumentTagA : MixedContent
     {
-        public string @ref { get; set; }
-        public string content { get; set; }
+        public string @ref;
+        public string content;
         public override string ToString() => content;
 
     }
 
     public class DocumentTagImage : MixedContent
     {
-        public string name { get; set; }
+        public string name;
         public override string ToString() => string.Empty;
     }
 
     public class DocumentTagTeletype : MixedContent
     {
-        public string content { get; set; }
+        public string content;
         public override string ToString() => content;
     }
 
     public class DocumentTagItalic : MixedContent
     {
-        public string content { get; set; }
+        public string content;
         public override string ToString() => content;
 
     }
 
     public class DocumentTagBold : MixedContent
     {
-        public string content { get; set; }
+        public string content;
         public override string ToString() => content;
     }
 
     public class DocumentTagVarName : MixedContent
     {
-        public string content { get; set; }
+        public string content;
         public override string ToString() => content;
     }
 
     public class DocumentTagMonoType : MixedContent
     {
-        public string content { get; set; }
+        public string content;
         public override string ToString() => content;
     }
 
     public class DocumentTagNote : MixedContent
     {
-        public string content { get; set; }
+        public string content;
         public override string ToString() => content;
     }
 

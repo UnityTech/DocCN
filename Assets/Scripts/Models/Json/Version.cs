@@ -1,12 +1,19 @@
-using System;
-using UnityEngine;
+using Unity.DocZh.Utility.Json;
 
 namespace Unity.DocZh.Models.Json
 {
-    [Serializable]
     public class Version
     {
-        [SerializeField] public string unityVersion;
-        [SerializeField] public int parsedVersion;
+        public string unity_version;
+        public int parse_version;
+
+        public static Version FromJson(JsonValue obj)
+        {
+            return new Version
+            {
+                unity_version = obj["unity_version"],
+                parse_version = obj["parse_version"],
+            };
+        }
     }
 }

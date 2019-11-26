@@ -4,6 +4,7 @@ using System.Linq;
 using Unity.DocZh.Components;
 using Unity.DocZh.Models.Json;
 using Unity.DocZh.Utility;
+using Unity.DocZh.Utility.Json;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
@@ -64,7 +65,7 @@ namespace Unity.DocZh.Pages
                     using (WindowProvider.of(context).getScope())
                     {
                         var content = DownloadHandlerBuffer.GetContent(request);
-                        var results = JsonUtility.FromJson<SearchResults>(content);
+                        var results = SearchResults.FromJson(JsonValue.Parse(content));
                         setState(() =>
                         {
                             _results = results;

@@ -375,7 +375,7 @@ namespace Unity.DocZh.Components
                 var imageName = token.attrs.Single(attr => attr[0] == "src")[1];
                 var version = DocApp.of(ctx.Context).version;
                 var url =
-                    $"{Configuration.Instance.cdnPrefix}/{version.unityVersion}/{version.parsedVersion}/manual/static/{imageName.Replace('-', '_')}";
+                    $"{Configuration.Instance.cdnPrefix}/{version.unity_version}/{version.parse_version}/manual/static/{imageName.Replace('-', '_')}";
 
                 var widgets = new List<Widget>
                 {
@@ -386,7 +386,7 @@ namespace Unity.DocZh.Components
                     ),
                 };
                 if (token.children != null &&
-                    token.children.Length == 1 &&
+                    token.children.Count == 1 &&
                     token.children[0].type == "text")
                 {
                     widgets.Add(

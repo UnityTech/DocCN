@@ -105,7 +105,7 @@ namespace Unity.DocZh.Components
                 );
             }
 
-            if (_item.breadcrumbs != null && _item.breadcrumbs.Length != 0)
+            if (_item.breadcrumbs != null && _item.breadcrumbs.Count != 0)
             {
                 children.Add(Splitter);
                 children.Add(

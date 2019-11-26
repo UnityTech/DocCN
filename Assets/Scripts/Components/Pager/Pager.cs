@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.widgets;
@@ -8,7 +9,7 @@ namespace Unity.DocZh.Components
     public partial class Pager : StatelessWidget
     {
         public Pager(
-            int[] pages = null,
+            List<int> pages = null,
             int totalPages = 0,
             int currentPage = 0,
             Action<int> onPageChanged = null,
@@ -20,7 +21,7 @@ namespace Unity.DocZh.Components
             _onPageChanged = onPageChanged;
         }
 
-        private readonly int[] _pages;
+        private readonly List<int> _pages;
         private readonly int _totalPages;
         private readonly int _currentPage;
         private readonly Action<int> _onPageChanged;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Unity.DocZh.Utility;
+using Unity.DocZh.Utility.Json;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
@@ -26,7 +27,7 @@ namespace Unity.DocZh.Components
                 ObservableUtil.currentPath.OnChanged += OnPathChanged;
 
                 var version = DocApp.of(context).version;
-                var request = UnityWebRequest.Get($"{Configuration.Instance.cdnPrefix}/{version.unityVersion}/{version.parsedVersion}/{widget._type.TocFileName()}");
+                var request = UnityWebRequest.Get($"{Configuration.Instance.cdnPrefix}/{version.unity_version}/{version.parse_version}/{widget._type.TocFileName()}");
                 var asyncOperation = request.SendWebRequest();
                 asyncOperation.completed += operation =>
                 {
@@ -37,7 +38,7 @@ namespace Unity.DocZh.Components
                     var content = DownloadHandlerBuffer.GetContent(request);
                     using (WindowProvider.of(context).getScope())
                     {
-                        setState(() => _menu = JsonUtility.FromJson<Models.Json.Menu>(content));
+                        setState(() => _menu = Models.Json.Menu.FromJson(JsonValue.Parse(content)));
                     }
                 };
             }
