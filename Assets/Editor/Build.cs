@@ -62,19 +62,19 @@ public class Build
 
     private static readonly Dictionary<string, Action> BuildMethods;
 
-    [MenuItem("Build/Build Local")]
+    [MenuItem("Build/Build Local", priority = 1)]
     public static void Build_local()
     {
         BuildMethods["local"].Invoke();
     }
 
-    [MenuItem("Build/Build Test")]
+    [MenuItem("Build/Build Test", priority = 2)]
     public static void Build_test()
     {
         BuildMethods["test"].Invoke();
     }
 
-    [MenuItem("Build/Build Prd")]
+    [MenuItem("Build/Build Prd", priority = 3)]
     public static void Build_prd()
     {
         BuildMethods["prd"].Invoke();

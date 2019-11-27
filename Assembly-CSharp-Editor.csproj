@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Editor\Build.cs" />
+    <Compile Include="Assets\Editor\Export.cs" />
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>C:/Workspace/DocCN/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
