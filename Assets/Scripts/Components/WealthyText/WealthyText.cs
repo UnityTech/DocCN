@@ -299,6 +299,7 @@ namespace Unity.DocZh.Components
                         offsetForCaret.dx == 0F &&
                         offsetForCaret.dy == 0F)
                     {
+                        canvas.restore();
                         return;
                     }
 

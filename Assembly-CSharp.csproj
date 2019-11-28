@@ -692,33 +692,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="UIWidgetsGallery.Editor.csproj">
-      <Project>{9228B7E3-F983-A563-7AB4-A57AE1FB9DEE}</Project>
-      <Name>UIWidgetsGallery.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="UIWidgetsGallery.csproj">
-      <Project>{0D3AC704-A2FF-AAC5-E327-DB3B6FFB160C}</Project>
-      <Name>UIWidgetsGallery</Name>
-    </ProjectReference>
-    <ProjectReference Include="UIWidgetsTheatre.csproj">
-      <Project>{92B94635-B80F-5C77-A012-9ED4E26B0FAE}</Project>
-      <Name>UIWidgetsTheatre</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.UIWidgets.Editor.csproj">
       <Project>{801CB4BB-CBB5-1BD9-D905-B25029E9E4C2}</Project>
       <Name>Unity.UIWidgets.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="UIWidgetsSample.Editor.csproj">
-      <Project>{96B27B01-7DFB-4764-CC68-B10F064024F9}</Project>
-      <Name>UIWidgetsSample.Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.UIWidgets.csproj">
       <Project>{5D73621B-F02A-41D7-BF66-14C3031AE347}</Project>
       <Name>Unity.UIWidgets</Name>
-    </ProjectReference>
-    <ProjectReference Include="UIWidgetsSample.csproj">
-      <Project>{DF5F0DD4-B25A-7DD9-F5BB-A55C208045B4}</Project>
-      <Name>UIWidgetsSample</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.InternalAPIEngineBridge.024.csproj">
       <Project>{EF43ED45-6558-FC8D-8456-2E4DC65F73A0}</Project>
