@@ -8,7 +8,6 @@ using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
-using UnityEngine;
 using UnityEngine.Networking;
 using Color = Unity.UIWidgets.ui.Color;
 using FontStyle = Unity.UIWidgets.ui.FontStyle;
@@ -93,7 +92,7 @@ namespace Unity.DocZh.Components
                     using (WindowProvider.of(context).getScope())
                     {
                         var content = DownloadHandlerBuffer.GetContent(request);
-                        var scripting = Scripting.FromJson(JsonValue.Parse(content));
+                        var scripting = Unity.DocZh.Models.Json.Scripting.FromJson(JsonValue.Parse(content));
                         setState(() =>
                         {
                             _scripting = scripting;
