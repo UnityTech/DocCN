@@ -6,7 +6,6 @@ using Unity.UIWidgets.painting;
 using Unity.UIWidgets.ui;
 using Unity.UIWidgets.widgets;
 using UnityEngine;
-using UnityEngine.Experimental.PlayerLoop;
 using Color = Unity.UIWidgets.ui.Color;
 using Transform = Unity.UIWidgets.widgets.Transform;
 
