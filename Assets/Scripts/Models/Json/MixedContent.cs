@@ -41,7 +41,12 @@ namespace Unity.DocZh.Models.Json
                     return new DocumentTagItalic
                     {
                         content = obj["value"]["content"]
-                    };            
+                    };
+                case "monotype":
+                    return new DocumentTagMonoType
+                    {
+                        content = obj["value"]["content"]
+                    };
                 default:
                     return null;
             }
@@ -68,7 +73,6 @@ namespace Unity.DocZh.Models.Json
         public string @ref;
         public string content;
         public override string ToString() => content;
-
     }
 
     public class DocumentTagImage : MixedContent

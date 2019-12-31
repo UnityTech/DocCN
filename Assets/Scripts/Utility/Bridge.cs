@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using Unity.UIWidgets.service;
 
 namespace Unity.DocZh.Utility
 {
@@ -60,6 +61,7 @@ namespace Unity.DocZh.Utility
 
         public static void CopyText(string text)
         {
+            Clipboard.setData(new ClipboardData(text: text));
         }
 #endif
     }

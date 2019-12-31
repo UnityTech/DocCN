@@ -242,6 +242,10 @@ namespace Unity.DocZh.Components
                                         fontStyle: FontStyle.italic
                                     )
                                 );
+                            case DocumentTagMonoType monoType:
+                                return new TextSpan(
+                                    monoType.content
+                                );
                         }
 
                         return null;
@@ -319,29 +323,33 @@ namespace Unity.DocZh.Components
                                 children.Add(BuildTextUsingMixedContent(context, description.value));
                                 break;
                             case Example example:
-                                children.Add(
-                                    new Container(
-                                        decoration: new BoxDecoration(
-                                            border: Border.all(
-                                                width: 1f,
-                                                color: new Color(0xffe0e0e0)
+                                if (example.cSharp != null)
+                                {
+                                    children.Add(
+                                        new Container(
+                                            decoration: new BoxDecoration(
+                                                border: Border.all(
+                                                    width: 1f,
+                                                    color: new Color(0xffe0e0e0)
+                                                )
+                                            ),
+                                            padding: EdgeInsets.all(24f),
+                                            margin: EdgeInsets.only(top: 16, bottom: 24),
+                                            child: new Row(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: new List<Widget>
+                                                {
+                                                    new Expanded(
+                                                        child: BuildTextUsingMixedContent(context, example.cSharp)
+                                                    ),
+                                                    new CopyIcon(string.Join(string.Empty,
+                                                        example.cSharp.Select(c => c.ToString())))
+                                                }
                                             )
-                                        ),
-                                        padding: EdgeInsets.all(24f),
-                                        margin: EdgeInsets.only(top: 16, bottom: 24),
-                                        child: new Row(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: new List<Widget>
-                                            {
-                                                new Expanded(
-                                                    child: BuildTextUsingMixedContent(context, example.cSharp)
-                                                ),
-                                                new CopyIcon(string.Join(string.Empty,
-                                                    example.cSharp.Select(c => c.ToString())))
-                                            }
                                         )
-                                    )
-                                );
+                                    );
+                                }
+
                                 break;
                         }
                     }

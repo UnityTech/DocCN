@@ -118,6 +118,7 @@ namespace Unity.DocZh.Components
             {
                 return new Container();
             }
+
             if (_overwriteUnknown)
             {
                 page = OnUnknownPath();
@@ -145,7 +146,10 @@ namespace Unity.DocZh.Components
             }
 
             var screenOverlay = new ScreenOverlay(
-                child: page ?? OnUnknownPath()
+                child: new GestureDetector(
+                    onTap: () => { FocusScope.of(context).requestFocus(new FocusNode()); },
+                    child: page ?? OnUnknownPath()
+                )
             );
 
             var defaultTextStyle = new DefaultTextStyle(

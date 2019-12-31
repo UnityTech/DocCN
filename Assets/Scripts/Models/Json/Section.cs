@@ -106,7 +106,7 @@ namespace Unity.DocZh.Models.Json
         public List<MixedContent> javascript;
         public List<MixedContent> cSharp;
 
-        public static Example FromJson(JsonValue obj)
+        public static new Example FromJson(JsonValue obj)
         {
             if (obj.IsNull)
             {
@@ -121,54 +121,4 @@ namespace Unity.DocZh.Models.Json
             };
         }
     }
-
-    /*
-    public class SectionConverter : JsonConverter
-    {
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            // ONLY SUPPORT READ.
-            throw new NotImplementedException();
-        }
-
-        public override object ReadJson(
-            JsonReader reader,
-            Type objectType,
-            object existingValue,
-            JsonSerializer serializer)
-        {
-            var jObject = JObject.Load(reader);
-            var valueReader = jObject["value"].CreateReader();
-            switch (jObject["type"].ToString())
-            {
-                case "Signature":
-                    return new Signature
-                    {
-                        declaration = serializer.Deserialize<Declaration>(jObject["value"]["declaration"].CreateReader()),
-                        returnType = jObject["value"]["result_type"] == null ? null : serializer.Deserialize<ReturnType>(jObject["value"]["return_type"].CreateReader())
-                    };
-                case "Summary":
-                    return new Summary
-                        {value = serializer.Deserialize<MixedContent[]>(valueReader)};
-                case "Description":
-                    return new Description
-                        {value = serializer.Deserialize<MixedContent[]>(valueReader)};
-                case "Example":
-                    return new Example
-                    {
-                        noCheck = serializer.Deserialize<string>(jObject["value"]["no_check"].CreateReader()),
-                        convertExample = serializer.Deserialize<string>(jObject["value"]["convert_example"].CreateReader()),
-                        javascript = serializer.Deserialize<MixedContent[]>(jObject["value"]["javascript"].CreateReader()),
-                        cSharp = serializer.Deserialize<MixedContent[]>(jObject["value"]["c_sharp"].CreateReader()),
-                    };
-                default: return null;
-            }
-        }
-
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType.IsSubclassOf(typeof(Section));
-        }
-    }
-    */
 }
