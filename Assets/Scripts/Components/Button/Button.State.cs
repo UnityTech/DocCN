@@ -48,11 +48,14 @@ namespace Unity.DocZh.Components
                 }
 
                 children.Add(
-                    new Text(
-                        widget._text,
-                        style: new TextStyle(
-                            color: _hover ? NormalColor : MainColor,
-                            fontSize: 16f
+                    new Expanded(
+                        child: new Text(
+                            widget._text,
+                            style: new TextStyle(
+                                color: _hover ? NormalColor : MainColor,
+                                fontSize: 16f
+                            ),
+                            maxLines: 5
                         )
                     )
                 );
@@ -73,8 +76,10 @@ namespace Unity.DocZh.Components
                     onTap: widget._onTap,
                     hoverChanged: OnHoverChanged,
                     child: new Container(
-                        height: 48f,
-                        padding: EdgeInsets.symmetric(horizontal: 16f),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 16f,
+                            vertical: 12f
+                        ),
                         decoration: new BoxDecoration(
                             border: Border.all(
                                 color: MainColor,

@@ -4,6 +4,7 @@ using Unity.DocZh.Models.Json;
 using Unity.DocZh.Style;
 using Unity.DocZh.Utility;
 using Unity.DocZh.Utility.Json;
+using Unity.UIWidgets.foundation;
 using Unity.UIWidgets.gestures;
 using Unity.UIWidgets.painting;
 using Unity.UIWidgets.rendering;
@@ -153,42 +154,67 @@ namespace Unity.DocZh.Components
                 if (_prevLink != null)
                 {
                     linkButtons.Add(
-                        new Button(
-                            text: _prevLink.content ?? "",
-                            onTap: () =>
-                            {
-                                if (!string.IsNullOrEmpty(_prevLink?.link))
-                                {
-                                    LocationUtil.Go(
-                                        $"/Manual/{_prevLink?.link}");
-                                }
-                            },
-                            prefix: Icons.MaterialArrowBack
+                        new Expanded(
+                            child: new Container(
+                                margin: EdgeInsets.only(right: 20),
+                                child: new Button(
+                                    text: _prevLink.content ?? "",
+                                    onTap: () =>
+                                    {
+                                        if (!string.IsNullOrEmpty(_prevLink?.link))
+                                        {
+                                            LocationUtil.Go(
+                                                $"/Manual/{_prevLink?.link}");
+                                        }
+                                    },
+                                    prefix: Icons.MaterialArrowBack
+                                )
+                            )
                         )
                     );
                 }
                 else
                 {
-                    linkButtons.Add(new Container()); // placeholder to use spaceBetween
+                    linkButtons.Add(
+                        new Expanded(
+                            flex: 1,
+                            child: new Container()
+                        )
+                    ); // placeholder to use spaceBetween
                 }
 
                 if (_nextLink != null)
                 {
                     linkButtons.Add(
-                        new Button(
-                            text: _nextLink.content ?? "",
-                            onTap: () =>
-                            {
-                                if (!string.IsNullOrEmpty(_nextLink.link))
-                                {
-                                    LocationUtil.Go(
-                                        $"/Manual/{_nextLink.link}");
-                                }
-                            },
-                            suffix: Icons.MaterialArrowForward
+                        new Expanded(
+                            child: new Container(
+                                margin: EdgeInsets.only(left: 20),
+                                child: new Button(
+                                    text: _nextLink.content ?? "",
+                                    onTap: () =>
+                                    {
+                                        if (!string.IsNullOrEmpty(_nextLink.link))
+                                        {
+                                            LocationUtil.Go(
+                                                $"/Manual/{_nextLink.link}");
+                                        }
+                                    },
+                                    suffix: Icons.MaterialArrowForward
+                                )
+                            )
                         )
                     );
                 }
+                else
+                {
+                    linkButtons.Add(
+                        new Expanded(
+                            flex: 1,
+                            child: new Container()
+                        )
+                    ); // placeholder to use spaceBetween
+                }
+
 
                 widgets.Add(
                     new Container(
