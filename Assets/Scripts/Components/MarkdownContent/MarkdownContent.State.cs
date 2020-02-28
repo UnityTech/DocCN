@@ -265,10 +265,10 @@ namespace Unity.DocZh.Components
                                 }
                             )
                         ),
+                        
                         new MetaFields(
                             markdownBuildCtx.PositionRecords,
-                            _scrollController,
-                            $"https://github.com/UnityTech/documentation-cn/blob/{version.unity_version}/Manual/md/{widget._title}.md"
+                            _scrollController
                         )
                     }
                 );

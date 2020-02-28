@@ -282,16 +282,6 @@ namespace Unity.DocZh.Components
                                             fontWeight: FontWeight.w500
                                         )
                                     )
-                                ),
-                                new HyperLink(
-                                    text: "在Github上编辑本文",
-                                    style: new TextStyle(
-                                        fontSize: 16,
-                                        decoration: TextDecoration.underline,
-                                        color: new Color(0xff2196f3)
-                                    ),
-                                    link:
-                                    $"https://github.com/UnityTech/documentation-cn/blob/2018.1/ScriptingAPI/xml/{widget._title}.xml"
                                 )
                             }
                         )

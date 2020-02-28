@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using Unity.DocZh.Components;
 using Unity.DocZh.Style;
 using Unity.UIWidgets.editor;
@@ -47,3 +49,5 @@ namespace Unity.DocZh
         }
     }
 }
+
+#endif

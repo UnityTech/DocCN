@@ -75,7 +75,7 @@ namespace Unity.DocZh.Components
 
 
         public override void didUpdateWidget(StatefulWidget old) {
-            SelectableText oldWidget = (SelectableText) old;
+            SelectableWealthyText oldWidget = (SelectableWealthyText) old;
             base.didUpdateWidget(oldWidget);
 
             if (oldWidget.focusNode != this.widget.focusNode) {

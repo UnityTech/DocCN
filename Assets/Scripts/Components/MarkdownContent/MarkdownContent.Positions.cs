@@ -20,7 +20,7 @@ namespace Unity.DocZh.Components
             public MetaFields(
                 List<PositionRecord> items,
                 ScrollController controller,
-                string githubLink)
+                string githubLink = null)
             {
                 _items = items;
                 _controller = controller;
@@ -45,18 +45,6 @@ namespace Unity.DocZh.Components
             {
                 var children = new List<Widget>
                 {
-                    new Container(
-                        margin: EdgeInsets.only(top: 24f, bottom: 16.0f),
-                        child: new Text(
-                            "文章导览",
-                            style: ItemStyle.merge(
-                                new TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    color: new Color(0xff212121)
-                                )
-                            )
-                        )
-                    )
                 };
                 children.AddRange(
                     _items.Select<PositionRecord, Widget>(
@@ -91,35 +79,25 @@ namespace Unity.DocZh.Components
                                 padding: EdgeInsets.only(bottom: 8.0f),
                                 child: new Align(
                                     alignment: Alignment.bottomLeft,
-                                    child: new Clickable(
-                                        onTap: () => LocationUtil.HrefTo(_githubLink),
-                                        child: new Row(
-                                            children: new List<Widget>
-                                            {
-                                                new Container(
-                                                    margin: EdgeInsets.only(right: 8),
-                                                    child: new Icon(
-                                                        Icons.BrandsGithub,
-                                                        color: new Color(0xff000000),
-                                                        size: 24f
-                                                    )
-                                                ),
-                                                new Text(
-                                                    "在Github上编辑本文",
-                                                    style: new TextStyle(
-                                                        fontSize: 16,
-                                                        decoration: TextDecoration.underline,
-                                                        color: new Color(0xff2196f3)
-                                                    )
+                                    child: new Row(
+                                        children: new List<Widget>
+                                        {
+                                            new Text(
+                                                "文章导览",
+                                                style: new TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: new Color(0xff212121)
                                                 )
-                                            }
-                                        )
+                                            )
+                                        }
                                     )
                                 )
                             ),
                             new Container(
                                 height: 1f,
-                                color: DividerColor
+                                color: DividerColor,
+                                margin: EdgeInsets.only(bottom: 24f)
                             ),
                             new Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
